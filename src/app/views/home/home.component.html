@@ -1,0 +1,189 @@
+<div class="main-container homepage">
+  <app-banner></app-banner>
+
+  <div class="roto-retro">
+    <div class="container">
+      <div class="roto-box-section" id="rotofit">
+        <div class="common-title">
+          <h2>Roto Pumps & Spares</h2>
+        </div>
+
+        <div class="box-section-inner">
+          <div class="card" *ngFor="let eachProduct of productData">
+            <a href="javascript:void(0)" (click)="routeChange(eachProduct?.name, eachProduct?.id)">
+              <div class="dummy-pic">
+                <img [src]="eachProduct?.imageUrl" />
+              </div>
+              <div class="card-title">
+                <h3>{{ eachProduct?.name | titlecase }}</h3>
+              </div>
+            </a>
+            <a style="cursor: pointer; text-align: center; display: block" (click)="readMore(eachProduct?.name)"
+              [ngStyle]="{
+                visibility:
+                  eachProduct?.name === 'Roto Spares' ? 'hidden' : 'visible'
+              }">
+              Read More...</a>
+          </div>
+
+          <div class="card">
+            <a href="javascript:void(0)" [routerLink]="['/retrospares']">
+              <div class="dummy-pic">
+                <img src="assets/images/card-images/retro-card.jpg" />
+              </div>
+              <div class="card-title">
+                <h3>Retrofit Spares</h3>
+                <!-- <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis
+                  enim velit mollit. </p> -->
+              </div>
+            </a>
+            <a  style="cursor: pointer; text-align: center; display: block"
+            [routerLink]="['/retrofit-spare-parts']">Read More...</a>
+          </div>
+        </div>
+
+        <div class="common-title">
+          <h2>Most Trending Products</h2>
+        </div>
+        <!--Product Slider-->
+        <div class="container">
+          <div class="row">
+            <div class="well">
+              <div id="productCarousel" class="carousel slide" data-interval="5000">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <a [routerLink]="['/surfaceAgriPumps/1/closedCouplePump/1/1/AGCA01A/4']">
+                          <div class="thumbnail">
+                            <div class="image-cover">
+                              <img src="assets/images/banner/surface-banner.png" alt="Slide1" />
+                            </div>
+                            <div class="caption">
+                              <h6>Surface Agri Pumps
+                                Close Coupled Pump AGCA01A</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <a [routerLink]="['/surfaceAgriPumps/1/closedCouplePump/1/1/AGCA01A/4']">
+                          <div class="thumbnail">
+                            <div class="image-cover">
+                              <img src="assets/images/banner/surface-banner.png" alt="Slide2" />
+                            </div>
+                            <div class="caption">
+                              <h6>Surface Agri Pumps
+                                Bare Shaft Pump AGAA01A</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <a [routerLink]="['/multiPurposePumps/2/closedCouplePump/3/2/DCAC041/4']">
+                          <div class="thumbnail">
+                            <div class="image-cover">
+                              <img src="assets/images/card-images/multi-pump.png" alt="Slide3" />
+                            </div>
+                            <div class="caption">
+                              <h6>Multi Purpose Pumps
+                                Close Coupled Pump DCAA01A</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <a [routerLink]="['/multiPurposePumps/2/closedCouplePump/3/2/DCAC041/4']">
+                          <div class="thumbnail">
+                            <div class="image-cover">
+                              <img src="assets/images/card-images/multi-pump.png" alt="Slide4" />
+                            </div>
+                            <div class="caption">
+                              <h6>Multi Purpose Pumps
+                                Bare Shaft Pump DCAA01A</h6>
+                            </div>
+                          </div>
+                        </a>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="item">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <a [routerLink]="['/surfaceAgriPumps/1/bareShaftPump/2/1']">
+                          <div class="thumbnail">
+                            <div class="image-cover">
+                              <img src="assets/images/SparesImg/BONDEDBUSH.BMP" alt="Slide5" />
+                            </div>
+                            <div class="caption">
+                              <h6>Surface Agri Pumps
+                                Bare Shaft Pump Bonded Bush</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <a [routerLink]="['/surfaceAgriPumps/1/bareShaftPump/2/1']">
+                          <div class="thumbnail">
+                            <div class="image-cover">
+                              <img src="assets/images/SparesImg/BEARINGHOUSING.BMP" alt="Slide6" />
+                            </div>
+                            <div class="caption">
+                              <h6>Multi Purpose Pumps
+                                Bare Shaft Pump BEARING HOUSING</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <a [routerLink]="['/rotoSpares/3']">
+                          <div class="thumbnail">
+                            <div class="image-cover">
+                              <img src="assets/images/SparesImg/STATORHOUSING.BMP" alt="Slide5" />
+                            </div>
+                            <div class="caption">
+                              <h6>Multi Purpose Pumps
+                                Close Coupled Pump Stator Housing</h6>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <a [routerLink]="['/rotoSpares/3']">
+                          <div class="thumbnail">
+                            <div class="image-cover">
+                              <img src="assets/images/SparesImg/MECHANICHALSEALRETAINER.BMP" alt="Slide6" />
+                            </div>
+                            <div class="caption">
+                              <h6>Multi Purpose Pumps
+                                Close Coupled Pump Mech Seal Retainer</h6>
+                            </div>
+                          </div> 
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#productCarousel" data-slide="prev"><i
+                    class="fa fa-chevron-left fa-2x"></i></a>
+                <a class="right carousel-control" href="#productCarousel" data-slide="next"><i
+                    class="fa fa-chevron-right fa-2x"></i></a>
+
+                <!-- <ol class="carousel-indicators">
+                        <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#productCarousel" data-slide-to="1"></li>
+                        <li data-target="#productCarousel" data-slide-to="2"></li>
+                </ol> -->
+              </div>
+              <!-- End Carousel -->
+            </div>
+            <!-- End Well -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

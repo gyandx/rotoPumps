@@ -1,0 +1,344 @@
+.custom-dropdown {
+  position: relative;
+  width: 290px;
+  // background: transparent;
+  color: #000;
+  border: 2px solid black !important;
+  outline: none !important;
+
+  // option {
+  //   background: rgba(150, 150, 150, 0.3);
+  // }
+
+  ul.dropdown-menu {
+    min-width: 190px;
+    width: 100%;
+    li a span {
+      float: right;
+    }
+  }
+
+  button {
+    width: 100%;
+    background: transparent;
+    color: #333;
+    text-align: left;
+
+    .caret {
+      float: right;
+      margin-top: 8px;
+    }
+  }
+}
+
+.fas {
+  font-size: 25px;
+  color: #cbb400;
+  animation: blink 1s linear infinite;
+  margin-left: 6px;
+}
+@keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+.tablegraphImg{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-right: 24px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  div{
+    img{
+      width: 110%;
+    }
+  }
+}
+
+// .custom-dropdown:hover{
+//   background: rgba(150, 150, 150, 0.3);
+// }
+
+.comingSoon{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  h3{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 34px;
+    font-weight: 600;
+    text-shadow: 2px 2px black;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+}
+
+
+.delete-txt {
+  padding: 20px;
+
+  .blue-button {
+    padding: 8px 25px;
+    margin: 0 15px 0 0;
+  }
+
+  .remove-sec {
+    margin: 0 0 10px 0;
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.address-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 35px 0 0 0;
+
+  h3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 0 7px 0;
+  }
+  .address-feild {
+    max-width: 48%;
+    flex: 0 0 48%;
+    margin: 10px 0 15px 0;
+
+    @media screen and (max-width: 666px) {
+      max-width: 100%;
+      flex: 0 0 100%;
+    }
+
+    label {
+      width: 100%;
+      font-size: 14px;
+      font-weight: normal;
+      color: rgba(0, 0, 0, 0.6);
+
+      span {
+        color: #ff0000;
+      }
+    }
+
+    input, #cc-number , #cc-exp-date, #cc-cvc {
+      width: 100%;
+      font-size: 14px;
+      font-weight: normal;
+      height: 48px;
+      padding: 10px;
+      border: none;
+      border-radius: 2px;
+      background: rgba(0, 0, 0, 0.05);
+      appearance: none;
+      -webkit-appearance: none;
+
+      &:focus {
+        border: 1px solid rgba(18, 37, 58, 0.4);
+      }
+    }
+
+    select {
+      width: 100%;
+      font-size: 14px;
+      font-weight: normal;
+      height: 48px;
+      padding: 10px;
+      border: none;
+      border-radius: 2px;
+      background-color: rgba(0, 0, 0, 0.05);
+      -moz-appearance: none;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url(../../assets/images/icons/acc-open-blk.png) !important;
+      background-repeat: no-repeat !important;
+      background-position: 97% 16px !important;
+
+      &:focus {
+        border: 1px solid rgba(18, 37, 58, 0.4);
+      }
+    }
+  }
+}
+
+.full-address-row {
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 25px 80px;
+
+  @media screen and (max-width: 767px) {
+    padding: 20px;
+  }
+
+  .address-feild {
+    flex: 0 0 100%;
+    max-width: 100%;
+
+    input,
+    select {
+      background: transparent;
+      border: solid 1px #d2d2d2;
+    }
+  }
+
+
+  button {
+    width: 100%;
+    border: none;
+    padding: 0;
+    a {
+      background: #10253e;
+      border-radius: 5px;
+      width: 100%;
+      padding: 13px;
+      color: #fff;
+      font-size: 16px;
+      margin: 0;
+      border: none;
+      display: inline-block;
+      text-decoration: none;
+    }
+  }
+}
+
+#imageMap1  .mapper{
+  width: 550px!important;
+  margin-right: auto;
+  height: 406px !important;
+}
+
+#imageMap2 .mapper{
+  width: 550px!important;
+  margin-left: auto;
+  height: 406px !important;
+}
+
+#imageMap3 .mapper{
+  width: 572px!important;
+  margin-left: auto;
+  height: 425px !important;
+}
+
+#imageMap4 .mapper{
+  width: 555px!important;
+  margin: auto;
+  height: 406px !important;
+}
+
+#imageMap5 .mapper{
+  width: 572px!important;
+  margin: auto;
+  height: 425px !important;
+}
+
+.error-msg {
+  margin: -13px 0 16px;
+  color: red;
+}
+
+.validation-error {
+  color: #ff0000;
+  margin: 4px 0 0 0;
+  font-size: 13px;
+}
+.sign-input.error {
+  border-bottom: 1px solid #ff0000 !important;
+}
+
+.sign-input.success {
+  border-bottom: 1px solid #2dd348 !important;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  opacity: 1 !important;
+  text-align: center;
+  z-index: 1040 !important;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 270px;
+  background-color: #ffffff;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 12px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: -48px;
+  left: 50%;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  font-size: 13px;
+  text-transform: none;
+  border: solid 1px #ff0000;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #ff0000 transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.error-addressMsg {
+  margin: 0;
+  color: red;
+}
+
+.modal-footer button {
+  margin: 0 0 0 15px;
+}
+
+div#changeModal,
+div#deleteModal,
+div#cartdeletemodal,
+#logoutModal {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal-header {
+  display: flex;
+  button {
+    margin-left: auto;
+  }
+}
+.enquiry-form-wrapper{
+  .address-row{
+    display: block !important;
+    margin: 0px !important;
+  }
+  .address-feild{
+    max-width: 100% !important;
+    width: 100%;
+  }
+}
+

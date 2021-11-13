@@ -1,0 +1,239 @@
+<div class="main-container cartpage roto-spares">
+  <div class="full-banner">
+    <img src="assets/images/banner/top-banner-small.jpg" />
+    <div class="container">
+      <h2>Retrofit Spares</h2>
+    </div>
+  </div>
+
+  <div class="breadcrum">
+    <div class="container">
+      <p>
+        <a href="javascript:void(0)" routerLink="/home">Home</a
+        ><span>/</span>Retrofit Spares
+      </p>
+    </div>
+  </div>
+
+  <div class="select-box-sec">
+    <div class="container">
+      <div class="select-box-inner select-cat">
+        <div class="select-box clean">
+          <label>PUMP TYPE</label>
+          <select
+            (change)="getPumpType($event.target.value)"
+            [(ngModel)]="pumpType"
+          >
+            <option value="" selected disabled>Please select pump</option>
+            <option
+              *ngFor="let eachProduct of retroSpares"
+              value="{{ eachProduct?.id }}"
+            >
+              {{ eachProduct?.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="select-box clean">
+          <label>PUMP SERIES</label>
+          <select
+            (change)="getPumpSubType($event.target.value)"
+            [(ngModel)]="pumpSubType"
+          >
+            <option value="" selected disabled>
+              Please select pump type first
+            </option>
+            <option
+              *ngFor="let eachSubCategory of subCategories"
+              value="{{ eachSubCategory?.id }}"
+            >
+              {{ eachSubCategory?.title }}
+            </option>
+          </select>
+        </div>
+
+        <div class="select-box clean">
+          <label>SELECT PUMP MODEL</label>
+          <select
+            (change)="getRetroSpareType($event.target.value)"
+            [(ngModel)]="pumpModel"
+          >
+            <option value="" selected disabled>
+              Please select pump sub-type first
+            </option>
+            <option
+              *ngFor="let eachPumpModel of pumpModels; let pumpModel = index"
+              value="{{ eachPumpModel?.code }}"
+            >
+              {{ eachPumpModel?.code }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-section">
+    <div class="container">
+      <div class="cart-inner">
+        <div
+          class="emptyState"
+          [ngStyle]="{ display: spares.length <= 0 ? 'block' : 'none' }"
+        >
+          {{ msgString }}
+          <!-- <div style="margin-top: 16px">
+            <p>You can visit the site for more information:-
+              <a href="https://rotopumps.com.au/retrofit-spare-parts/"
+              target="blank">Retrofit parts</a>
+            </p>
+          </div> -->
+        </div>
+        <div
+          class="cart border-grey"
+          [ngStyle]="{ display: spares.length > 0 ? 'block' : 'none' }"
+        >
+          <h3 class="price-title">Select Spares
+            <span style="color: #BC8129; font-size: 15px;">(plus GST 10%)</span></h3>
+          <!-- <div class="progress-row" *ngFor="let eachSpare of spares; let spareCount=index">
+            <div class="left-progress">
+              <div class="progress-pic"> <img [src]="eachSpare?.imgSrc"></div>
+            </div>
+
+            <div class="right-progress">
+              <div class="top-progress">
+                <strong>{{eachSpare?.productName}} </strong>
+                <h3>{{eachSpare?.productPrice | currency}}</h3>
+              </div>
+
+              <div class="mid-progress" style="align-items: end">
+                <div>
+                <p *ngIf=" eachSpare?.productDesc !== null && eachSpare?.productDesc !== ''; else productDesc"> <small>PRODUCT ID : {{eachSpare?.productDesc}} </small> </p>
+                <ng-template #productDesc>
+                  <p> <small>PRODUCT ID : NA </small> </p>
+                </ng-template>
+                </div>
+
+                <div class="number">
+                  <span class="minus" (click)="consumptionSpareDecrement(spareCount)" [ngStyle]="{'pointer-events': eachSpare?.spareQuantity <= 0?'none':'auto'}">-</span>
+                  <input type="text" [value]="eachSpare?.spareQuantity"  disabled  />
+                  <span class="plus" (click)="consumptionSpareIncrement(spareCount)">+</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div
+            class="progress-row progress-row-spare"
+            *ngFor="let eachSpare of spares; let spareCount = index"
+          >
+            <div class="left-progress">
+              <div class="progress-pic">
+                <img [src]="eachSpare?.image" />
+              </div>
+            </div>
+
+            <div class="right-progress">
+              <div class="top-progress">
+                <div style="width: 160px" class="top-heading">
+                  <p style="font-weight: bold;width: 100px;">{{ eachSpare?.part }} </p>
+                  <small><span *ngIf="eachSpare?.code !== ''">{{ eachSpare?.code }}</span>
+                    <span *ngIf="eachSpare?.original_part_code !== ''"> ({{eachSpare?.original_part_code}})</span></small>
+                </div>
+                <p style="width: auto;" class="top-para">
+                  <small *ngIf="eachSpare?.roto_part_code !== ''"
+                    >PRODUCT ID :{{ eachSpare?.roto_part_code }}
+                  </small>
+                </p>
+                <div class="number">
+                  <span
+                    class="minus"
+                    (click)="consumptionSpareDecrement(spareCount)"
+                    [ngStyle]="{
+                      'pointer-events':
+                        eachSpare?.quantity <= 0 ? 'none' : 'auto'
+                    }"
+                    >-</span
+                  >
+                  <input type="text" style="font-size: 19px;" [value]="eachSpare?.quantity" disabled />
+                  <span
+                    class="plus"
+                    (click)="consumptionSpareIncrement(spareCount)"
+                    >+</span
+                  >
+                </div>
+                <h3 style="font-size: 19px;">{{ eachSpare?.price | currency }}</h3>
+              </div>
+
+              <div class="mid-progress" style="display: none;">
+                <!-- <p> <small style="display: block;">PRODUCT ID : {{eachSpare?.code}} </small>
+                 <small>ORIGINAL PRODUCT CODE : {{eachSpare?.original_part_code}} </small> </p> -->
+                <!-- <div class="number">
+                  <span class="minus" (click)="consumptionSpareDecrement(spareCount)" [ngStyle]="{'pointer-events': eachSpare?.spareQuantity <= 0?'none':'auto'}">-</span>
+                  <input type="text" [value]="eachSpare?.quantity"  disabled  />
+                  <span class="plus" (click)="consumptionSpareIncrement(spareCount)">+</span>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="price-detail"
+          [ngStyle]="{ display: productsInCart.length > 0 ? 'block' : 'none' }"
+        >
+          <h3 class="price-title">Product Summary</h3>
+          <div class="price-row" *ngFor="let eachProduct of productsInCart">
+            <div class="left-price">
+              <h3>
+                {{ eachProduct?.part }}
+                <small>Model No: {{ eachProduct?.original_part_code }}</small>
+              </h3>
+            </div>
+
+            <!-- <div class="mid-price">
+              <span>{{eachProduct?.quantity}} x $ {{eachProduct?.price}}</span>
+            </div> -->
+
+            <div class="right-price">
+              <h3>
+                {{ eachProduct?.price * eachProduct?.quantity | currency }}
+                <!-- <span> (excluding GST 10%)</span> -->
+              </h3>
+            </div>
+          </div>
+
+          <div class="price-row total-price">
+            <div class="left-price-spare">
+              <h3>Shipping & Handling @5%</h3>
+              <h3>{{ shippingAmount | currency }}</h3>
+            </div>
+            <div class="left-price-spare">
+              <h3>Gst @10%</h3>
+              <h3>{{ gstAmount | currency }}</h3>
+            </div>
+            <div class="left-price-spare">
+              <h3>Total <br/>(In AUD)</h3>
+              <h3>{{ subTotal | currency }}</h3>
+            </div>
+            <!-- <div class="left-price-spare">
+              <h3>Sub Total</h3>
+              <h3>{{subTotal | currency}}</h3>
+            </div> -->
+
+            <!-- <div class="right-price">
+              <h3>{{subTotal | currency}}</h3>
+            </div> -->
+          </div>
+          <button>
+            <a routerLink='/comingSoon'>ADD TO CART</a>
+          </button>
+        </div>
+        <!-- <div style="margin-top: 16px;" [ngStyle]="{ display: spares.length > 0 ? 'block' : 'none' }">
+          <p>You can visit the site for more information:-
+            <a href="https://rotopumps.com.au/retrofit-spare-parts/"
+            target="blank">Retrofit parts</a>
+          </p>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a data-toggle="tab" href="#personal">Personal Data</a>
+  </li>
+  <li>
+    <a data-toggle="tab" href="#password">Password Change</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+
+  <div id="personal" class="tab-pane fade in active">
+
+    <p>Feel free to edit any of your details below so your account is always up to date</p>
+    <div class="sign-up-form">
+      <form [formGroup]="personalDataForm" (ngSubmit)="submitPersonalDataForm(personalDataForm)">
+        <div class="sign-field">
+          <label>Name <span>*</span></label>
+          <div class="sign-input" [ngClass]="(formControl?.name?.invalid && (formControl?.name?.touched || formControl?.name?.dirty))? 'error' : (formControl?.name?.valid && (formControl?.name?.touched || formControl?.name?.dirty)) ? 'success' : ''">
+            <input type="text" appTextOnly placeholder="Enter your Name" formControlName="name" appTextOnly required>
+            <img *ngIf="formControl?.name?.valid && (formControl?.name?.touched || formControl?.name?.dirty)"
+              src="assets/images/icons/tick.png">
+            <img *ngIf="formControl?.name?.invalid && (formControl?.name?.touched || formControl?.name?.dirty)"
+              src="assets/images/icons/clear.png">
+          </div>
+          <ng-container *ngIf="formControl?.name?.invalid && (formControl?.name?.touched || formControl?.name?.dirty)">
+            <p class="error-msg" *ngIf="formControl?.name?.errors.required">Name Is Required</p>
+            <p class="error-msg" *ngIf="formControl?.name?.errors.maxlength">Name must not exceed 15 characters</p>
+          </ng-container>
+        </div>
+
+
+        <div class="sign-field">
+          <label>Email <span>*</span></label>
+          <div class="sign-input" [ngClass]="((formControl?.email?.errors?.pattern || formControl?.email?.errors?.required) && (formControl?.email?.touched || formControls?.email?.dirty))? 'error' : (formControl?.email?.valid && (formControl?.email?.touched || formControl?.email?.dirty)) ? 'success' : ''">
+            <input type="text" placeholder="abc@xyz.com" formControlName="email" required>
+            <img *ngIf="formControl?.email?.valid && (formControl?.email?.touched || formControl?.email?.dirty)"
+              src="assets/images/icons/tick.png">
+            <img *ngIf="formControl?.email?.invalid && (formControl?.email?.touched || formControl?.email?.dirty)"
+              src="assets/images/icons/clear.png">
+          </div>
+          <ng-container *ngIf="formControl?.email?.invalid && (formControl?.email?.touched || formControl?.email?.dirty)">
+            <p class="error-msg" *ngIf="formControl?.email?.errors.required">Email Is Required</p>
+            <p class="error-msg" *ngIf="formControl?.email?.errors.pattern">Enter valid email(abc@abc.abc)</p>
+          </ng-container>
+        </div>
+        <button class="blue-button" type="submit" [disabled]="personalDataForm.invalid">Update personal Data</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="password" class="tab-pane fade">
+    <p>If you want to change the password to access your account, enter the folowing information:Your current
+      email address is {{userData?.email}}</p>
+    <div class="sign-up-form">
+      <form [formGroup]="passwordUpdateForm" (ngSubmit)="submitPasswordUpdateForm(passwordUpdateForm)">
+        <div class="sign-field">
+          <label>Current Password<span>*</span></label>
+          <div class="sign-input" [ngClass]="(formControls?.oldPassword?.invalid && (formControls?.oldPassword?.touched || formControls?.oldPassword?.dirty))? 'error' : (formControls?.oldPassword?.valid && (formControls?.oldPassword?.touched || formControls?.oldPassword?.dirty)) ? 'success' : ''" >
+            <input type="password" placeholder="Enter Current Password" formControlName="oldPassword" required>
+            <img
+              *ngIf="formControls?.oldPassword?.valid && (formControls?.oldPassword?.touched || formControls?.oldPassword?.dirty)"
+              src="assets/images/icons/tick.png">
+            <img
+              *ngIf="formControls?.oldPassword?.invalid && (formControls?.oldPassword?.touched || formControls?.oldPassword?.dirty)"
+              src="assets/images/icons/clear.png">
+          </div>
+          <ng-container *ngIf="formControls?.oldPassword?.invalid && (formControls?.oldPassword?.touched || formControls?.oldPassword?.dirty)">
+            <p class="error-msg" *ngIf="formControls?.oldPassword?.errors.required">Password Is Required</p>
+            <p class="error-msg" *ngIf="formControls?.oldPassword?.errors.minlength">Password Must Be of min 6 characters</p>
+          </ng-container>
+        </div>
+
+
+        <div class="half-field">
+          <div class="sign-field">
+            <label>New Password <span>*</span></label>
+            <div class="sign-input" [ngClass]="(formControls?.password?.invalid && (formControls?.password?.touched || formControls?.password?.dirty))? 'error' : (formControls?.password?.valid && (formControls?.password?.touched || formControls?.password?.dirty)) ? 'success' : ''" >
+              <input type="password" placeholder="Enter New Password" formControlName="password" required>
+              <img *ngIf="formControls?.password?.valid && (formControls?.password?.touched || formControls?.password?.dirty)"
+                src="assets/images/icons/tick.png">
+              <img *ngIf="formControls?.password?.invalid && (formControls.password?.touched || formControls?.password?.dirty)"
+                src="assets/images/icons/clear.png">
+            </div>
+            <ng-container *ngIf="formControls?.password?.invalid && (formControls?.password?.touched || formControls?.password?.dirty)">
+              <p class="error-msg" *ngIf="formControls?.password?.errors.required">New Password Is Required</p>
+              <p class="error-msg" *ngIf="formControls?.password?.errors.minlength">New Password Must Be of min 6 characters</p>
+            </ng-container>
+          </div>
+
+
+          <div class="sign-field">
+            <label>Repeat Password <span>*</span></label>
+            <div class="sign-input" [ngClass]="(formControls?.confirmPassword?.invalid && (formControls?.confirmPassword?.touched || formControls?.confirmPassword?.dirty))? 'error' : (formControls?.password?.valid && (formControls?.confirmPassword?.touched || formControls?.confirmPassword?.dirty)) ? 'success' : ''" >
+              <input type="password" placeholder="Re-Enter Your Password" formControlName="confirmPassword" required>
+              <img *ngIf="formControls?.confirmPassword?.valid && (formControls?.confirmPassword?.touched || formControls?.confirmPassword?.dirty)"
+                src="assets/images/icons/tick.png">
+              <img *ngIf="formControls?.confirmPassword?.invalid && (formControls?.confirmPassword?.touched || formControls?.confirmPassword?.dirty)"
+                src="assets/images/icons/clear.png">
+            </div>
+            <ng-container *ngIf="formControls?.confirmPassword?.invalid && (formControls?.confirmPassword?.touched || formControls?.confirmPassword?.dirty)">
+              <p class="error-msg" *ngIf="formControls?.confirmPassword?.errors.required">Confirm Password Is Required</p>
+              <p class="error-msg" *ngIf="formControls?.confirmPassword?.errors.minlength">Confirm Password Must Be of min 6 characters</p>
+            </ng-container>
+          </div>
+        </div>
+        <button class="blue-button" type="submit">Update Password</button>
+      </form>
+    </div>
+  </div>
+</div>

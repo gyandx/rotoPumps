@@ -1,0 +1,59 @@
+<div class="main-container profile-container addresspage">
+
+  <div class="breadcrum">
+    <div class="container">
+      <p *ngIf="urlLength === 3 || routePath == 'My Profile'"><a href="javascript:void(0)"
+          [routerLink]="['/home']">Home</a> <span>/</span> {{ routePath}} </p>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <div class="container">
+      <div class="account-section">
+        <div class="account-sidebar">
+          <h3>My Account</h3>
+          <span>Personal Details</span>
+          <ul>
+            <li routerLinkActive="active"><a href="javascript:void(0)" [routerLink]="['./my-profile']">My Profile</a>
+            </li>
+            <li routerLinkActive="active"><a href="javascript:void(0)" [routerLink]="['./my-address']">Address</a></li>
+          </ul>
+          <span>Order Details</span>
+          <ul>
+            <li routerLinkActive="active"><a href="javascript:void(0)" [routerLink]="['./my-orders']">Order History</a>
+            </li>
+            <li><a href="javascript:void(0)" (click)="openModal()">Logout</a></li>
+          </ul>
+        </div>
+        <div class="account-tab">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="logoutModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div> -->
+      <div class="modal-body">
+        <div class="delete-txt">
+          <div class="remove-sec">Are you sure to log out ?<p></p>
+          </div>
+
+          <button class="blue-button" (click)="logout()">Log Out</button>
+          <button class="blue-button" (click)="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,481 @@
+<ng-container *ngIf="togglePage === 'surfaceAgriPumps'">
+  <div class="main-container surface-page" *ngIf="!toggleDisplaySurfaceAgri">
+    <div class="full-banner">
+      <img src="assets/images/banner/top-banner-small.jpg" />
+      <div class="container">
+        <h2>Bare Shaft Pumps</h2>
+      </div>
+    </div>
+
+    <div class="breadcrum">
+      <div class="container">
+        <p>
+          <a href="javascript:void(0)" [routerLink]="['/home']">Home</a> /
+          <a
+            href="javascript:void(0)"
+            [routerLink]="['/surfaceAgriPumps/', parentId]"
+            >Surface Agri Pumps</a
+          ><span>/</span>Bare Shaft Pumps
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h3 class="pumpHeading">
+        Select Pump based on the Configuration
+        <i class="fas fa-hand-point-left"></i>
+      </h3>
+    </div>
+    <div class="performance-curve multi-box-curve">
+      <div class="container">
+        <!-- <h3>Select Pump based on </h3> -->
+        <div class="performance-box-outer">
+          <div class="performance-box">
+            <div class="performance-buttons">
+              <a
+                href="javascript:void(0)"
+                [ngClass]="eachBtn1 === btn4Active ? 'active-bttn' : ''"
+                *ngFor="let eachBtn1 of fourPoleButtons"
+                (click)="showMotor(eachBtn1, 4)"
+                >{{ eachBtn1 }}</a
+              ></div>
+            <strong class="poleType">4 Pole - 1450 RPM</strong>
+            <maphilight id="imageMap4" [config]="config">
+              <!-- <p>{{graphImgSrc}}</p> -->
+            <img class="mapper"
+            class="mapper"
+              [src]="graphImgSrc"
+              [ngStyle]="{
+                visibility:
+                  graphImgSrc && graphImgSrc != '' ? 'visible' : 'hidden'
+              }"
+            />
+            <map>
+              <area title="AGAA01A" style="cursor: pointer;" (click)="showMotor('AGAA01A', 4)" (mouseenter)="activateBtn('SABS', $event)" (mouseleave)="deActivateBtn('SABS')" coords="55,312,246,319,246,354,56,354" shape="poly">
+              <area title="AGAA01B" style="cursor: pointer;" (click)="showMotor('AGAA01B', 4)" (mouseenter)="activateBtn('SABS', $event)" (mouseleave)="deActivateBtn('SABS')" coords="54,307,439,323,439,354,247,354,245,320,55,313,55,305" shape="poly">
+              <area title="AGAA03A" style="cursor: pointer;" (click)="showMotor('AGAA03A', 4)" (mouseenter)="activateBtn('SABS', $event)" (mouseleave)="deActivateBtn('SABS')" coords="55,287,248,298,247,315,55,306" shape="poly">
+              <area title="AGAA03B" style="cursor: pointer;" (click)="showMotor('AGAA03B', 4)" (mouseenter)="activateBtn('SABS', $event)" (mouseleave)="deActivateBtn('SABS')" coords="55,284,439,295,439,322,247,315,247,298,55,287" shape="poly">
+              <area title="AGAA05A" style="cursor: pointer;" (click)="showMotor('AGAA05A', 4)" (mouseenter)="activateBtn('SABS', $event)" (mouseleave)="deActivateBtn('SABS')" coords="55,241,56,283,246,290,246,249" shape="poly">
+              <area title="AGAA05B" style="cursor: pointer;" (click)="showMotor('AGAA05B', 4)" (mouseenter)="activateBtn('SABS', $event)" (mouseleave)="deActivateBtn('SABS')" coords="54,239,439,245,439,294,246,289,245,249,54,241" shape="poly">
+              <area title="AGAA07A" style="cursor: pointer;" (click)="showMotor('AGAA07A', 4)" (mouseenter)="activateBtn('SABS', $event)" (mouseleave)="deActivateBtn('SABS')" coords="56,117,248,150,248,241,56,238" shape="poly">
+              <area title="AGAA07B" style="cursor: pointer;" (click)="showMotor('AGAA07B', 4)" (mouseenter)="activateBtn('SABS', $event)" (mouseleave)="deActivateBtn('SABS')" coords="55,115,244,136,439,151,439,244,248,243,247,151,55,117" shape="poly">
+          </map>
+          </maphilight>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<div class="main-container surface-page" *ngIf="toggleDisplaySurfaceAgri">
+  <div class="full-banner">
+    <img src="assets/images/banner/top-banner-small.jpg" />
+    <div class="container">
+      <h2>Bare Shaft Pumps</h2>
+    </div>
+  </div>
+  <div class="breadcrum">
+    <div class="container">
+      <p>
+        <a href="javascript:void(0)" [routerLink]="['/home']">Home</a> /
+        <a
+          href="javascript:void(0)"
+          [routerLink]="['/surfaceAgriPumps/', parentId]"
+          >Surface Agri Pumps</a
+        ><span>/</span> Bare Shaft Pumps
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- <h3 class="pumpHeading">Select Pump based on the Configuration</h3> -->
+    <h3>
+      <a href="javascript:void(0)" (click)="goBack()"
+        ><img src="assets/images/icons/back.svg"
+      /></a>
+      Select Motor
+    </h3>
+  </div>
+  <div
+    class="performance-curve cleanBg"
+    *ngIf="showMotorDisplay"
+    id="tableData"
+  >
+    <div class="container">
+      <!-- <h3><a href="javascript:void(0)" (click)="goBack()"><img src="assets/images/icons/back.svg"></a> Select Motor</h3> -->
+      <div class="performance-box-outer">
+        <!-- <div class="performance-box-outer row"> -->
+        <!-- <div class="col-md-3" style="margin: auto;padding: 0;">
+          <img [src]="leftGraphImg" width="100%">
+        </div> -->
+        <div class="table-head">
+          <!-- <div class="table-head col-md-6"> -->
+          <h2>{{ motorModel }}</h2>
+          <h5 style="font-size: 18px">
+            Select the capacity in the below matrix based on the head and speed
+            <i class="fas fa-hand-point-left"></i>
+          </h5>
+          <table>
+            <tbody>
+              <tr>
+                <th class="head" rowspan="2">Pump Speed rpm</th>
+                <th class="head" rowspan="2">Capacity and Power</th>
+                <th colspan="8" class="head">Total Head from All Causes</th>
+                <!-- <th class="sticky-col"></th> -->
+              </tr>
+              <tr>
+                <td *ngFor="let eachData of tableHead">
+                  <span>{{ eachData?.head }} m</span>
+                  <span *ngIf="eachData?.feet !== ''"
+                    >({{ eachData?.feet }})</span
+                  >
+                </td>
+                <!-- <td><span>20</span><span>(65ft)</span></td>
+                <td><span>30</span><span>(80ft)</span></td>
+                <td><span>40</span><span>(90ft)</span></td>
+                <td><span>50</span><span>(130ft)</span></td>
+                <td><span>60</span><span>(140ft)</span></td> -->
+                <!-- <td class="sticky-col">Select</td> -->
+              </tr>
+              <tr *ngFor="let eachTable of motorData">
+                <td>
+                  <b>{{ eachTable?.pump_speed }}</b>
+                </td>
+                <td><span>LPS</span><span>GPH</span><span>KW Abs.</span></td>
+                <td class="table-hover">
+                  <a
+                    href="javascript:void(0)"
+                    (click)="navigateToProductDetails(eachTable)"
+                    ><span>{{ eachTable[0][0] }}</span
+                    ><span>{{ eachTable[0][1] }}</span
+                    ><span>{{ eachTable[0][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 10, id: eachTable.id }"
+                    ><span>{{ eachTable[10][0] }}</span
+                    ><span>{{ eachTable[10][1] }}</span
+                    ><span>{{ eachTable[10][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 20, id: eachTable.id }"
+                    ><span>{{ eachTable[20][0] }}</span
+                    ><span>{{ eachTable[20][1] }}</span
+                    ><span>{{ eachTable[20][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 30, id: eachTable.id }"
+                    ><span>{{ eachTable[30][0] }}</span
+                    ><span>{{ eachTable[30][1] }}</span
+                    ><span>{{ eachTable[30][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 40, id: eachTable.id }"
+                    ><span>{{ eachTable[40][0] }}</span
+                    ><span>{{ eachTable[40][1] }}</span
+                    ><span>{{ eachTable[40][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 50, id: eachTable.id }"
+                    ><span>{{ eachTable[50][0] }}</span
+                    ><span>{{ eachTable[50][1] }}</span
+                    ><span>{{ eachTable[50][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 60, id: eachTable.id }"
+                    ><span>{{ eachTable[60][0] }}</span
+                    ><span>{{ eachTable[60][1] }}</span
+                    ><span>{{ eachTable[60][2] }}</span></a
+                  >
+                </td>
+                <!-- <td class="sticky-col"><a href="javascript:void(0)" [routerLink]="['../', parentId,motorModel, 4]" class="icon-select"></a></td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="col-md-3" style="margin: auto;padding: 0">
+          <img [src]="rightGraphImg" alt="" width="100%">
+        </div> -->
+      </div>
+      <div class="tablegraphImg">
+        <div>
+          <img [src]="leftGraphImg" alt="" />
+        </div>
+        <div>
+          <img [src]="rightGraphImg" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="togglePage === 'multiPurposePumps'">
+  <div class="main-container surface-page" *ngIf="!toggleDisplayMultipurpose">
+    <div class="full-banner">
+      <img src="assets/images/banner/top-banner.jpg" />
+      <div class="container">
+        <h2>Bare Shaft Pumps</h2>
+      </div>
+    </div>
+
+    <div class="breadcrum">
+      <div class="container">
+        <p>
+          <a href="javascript:void(0)" routerLink="/home">Home</a> /
+          <a
+            href="javascript:void(0)"
+            [routerLink]="['/multiPurposePumps/', parentId]"
+            >Multi Purpose Pumps</a
+          >
+          <span>/</span>Bare Shaft Pumps
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h3 class="pumpHeading">
+        Select Pump based on Performance Curves
+        <i class="fas fa-hand-point-left"></i>
+      </h3>
+    </div>
+
+    <div class="performance-curve multi-box-curve">
+      <div class="container">
+        <!-- <h3>Select Pump based on Performance Curves</h3> -->
+        <div class="performance-box-outer">
+          <div class="performance-box">
+            <div class="performance-buttons">
+              <!-- <a class=" active-bttn" href="#">AGCA074</a>
+              <a href="#">AGCA074</a>
+              <a href="#">AGCA074</a>
+              <a href="#">AGCA074</a> -->
+              <a
+                href="javascript:void(0)"
+                [ngClass]="eachBtn1 === btn4Active ? 'active-bttn' : ''"
+                *ngFor="let eachBtn1 of fourPoleButtons"
+                (click)="showMotor(eachBtn1, 4)"
+                >{{ eachBtn1 }}</a
+              >
+            </div>
+            <!-- <img src="assets/images/banner/performance-1.jpg"> -->
+            <strong class="poleType">4 Pole - 1450 RPM</strong>
+            <maphilight id="imageMap5" [config]="config">
+            <img
+              class= "mapper"
+              [src]="graphImgSrc"
+              [ngStyle]="{
+                visibility:
+                  graphImgSrc && graphImgSrc != '' ? 'visible' : 'hidden'
+              }"
+              class="mapper"
+            />
+            <map>
+              <area title="DCAC012" (click)="showMotor('DCAC012', 4)" style="cursor: pointer;" (mouseenter)="activateBtn('MPBS', $event)" (mouseleave)="deActivateBtn('MPBS')" coords="86,338,87,362,467,362,467,342" shape="poly">
+              <area title="DCAC022" (click)="showMotor('DCAC022', 4)" style="cursor: pointer;" (mouseenter)="activateBtn('MPBS', $event)" (mouseleave)="deActivateBtn('MPBS')" coords="85,322,467,329,467,342,85,338" shape="poly">
+              <area title="DCAC032" (click)="showMotor('DCAC032', 4)" style="cursor: pointer;" (mouseenter)="activateBtn('MPBS', $event)" (mouseleave)="deActivateBtn('MPBS')" coords="85,296,86,322,339,327,339,322" shape="poly">
+              <area title="DCAA041" (click)="showMotor('DCAA041', 4)" style="cursor: pointer;" (mouseenter)="activateBtn('MPBS', $event)" (mouseleave)="deActivateBtn('MPBS')" coords="85,201,86,297,276,315,277,237" shape="poly">
+              <area title="DCAA051" (click)="showMotor('DCAA051', 4)" style="cursor: pointer;" (mouseenter)="activateBtn('MPBS', $event)" (mouseleave)="deActivateBtn('MPBS')" coords="86,77,86,201,275,237,275,136" shape="poly">
+            </map>
+          </maphilight>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<div class="main-container surface-page" *ngIf="toggleDisplayMultipurpose">
+  <div class="full-banner">
+    <img src="assets/images/banner/top-banner-small.jpg" />
+    <div class="container">
+      <h2>Bare Shaft Pumps</h2>
+    </div>
+  </div>
+  <div class="breadcrum">
+    <div class="container">
+      <p>
+        <a href="javascript:void(0)" [routerLink]="['/home']">Home</a> /
+        <a
+          href="javascript:void(0)"
+          [routerLink]="['/multiPurposePumps/', parentId]"
+          >Multi Purpose Pumps</a
+        ><span>/</span> Bare Shaft Pumps
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- <h3 class="pumpHeading">Select Pump based on the Configuration</h3> -->
+    <h3>
+      <a href="javascript:void(0)" (click)="goBack()"
+        ><img src="assets/images/icons/back.svg"
+      /></a>
+      Select Motor
+    </h3>
+  </div>
+  <div
+    class="performance-curve cleanBg"
+    *ngIf="showMotorDisplay"
+    id="tableData"
+  >
+    <div class="container">
+      <!-- <h3><a href="javascript:void(0)" (click)="goBack()"><img src="assets/images/icons/back.svg"></a> Select Motor</h3> -->
+      <div class="performance-box-outer">
+        <!-- <div class="performance-box-outer row"> -->
+        <!-- <div class="col-md-3" style="margin: auto;padding: 0;">
+          <img [src]="leftGraphImg" width="100%">
+        </div> -->
+        <div class="table-head">
+          <!-- <div class="table-head col-md-6"> -->
+          <h2>{{ motorModel }}</h2>
+          <h5 style="font-size: 18px">
+            Select the capacity in the below matrix based on the head and speed
+            <i class="fas fa-hand-point-left"></i>
+          </h5>
+          <table>
+            <tbody>
+              <tr>
+                <th class="head" rowspan="2">Pump Speed rpm</th>
+                <th class="head" rowspan="2">Capacity and Power</th>
+                <th colspan="8" class="head">Total Head from All Causes</th>
+                <!-- <th class="sticky-col"></th> -->
+              </tr>
+              <tr>
+                <td *ngFor="let eachData of tableHead">
+                  <span>{{ eachData?.head }} m</span>
+                  <span *ngIf="eachData?.feet !== '' && eachData?.feet !== undefined"
+                    >({{ eachData?.feet }})</span
+                  >
+                </td>
+                <!-- <td><span>20</span><span>(65ft)</span></td>
+                <td><span>30</span><span>(80ft)</span></td>
+                <td><span>40</span><span>(90ft)</span></td>
+                <td><span>50</span><span>(130ft)</span></td>
+                <td><span>60</span><span>(140ft)</span></td> -->
+                <!-- <td class="sticky-col">Select</td> -->
+              </tr>
+              <tr *ngFor="let eachTable of motorData">
+                <td>
+                  <b>{{ eachTable?.pump_speed }}</b>
+                </td>
+                <td><span>{{ toggleUnit ? 'LPS' : 'LPH'}}</span><span>GPH</span><span>KW Abs.</span></td>
+                <td class="table-hover" *ngIf="eachTable[0] !== null">
+                  <a
+                    href="javascript:void(0)"
+                    (click)="navigateToProductDetails(eachTable)"
+                    ><span>{{ eachTable[0][0] }}</span
+                    ><span>{{ eachTable[0][1] }}</span
+                    ><span>{{ eachTable[0][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover" *ngIf="eachTable[10] !== null">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 10, id: eachTable.id }"
+                    ><span>{{ eachTable[10][0] }}</span
+                    ><span>{{ eachTable[10][1] }}</span
+                    ><span>{{ eachTable[10][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover" *ngIf="eachTable[20] !== null">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 20, id: eachTable.id }"
+                    ><span>{{ eachTable[20][0] }}</span
+                    ><span>{{ eachTable[20][1] }}</span
+                    ><span>{{ eachTable[20][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover" *ngIf="eachTable[30] !== null">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 30, id: eachTable.id }"
+                    ><span>{{ eachTable[30][0] }}</span
+                    ><span>{{ eachTable[30][1] }}</span
+                    ><span>{{ eachTable[30][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover" *ngIf="eachTable[40] !== null">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 40, id: eachTable.id }"
+                    ><span>{{ eachTable[40][0] }}</span
+                    ><span>{{ eachTable[40][1] }}</span
+                    ><span>{{ eachTable[40][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover" *ngIf="eachTable[50] !== null">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 50, id: eachTable.id }"
+                    ><span>{{ eachTable[50][0] }}</span
+                    ><span>{{ eachTable[50][1] }}</span
+                    ><span>{{ eachTable[50][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover" *ngIf="eachTable[60] !== null">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 60, id: eachTable.id }"
+                    ><span>{{ eachTable[60][0] }}</span
+                    ><span>{{ eachTable[60][1] }}</span
+                    ><span>{{ eachTable[60][2] }}</span></a
+                  >
+                </td>
+                <td class="table-hover" *ngIf="eachTable[80] !== null">
+                  <a
+                    href="javascript:void(0)"
+                    [routerLink]="['../', parentId, motorModel, motorPole]"
+                    [queryParams]="{ index: 80, id: eachTable.id }"
+                    ><span>{{ eachTable[80][0] }}</span
+                    ><span>{{ eachTable[80][1] }}</span
+                    ><span>{{ eachTable[80][2] }}</span></a
+                  >
+                </td>
+                <!-- <td class="sticky-col"><a href="javascript:void(0)" [routerLink]="['../', parentId,motorModel, 4]" class="icon-select"></a></td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="col-md-3" style="margin: auto;padding: 0">
+          <img [src]="rightGraphImg" alt="" width="100%">
+        </div> -->
+      </div>
+      <div class="tablegraphImg">
+        <div>
+          <img [src]="leftGraphImg" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

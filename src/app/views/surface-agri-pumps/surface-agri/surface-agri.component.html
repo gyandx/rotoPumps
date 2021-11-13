@@ -1,0 +1,107 @@
+<div class="main-container surface-page">
+  <!-- <div class="full-banner">
+    <img src="assets/images/banner/top-banner.jpg">
+    <div class="container">
+      <h2>Surface Agri Pumps</h2>
+    </div>
+  </div> -->
+
+  <div class="container">
+    <!-- <h2>Surface Agri Pumps</h2> -->
+  </div>
+
+  <div class="breadcrum">
+    <div class="container">
+      <p>
+        <a href="javascript:void(0)" [routerLink]="['/home']">Home</a>
+        <span>/</span>Surface Agri Pumps
+      </p>
+    </div>
+  </div>
+
+  <div class="pumps-sel-sec">
+    <div class="container">
+      <div class="pumps-sel">
+        <div class="pumps-sec">Select a preferred pump type to start:</div>
+        <div class="pumps-sec" *ngFor="let eachSubCategory of subCategories">
+          <a
+            href="javascript:void(0)"
+            (click)="
+              routeToPage(
+                eachSubCategory?.title,
+                eachSubCategory?.id,
+                eachSubCategory?.category_id
+              )
+            "
+            style="text-decoration: none"
+            >{{ eachSubCategory?.title | titlecase }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="surface-banner-sec">
+    <div class="container">
+      <div class="surface-banner-inner">
+        <div class="section-1">
+          <img src="assets/images/banner/surface-banner.png" />
+          <div class="surface-feature">
+            <h1>Features:</h1>
+            <ul class="surface-feature-lists">
+              <li>Low NPSHR, ensure excellent suction lift capability</li>
+              <li>Reversible, providing flexibility in operation</li>
+              <li>Minimal variation in flow rates with changes in head</li>
+              <li>
+                Non Clogging, can handle high percentage of solids in suspension
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-2">
+          <div class="surface-banner-content">
+            <div class="content-box">
+              <h3>Rotor-Stator</h3>
+              <p>
+                Improved rotor-stator geometry minimises wear due to lower
+                rubbing velocities
+              </p>
+              <span>1</span>
+            </div>
+            <div class="content-box">
+              <h3>CARDAN UNIVERSAL JOINT</h3>
+              <p>
+                Facilities smoother transmission of angular loads. Ensures
+                compact pump
+              </p>
+              <span>2</span>
+            </div>
+            <div class="content-box">
+              <h3>Bearing Housing</h3>
+              <p>
+                Robust bearing housing designed to take axial loads. Facilities
+                easy coupling to various drive options.
+              </p>
+              <span>3</span>
+            </div>
+            <div class="content-box">
+              <h3>Unique Split Stub Shaft</h3>
+              <p>
+                Use of standard IEC frame motor facilities easy replacement of
+                motor.
+              </p>
+              <span>4</span>
+            </div>
+          </div>
+          <div style="margin: 8px">
+            <p>You can visit the site for more information:-
+              <a href="https://rotopumps.com.au/products/progressive-cavity-pumps/tirrana-agricultural-pump-new/"
+              target="blank">Surface Agri Pumps</a><i class="fas fa-hand-point-left" style="position: absolute;margin-top: -3px;"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

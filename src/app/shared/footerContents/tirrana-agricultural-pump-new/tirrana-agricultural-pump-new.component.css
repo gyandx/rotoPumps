@@ -1,0 +1,38 @@
+.main-container {
+    background: transparent;
+    margin: 0;padding: 0;
+    
+}
+.col-sm-9{
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+
+
+h3{
+    color: #336fb5;
+    font-size: 20px;
+}
+p,li{
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif!important;
+    font-weight: 300!important;
+}
+strong{
+    font-family: 'Roboto', sans-serif!important;
+    font-size: 1em;
+    
+}
+
+.vc_single_image-img{
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (min-width: 850px){
+    .image-part{
+        max-width: 500px;
+        height: auto;
+    }
+}

@@ -1,0 +1,792 @@
+<div class="main-container profile-container">
+  <div class="breadcrum">
+    <div class="container">
+      <div class="bread-inner">
+        <p>
+          <a href="javascript:void(0)" routerLink="/home">Home</a> /
+          <a
+            href="javascript:void(0)"
+            [routerLink]="['/' + routerUrl[1] + '/' + routerUrl[2]]"
+            >{{
+              routerUrl[1].includes("surface")
+                ? "Surface Agri Pumps"
+                : "Multi Purpose Pumps"
+            }} </a
+          ><span>/</span>
+          <a href="javascript:void(0)" [routerLink]="['../../']"
+            >{{
+              routerUrl[3].includes("bareShaftPump")
+                ? "Bare Shaft Pumps"
+                : "Close Coupled Pumps"
+            }} </a
+          ><span>/</span>{{ productId }}
+        </p>
+        <!-- <div class="download-section">
+          <a href="javascript:void(0)">
+            <img src="assets/images/icons/down.png" /> Download Catalog</a
+          >
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="product-section">
+    <div class="container">
+      <div class="product-section-inner">
+        <div class="product-slider">
+          <!-- main slider carousel -->
+          <div id="slider">
+            <div class="warranty-section">
+              <img
+                style="border-radius: 15px"
+                src="assets/images/card-images/goldenfeaturesstrip.png"
+              />
+            </div>
+
+            <div id="carousel-bounding-box">
+              <div id="myCarousel" class="carousel slide">
+                <!-- main slider carousel items -->
+                <!-- <div class="carousel-inner zoom-slider">
+                  <div class="active item">
+                    <lib-ngx-image-zoom class="img-responsive"
+                    [thumbImage]=selectedProductImg
+                    [fullImage]=selectedProductImg
+                    [magnification]="1"
+                    zoomMode='hover'
+                  ></lib-ngx-image-zoom>
+                  </div>
+                </div> -->
+                <div class="carousel-inner">
+                  <!-- <div class="active item" data-slide-number="0">
+                    <img src="assets/images/card-images/surfaceAgri_closedCouple/3DRender.png" class="img-responsive">
+                  </div>
+                  <div class="item" data-slide-number="1">
+                    <img src="assets/images/card-images/surfaceAgri_closedCouple/3DRender-1.png" class="img-responsive">
+                  </div>
+                  <div class="item" data-slide-number="2">
+                    <img src="assets/images/card-images/surfaceAgri_closedCouple/3DRender-2.png"
+                    class="img-responsive">
+                  </div> -->
+                  <!-- <div class="active item" (mouseenter)="imageZoom('myimage', 'myresult')"
+                    (mouseleave)="imageZoomOut($event)" data-slide-number="imageCount">
+                    <img id="myimage" [src]="selectedProductImg" class="img-responsive">
+                  </div> -->
+                  <div
+                    class="item"
+                    [ngClass]="i == carouselIndexVal ? 'active' : ''"
+                    *ngFor="let eachImg of productCarousalImages; let i = index"
+                    [attr.data-slide-to]="i"
+                  >
+                    <div class="carouselText-wrapper">
+                      <p class="carouselText">{{ eachImg?.heading }}</p>
+                    </div>
+                    <img
+                      [src]="eachImg?.imgSrc"
+                      [ngStyle]="{ height: '220px' }"
+                      class="img-responsive"
+                      alt="{{ eachImg?.alt }}"
+                      (click)="open(i)"
+                    />
+                  </div>
+                  <!-- <div id="myresult" class="img-zoom-result"></div> -->
+                </div>
+                <!-- <main slider carousel nav controls> -->
+                <a
+                  class="carousel-control left"
+                  href="#myCarousel"
+                  data-slide="prev"
+                  >‹</a
+                >
+
+                <a
+                  class="carousel-control right"
+                  href="#myCarousel"
+                  data-slide="next"
+                  >›</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- </main slider carousel> -->
+
+          <!-- thumb navigation carousel -->
+          <div class="" id="slider-thumbs">
+            <!-- thumb navigation carousel items -->
+            <ul class="list-inline">
+              <li
+                *ngFor="
+                  let eachThumbImg of thumbnailImages;
+                  let imgCount = index
+                "
+              >
+                <h6 style="text-align: center; font-size: 10px">
+                  {{ eachThumbImg?.name }}
+                </h6>
+                <a
+                  id="'carousel-selector-'+imgCount"
+                  class="selected"
+                  style="cursor: pointer"
+                  (click)="changeCarousalImg(imgCount)"
+                >
+                  <img
+                    [src]="eachThumbImg?.imgSrc"
+                    alt="{{ eachThumbImg?.alt }}"
+                    class="img-responsive"
+                    [ngClass]="
+                      eachThumbImg?.imgSrc === selectedProductImg
+                        ? 'activeImg'
+                        : 'inactiveImg'
+                    "
+                  />
+                  <!-- <h5>image</h5> -->
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="account-tab"></div>
+        </div>
+
+        <div class="product-description">
+          <!-- <h2>{{selectedProduct?.details?.code}}</h2> -->
+          <h2>{{ selectedProduct?.details?.description }}</h2>
+          <ng-container *ngIf="!toggleMotorOption">
+            <!-- <div class="product-row" *ngIf="!toggleOption">
+              <div class="prod-title">Motor</div>
+
+              <div class="volt-box" style="cursor: pointer">
+                <ng-container
+                  *ngFor="
+                    let eachMotor of productsDetail;
+                    let voltCount = index
+                  "
+                >
+                </ng-container>
+
+                <span
+                  *ngIf="selectedProduct?.motor?.volt !== null"
+                  [ngClass]="selectedProduct?.motor?.volt !== null ? 'active-volt' : ''"
+                  (click)="changeMotorVoltage(voltCount)"
+                  >{{ selectedProduct?.motor?.volt }}</span
+                >
+              </div>
+            </div> -->
+
+            <div class="product-row">
+              <div
+                *ngIf="toggleDropdown"
+                class="prod-title"
+                style="width: 100%"
+              >
+                Drive Type:
+              </div>
+
+              <div class="prod-specification" *ngIf="toggleDropdown">
+                <select
+                  class="custom-dropdown btn"
+                  (change)="toggleDriveType($event.target.value)"
+                  [(ngModel)]="driveType"
+                >
+                  <option value="" selected disabled>Drive Type</option>
+                  <option
+                    *ngFor="let eachProduct of toggleSelectorDropdown"
+                    value="{{ eachProduct }}"
+                  >
+                    {{ eachProduct }}
+                  </option>
+                </select>
+                <i class="fas fa-hand-point-left"></i>
+              </div>
+
+              <!-- <div class="prod-specification">
+                <div
+                  class="dropdown custom-dropdown"
+                >
+                  <button
+                    class="btn btn-primary dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                  >
+                    Drive Type/Motor <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li *ngFor="let eachData of toggleSelectorDropdown" (click)="onMotorChange(eachData)">
+                      <a href="javascript:void(0)"
+                        >{{eachData}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div> -->
+            </div>
+          </ng-container>
+          <div class="productTab">
+            <ng-container *ngIf="toggleDetails">
+              <p>
+                <span *ngIf="driveDesc; else selectedDesc"
+                  >Drive Description: {{ driveDesc }}
+                </span>
+              </p>
+              <ng-template #selectedDesc>
+                <span>Drive Description: NA</span>
+              </ng-template>
+            </ng-container>
+            <ng-container
+              *ngIf="tableDetails.length > 0 && toggleOption; else flowRate"
+            >
+              <p>
+                <span
+                  *ngIf="tableDetails[0] && tableDetails[1]; else flowCapacity"
+                  >Flow Rate: {{ tableDetails[0] }} LPS /
+                  {{ tableDetails[1] }} GPH</span
+                >
+              </p>
+              <ng-template #flowCapacity>
+                <span>Flow Rate: NA</span>
+              </ng-template>
+            </ng-container>
+            <ng-template #flowRate>
+              <p *ngIf="selectedProduct?.details?.flow; else flow">
+                Flow Rate: {{ selectedProduct?.details?.flow }} LPS
+                <span *ngIf="selectedProduct?.details?.capacity"
+                  >/ {{ selectedProduct?.details?.capacity }}</span
+                >
+              </p>
+              <ng-template #flow>
+                <span>Flow Rate: NA</span>
+              </ng-template>
+            </ng-template>
+
+            <ng-container
+              *ngIf="tableDetails.length > 0 && toggleOption; else flowHead"
+            >
+              <p>
+                <span *ngIf="tableIndex; else Head"
+                  >Head: {{ tableIndex }} m
+                  <span *ngIf="tableDetails.length > 3"
+                    >/ {{ tableDetails[3] }}</span
+                  >
+                </span>
+                <ng-template #Head>
+                  <span>Head: NA</span>
+                </ng-template>
+              </p>
+            </ng-container>
+            <ng-template #flowHead>
+              <p>
+                <span *ngIf="selectedProduct?.details?.head; else selectedHead"
+                  >Head: {{ selectedProduct?.details?.head }} m</span
+                >
+              </p>
+              <ng-template #selectedHead>
+                <span>Head: NA</span>
+              </ng-template>
+            </ng-template>
+
+            <p
+              *ngIf="
+                pumpSpeed.length || selectedProduct?.details?.speed;
+                else speed
+              "
+            >
+              <span
+                >Speed:
+                {{
+                  pumpSpeed.length
+                    ? pumpSpeed[0]
+                    : selectedProduct?.details?.speed
+                }}
+                RPM ({{
+                  pumpSpeed.length
+                    ? pumpSpeed[1]
+                    : selectedProduct?.details?.pole + " Pole"
+                }})
+              </span>
+            </p>
+            <ng-template #speed>
+              <p>
+                <span>Speed: NA</span>
+              </p>
+            </ng-template>
+
+            <ng-container *ngIf="tableDetails.length > 0 && toggleOption">
+              <p *ngIf="tableDetails[2]; else absPower">
+                <span>Absorbed Power: {{ tableDetails[2] }} KW</span>
+              </p>
+              <ng-template #absPower>
+                <p>
+                  <span>Absorbed Power: NA</span>
+                </p>
+              </ng-template>
+            </ng-container>
+
+            <p *ngIf="selectedProduct?.details?.whp_moc !== null; else moc">
+              <span>Housing Part: {{ selectedProduct?.details?.whp_moc }}</span>
+            </p>
+            <ng-template #moc>
+              <p>
+                <span>Housing Part: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.sealing; else sealing">
+              <span>Sealing: {{ selectedProduct?.details?.sealing }}</span>
+            </p>
+            <ng-template #sealing>
+              <span>Sealing: NA</span>
+            </ng-template>
+
+            <!-- <ng-container *ngIf="tableDetails.length > 0 && toggleOption; else flowHead">
+              <p>
+                <span *ngIf="tableIndex ; else Head">Head: {{ tableIndex }} m <span *ngIf="tableDetails.length > 3">/ {{tableDetails[3]}}</span> </span>
+                <ng-template #Head>
+                  <span>Head: NA</span>
+                </ng-template>
+              </p>
+              <p>
+                <span *ngIf="tableDetails[2]; else absPower">Absorbed Power: {{ tableDetails[2] }} KW</span>
+              </p>
+              <ng-template #absPower>
+                <span>Absorbed Power: NA</span>
+              </ng-template>
+            </ng-container> -->
+            <!-- <ng-template #flowHead>
+              <p>
+                <span *ngIf="selectedProduct?.details?.head;else selectedHead">Head: {{ selectedProduct?.details?.head }} m</span>
+                <ng-template #selectedHead>
+                  <span>Head: NA</span>
+                </ng-template>
+                <span *ngIf="selectedProduct?.details?.flow; else flow">Flow/Capacity: {{ selectedProduct?.details?.flow }} LPS
+                  <span *ngIf="selectedProduct?.details?.capacity">/ {{selectedProduct?.details?.capacity}}</span>
+                </span>
+                <ng-template #flow>
+                  <span>Flow/Capacity: NA</span>
+                </ng-template>
+              </p>
+            </ng-template> -->
+            <!-- <p [ngStyle]="{'display': this.toggleDetails ? 'none' : 'block'}">
+              <span>{{defaultMsg}}</span>
+            </p> -->
+            <ng-container *ngIf="toggleDetails">
+              <p *ngIf="selectedProduct?.details?.rotor !== null; else rotor">
+                <span>Rotor: {{ selectedProduct?.details?.rotor }}</span>
+              </p>
+              <ng-template #rotor>
+                <p>
+                  <span>Rotor: NA</span>
+                </p>
+              </ng-template>
+              <p>
+                <span
+                  *ngIf="selectedProduct?.details?.stator !== null; else stator"
+                  >Stator: {{ selectedProduct?.details?.stator }}</span
+                >
+                <ng-template #stator>
+                  <span>Stator: NA</span>
+                </ng-template>
+                <!-- <span *ngIf="selectedProduct?.details?.pole !== null; else pole">Pole: {{ selectedProduct?.details?.pole }}</span>
+                <ng-template #pole>
+                  <span>Pole: NA</span>
+                </ng-template> -->
+              </p>
+              <!-- <p>
+                <span *ngIf="selectedProduct?.details?.whp_moc !== null; else moc">Housing Part: {{ selectedProduct?.details?.whp_moc }}</span>
+                <ng-template #moc>
+                  <span>Housing Part: NA</span>
+                </ng-template>
+                <span *ngIf="selectedProduct?.details?.sealing;else sealing">Sealing: {{ selectedProduct?.details?.sealing }}</span>
+                <ng-template #sealing>
+                  <span >Sealing: NA</span>
+                </ng-template>
+              </p> -->
+              <p>
+                <span *ngIf="selectedProduct?.details?.inlet; else inlet"
+                  >Inlet: {{ selectedProduct?.details?.inlet }};</span
+                >&nbsp;&nbsp;
+                <span *ngIf="selectedProduct?.details?.outlet; else outlet"
+                  >Outlet: {{ selectedProduct?.details?.outlet }}</span
+                >
+                <ng-template #inlet>
+                  <span>Inlet: NA; </span>&nbsp;&nbsp;
+                </ng-template>
+                <ng-template #outlet>
+                  <span>Outlet: NA</span>
+                </ng-template>
+              </p>
+            </ng-container>
+
+            <!--Static data are provided for now being-->
+            <!-- <p *ngIf="toggleDieselEngine">
+              <span>Engine Speed: 1800 rpm</span>
+              <span>Engine kw: {{engineKw}}</span>
+            </p> -->
+            <p *ngIf="toggleDieselEngine">
+              V-Drive & Centrifugal Clutch included
+            </p>
+
+            <!-- <ng-container *ngIf="tableDetails.length > 0 && toggleOption">
+              <p>
+                <span *ngIf="tableDetails[0]; else LPH">LPS: {{ tableDetails[0] }}</span>
+                <ng-template #LPH>
+                  <span>LPS: NA</span>
+                </ng-template>
+                <span *ngIf="tableDetails[1];else GPH">GPH: {{ tableDetails[1] }}</span>
+                <ng-template #GPH>
+                  <span>GPH: NA</span>
+                </ng-template>
+              </p>
+              <p>
+                <span *ngIf="tableDetails[2]; else inlet">Abs Power: {{ tableDetails[2] }} KW</span>
+              </p>
+              <ng-template>
+                <span #inlet>Abs Power: NA</span>
+              </ng-template>
+            </ng-container> -->
+            <!-- <p *ngIf="selectedProduct?.details?.pump_lantern && selectedProduct?.details?.pump_lantern_price; else pump_latern">
+              <span>Pump Lantern: {{ selectedProduct?.details?.pump_lantern }}</span>
+              <span>Pump Lantern Price: {{ selectedProduct?.details?.pump_lantern_price }}</span>
+            </p>
+            <ng-template #pump_latern>
+              <p>
+                <span>Pump Lantern: NA</span>
+                <span>Pump Lantern Price: NA</span>
+              </p>
+            </ng-template>
+            <p *ngIf="selectedProduct?.details?.foot && selectedProduct?.details?.foot_price;else food_price">
+              <span>Foot: {{ selectedProduct?.details?.foot }}</span>
+              <span>Foot Price: {{ selectedProduct?.details?.foot_price }}</span>
+            </p>
+            <ng-template #food_price>
+              <p>
+                <span>Foot: NA</span>
+                <span>Foot Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.tie_rod && selectedProduct?.details?.tie_rod_price;else tie_rod">
+              <span>Tie Rod: {{ selectedProduct?.details?.tie_rod }}</span>
+              <span>Tie Rod Price: {{ selectedProduct?.details?.tie_rod_price }}</span>
+            </p>
+            <ng-template #tie_rod>
+              <p>
+                <span>Tie Rod: NA</span>
+                <span>Tie Rod Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.pump_housing && selectedProduct?.details?.pump_housing_price;else pump_housing">
+              <span>Pump Housing: {{ selectedProduct?.details?.pump_housing }}</span>
+              <span>Pump Housing Price: {{ selectedProduct?.details?.pump_housing_price }}</span>
+            </p>
+            <ng-template #pump_housing>
+              <p>
+                <span>Pump Housing: NA</span>
+                <span>Pump Housing Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.end_cover && selectedProduct?.details?.end_cover_price;else end_cover">
+              <span>End Cover: {{ selectedProduct?.details?.end_cover }}</span>
+              <span>End Cover Price: {{ selectedProduct?.details?.end_cover_price }}</span>
+            </p>
+            <ng-template #end_cover>
+              <p>
+                <span>End Cover: NA</span>
+                <span>End Cover Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.seal_plate && selectedProduct?.details?.seal_plate_price; else seal_plate_price">
+              <span>Seal Plate: {{ selectedProduct?.details?.seal_plate }}</span>
+              <span>Seal Plate Price: {{ selectedProduct?.details?.seal_plate_price }}</span>
+            </p>
+            <ng-template #seal_plate_price>
+              <p>
+                <span>Seal Plate: NA</span>
+                <span>Seal Plate Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.mech_seal_housing && selectedProduct?.details?.mech_seal_housing_price;else mech_seal_housing">
+              <span>Mech Seal Housing: {{ selectedProduct?.details?.mech_seal_housing }}</span>
+              <span>Mech Seal Housing Price: {{ selectedProduct?.details?.mech_seal_housing_price }}</span>
+            </p>
+            <ng-template #mech_seal_housing>
+              <p>
+                <span>Mech Seal Housing: NA</span>
+                <span>Mech Seal Housing Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.coupling_rod && selectedProduct?.details?.coupling_rod_price;else coupling_rod">
+              <span>Coupling Rod: {{ selectedProduct?.details?.coupling_rod }}</span>
+              <span>Coupling Rod Price: {{ selectedProduct?.details?.coupling_rod_price }}</span>
+            </p>
+            <ng-template #coupling_rod>
+              <p>
+                <span>Coupling Rod: NA</span>
+                <span>Coupling Rod Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.ball_bearing && selectedProduct?.details?.ball_bearing_price;else ball_bearing_price">
+              <span>Ball Bearing: {{ selectedProduct?.details?.ball_bearing }}</span>
+              <span>Ball Bearing Price: {{ selectedProduct?.details?.ball_bearing_price }}</span>
+            </p>
+            <ng-template #ball_bearing_price>
+              <p>
+                <span>Ball Bearing: NA</span>
+                <span>Ball Bearing Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.drive_shaft && selectedProduct?.details?.drive_shaft_price;else drive_shaft">
+              <span>Drive Shaft: {{ selectedProduct?.details?.drive_shaft }}</span>
+              <span>Drive Shaft Price: {{ selectedProduct?.details?.drive_shaft_price }}</span>
+            </p>
+            <ng-template #drive_shaft>
+              <p>
+                <span>Drive Shaft: NA</span>
+                <span>Drive Shaft Price: NA</span>
+              </p>
+            </ng-template>
+
+            <p *ngIf="selectedProduct?.details?.bearing && selectedProduct?.details?.bearing_price;else bearing">
+              <span>Bearing: {{ selectedProduct?.details?.bearing }}</span>
+              <span>Bearing Price: {{ selectedProduct?.details?.bearing_price }}</span>
+            </p>
+            <ng-template #bearing>
+              <p>
+                <span>Bearing:   NA</span>
+                <span>Bearing Price:   NA</span>
+              </p>
+            </ng-template> -->
+          </div>
+          <div class="product-row" *ngIf="toggleDetails">
+            <div class="prod-title">Quantity</div>
+
+            <div class="prod-specification">
+              <div class="number">
+                <span
+                  class="minus"
+                  (click)="decrementQuantity()"
+                  [ngStyle]="{
+                    'pointer-events': quantityValue <= 1 ? 'none' : 'auto'
+                  }"
+                  >-</span
+                >
+                <input type="text" [(value)]="quantityValue" />
+                <span class="plus" (click)="incrementQuantity()">+</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-row" *ngIf="toggleDetails">
+            <div class="prod-title">
+              Warranty <span>* Refer the policy</span>
+            </div>
+
+            <div class="volt-box" style="cursor: pointer">
+              <span
+                [ngClass]="
+                  standardWarranty?.duration === eachWarranty?.duration
+                    ? 'active-volt'
+                    : ''
+                "
+                *ngFor="let eachWarranty of warranty; let warrantyCount = index"
+                (click)="changeProductWarranty(warrantyCount)"
+                >{{ eachWarranty?.duration }}
+                <p *ngIf="eachWarranty?.price == 0; else ElseBlock">
+                  {{ defaultSelectedProductPrice | currency }}
+                </p>
+                <ng-template #ElseBlock>
+                  <p>{{ eachWarranty?.price | currency }}</p>
+                </ng-template>
+              </span>
+            </div>
+          </div>
+
+          <div class="product-row" *ngIf="toggleDetails">
+            <div class="prod-title">Price</div>
+
+            <div class="volt-box">
+              <h3>
+                ${{ selectedProduct?.details?.price }}
+                <small style="color: #bc8129; font-size: 15px"
+                  >(plus GST@10%)</small
+                >
+              </h3>
+            </div>
+          </div>
+
+          <div class="product-row" *ngIf="toggleDetails">
+            <div *ngIf="accessories.length > 0" class="prod-title">
+              <span class="suggested">Suggested Accessories</span>
+              <!-- <span>* Uncheck if not reqd.</span> -->
+            </div>
+
+            <div
+              class="product-row-inner"
+              *ngIf="accessories.length; else Accessories"
+            >
+              <span style="color: #bc8129"
+                >* Included by default. Please unselect if not required</span
+              >
+              <div
+                class="progress-row"
+                *ngFor="
+                  let eachAccessory of accessories;
+                  let accessoryCount = index
+                "
+              >
+                <div class="left-progress">
+                  <div class="progress-pic" style="margin: 0">
+                    <img [src]="eachAccessory?.imgSrc" />
+                  </div>
+                </div>
+                <div
+                  class="right-progress"
+                >
+                  <div class="top-progress">
+                    <strong>{{ eachAccessory?.productName }} </strong>
+                    <h3 class="accessoryPrice">
+                      ${{ eachAccessory?.productPrice
+                      }}<input
+                        type="checkbox"
+                        class="largerCheckbox"
+                        id="check-${accessoryCount}"
+                        [checked]="true"
+                        (click)="toggleAccessories($event, accessoryCount)"
+                      />
+                    </h3>
+                  </div>
+                  <div class="mid-progress">
+                    <p>{{ eachAccessory?.productDesc }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #Accessories>
+              <div class="progress-row">{{ emptyAccMsg }}</div>
+            </ng-template>
+          </div>
+
+          <div class="product-row" *ngIf="toggleDetails">
+            <div class="prod-title spaceTop">
+              <span class="suggested">Consumable Spares (Optional):</span>
+            </div>
+
+            <div class="product-row-inner">
+              <div class="promo-text" style="color: #bc8129">
+                * Buy spares with pump for a special 10% discount
+              </div>
+              <ng-container *ngIf="spares.length; else Spare">
+                <div
+                  class="progress-row"
+                  *ngFor="let eachSpare of spares; let spareCount = index"
+                >
+                  <div class="left-progress">
+                    <div class="progress-pic">
+                      <img [src]="eachSpare?.imgSrc" />
+                    </div>
+                  </div>
+                  <div class="right-progress spare-section">
+                    <div class="top-progress">
+                      <strong>{{ eachSpare?.productName }} </strong>
+                      <div class="number">
+                        <span
+                          class="minus"
+                          (click)="consumptionSpareDecrement(spareCount)"
+                          [ngStyle]="{
+                            'pointer-events':
+                              eachSpare?.spareQuantity <= 0 ? 'none' : 'auto'
+                          }"
+                          >-</span
+                        >
+                        <input
+                          type="text"
+                          [value]="eachSpare?.spareQuantity"
+                          appNumOnly
+                          disabled
+                        />
+                        <span
+                          class="plus"
+                          (click)="consumptionSpareIncrement(spareCount)"
+                          >+</span
+                        >
+                      </div>
+                      <div class="price-progress">
+                        <h3
+                          style="
+                            text-decoration-line: line-through;
+                            text-decoration-color: rgba(0, 0, 0, 0.4);
+                          "
+                        >
+                          {{ eachSpare?.productPrice | currency }}
+                        </h3>
+                        <h3 style="color: red">
+                          {{ eachSpare?.discountPrice | currency }}
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="mid-progress">
+                      <p>{{ eachSpare?.productDesc }}</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #Spare>
+                <div class="progress-row">{{ emptySpareMsg }}</div>
+              </ng-template>
+
+              <div class="product-total">
+                <div class="total-row">
+                  <span>Sub Total</span>
+                  <strong>{{ grandTotal | currency }}</strong>
+                </div>
+
+                <div class="total-row">
+                  <span>Shipping & Handling @5%</span>
+                  <strong>{{ shippingCharges | currency }}</strong>
+                </div>
+
+                <div class="total-row grand-total">
+                  <!-- <span>Grand Total:</span> <strong>{{finalPrice | currency}}</strong> -->
+                  <div class="productAmount">
+                    <span>Total</span>
+                    <span class="final-price">{{ finalPrice | currency }}</span>
+                  </div>
+                  <div class="productAmount">
+                    <span>GST @10%</span>
+                    <span class="final-price">{{ gstPrice | currency }}</span>
+                  </div>
+                  <div class="productAmount">
+                    <span>Total Amount<br/>(In AUD)</span>
+                    <span class="final-price">{{
+                      finalPrice + gstPrice | currency
+                    }}</span>
+                  </div>
+                </div>
+
+                <div class="add-to-cart">
+                  <button class="cart-btn black-btn">
+                    <a href="javascript:void(0)" (click)="addToCart()"
+                      >Add To Cart</a
+                    >
+                  </button>
+                  <button class="buy-btn">
+                    <a href="javascript:void(0)" (click)="buyNow()">Buy Now</a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="warranty-section">
+            <!-- <img src="assets/images/icons/warranty.jpg"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

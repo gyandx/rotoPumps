@@ -1,0 +1,89 @@
+<div class="main-container profile-container">
+  <div class="breadcrum">
+    <div class="container">
+      <p>
+        <a href="javascript:void(0)" [routerLink]="['/home']">Home</a> / <a href="javascript:void(0)"
+          [routerLink]="['/account/my-orders']">My Account </a><span>/</span> <a href="javascript:void(0)"
+          [routerLink]="['../../']" [queryParams]="{orderId: orderId}">Order History</a><span>/</span> Cancel Order
+      </p>
+    </div>
+  </div>
+  <div class="profile-section">
+    <div class="container">
+      <div class="cancel-form">
+        <form [formGroup]="orderCancelForm" (ngSubmit)="submitCancelForm(orderCancelForm)">
+          <div class="sign-field">
+            <label>Full Name<span>*</span>
+            </label>
+            <div class="sign-input"
+              [ngClass]="(formControl?.name?.invalid && (formControl?.name?.touched || formControl?.name?.dirty))? 'error' : (formControl?.name?.valid && (formControl?.name?.touched || formControl?.name?.dirty)) ? 'success' : ''">
+              <input type="text" placeholder="Ivan Pavlov" formControlName="name" required>
+              <img *ngIf="formControl?.name?.valid && (formControl?.name?.touched || formControl?.name?.dirty)"
+                src="assets/images/icons/tick.png">
+              <img *ngIf="formControl?.name?.invalid && (formControl?.name?.touched || formControl?.name?.dirty)"
+                src="assets/images/icons/clear.png">
+            </div>
+            <ng-container *ngIf="formControl?.name?.invalid && (formControl?.name?.touched || formControl?.name?.dirty)">
+              <div class="validation-error" *ngIf="formControl?.name?.errors.required">Name Is Required</div>
+              <div class="validation-error" *ngIf="formControl?.name?.errors.minlength">Name Must Be of min 5 characters</div>
+            </ng-container>
+          </div>
+
+          <div class="half-field">
+            <div class="sign-field">
+              <label>Email <span>*</span>
+              </label>
+              <div class="sign-input" [ngClass]="((formControl?.email?.errors?.pattern || formControl?.email?.errors?.required) && (formControl?.email?.touched || formControl?.email?.dirty))? 'error' : (formControl?.email?.valid && (formControl?.email?.touched || formControl?.email?.dirty)) ? 'success' : ''">
+                <input type="text" placeholder="pavlov.design@gmail.com" formControlName="email" required>
+                <img *ngIf="formControl?.email?.valid && (formControl?.email?.touched || formControl?.email?.dirty)"
+                  src="assets/images/icons/tick.png">
+                <img *ngIf="formControl?.email?.invalid && (formControl?.email?.touched || formControl?.email?.dirty)"
+                  src="assets/images/icons/clear.png">
+              </div>
+              <ng-container *ngIf="formControl?.email?.invalid && (formControl?.email?.touched || formControl?.email?.dirty)">
+                <div class="validation-error" *ngIf="formControl?.email?.errors.required">Email Is Required</div>
+                <div class="validation-error" *ngIf="formControl?.email?.errors.pattern">Enter valid email(abc@abc.abc)</div>
+              </ng-container>
+            </div>
+
+            <div class="sign-field">
+              <label>Phone<span>*</span>
+              </label>
+              <div class="sign-input" [ngClass]="((formControl?.phone?.errors?.required || formControl?.phone?.errors?.pattern) && (formControl?.phone?.touched || formControl?.phone?.dirty))? 'error' : (formControl?.phone?.valid && (formControl?.phone?.touched || formControl?.phone?.dirty)) ? 'success' : ''" >
+                <input type="text" placeholder="Contact Number" appNumOnly formControlName="phone" required>
+                <img *ngIf="formControl?.phone?.valid && (formControl?.phone?.touched || formControl?.phone?.dirty)"
+                  src="assets/images/icons/tick.png">
+                <img *ngIf="formControl?.phone?.invalid && (formControl?.phone?.touched || formControl?.phone?.dirty)"
+                  src="assets/images/icons/clear.png">
+              </div>
+              <ng-container *ngIf="formControl?.phone?.invalid && (formControl?.phone?.touched || formControl?.phone?.dirty)">
+                <div class="validation-error" *ngIf="formControl?.phone?.errors.required">Email Is Required</div>
+                <div class="validation-error" *ngIf="formControl?.phone?.errors.pattern">Phone No. Must Be of 10 Digits</div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="sign-field">
+            <label>Reason<span>*</span>
+            </label>
+            <div class="sign-input" [ngClass]="((formControl?.reason?.errors?.required) && (formControl?.reason?.touched || formControl?.phone?.dirty))? 'error' : (formControl?.phone?.valid && (formControl?.reason?.touched || formControl?.reason?.dirty)) ? 'success' : ''">
+              <input type="text" placeholder="Enter Reason" formControlName="reason" required>
+              <img *ngIf="formControl?.reason?.valid && (formControl?.reason?.touched || formControl?.reason?.dirty)"
+                  src="assets/images/icons/tick.png">
+                <img *ngIf="formControl?.reason?.invalid && (formControl?.reason?.touched || formControl?.reason?.dirty)"
+                  src="assets/images/icons/clear.png">
+            </div>
+            <div class="validation-error" *ngIf="formControl?.reason?.invalid && (formControl?.reason?.touched || formControl?.reason?.dirty)">Reason Is Required</div>
+          </div>
+
+          <div class="sign-field">
+            <label>Message</label>
+            <div class="sign-input">
+              <textarea placeholder="Enter message"></textarea>
+              <!--<img src="assets/images/icons/clear.png">-->
+            </div>
+          </div>
+          <button class="blue-button" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>

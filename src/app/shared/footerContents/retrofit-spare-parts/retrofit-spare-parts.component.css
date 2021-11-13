@@ -1,0 +1,170 @@
+.main-container{
+  background-color: transparent;
+}
+
+/* ============ */
+
+.wpb_wrapper{
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.list-custom-heading{
+  margin: 0;padding: 0;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.retromn a {
+  text-decoration: none;
+}
+.retromn a:hover {
+  color: red;
+  text-decoration-color: red;
+}
+.productpgbx {
+  background: #f7f7f7;
+  border: 10px solid #ededed;
+  width: 100%;
+  text-align: center;
+  border-radius: 15px;
+  padding: 20px 0;
+  transition: all 1s ease;
+  box-shadow: #ababab 5px 5px 10px;
+}
+
+.productpgbx:hover {
+  border-left-color: #336fb5;
+  display: block;
+}
+
+.productpgbx .prdpicbx img {
+  width: 100%;
+  display: block;
+  transition: all 1s ease;
+}
+
+.productpgbx:hover img {
+  transform: scale(1.1);
+}
+
+.prdcptn {
+  font-size: 20px;
+  color: #336fb5;
+  line-height: 28px;
+  margin: 0 0 20px;
+}
+
+.prdpicbx {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0 0;
+  overflow: hidden;
+}
+
+.retromn .prdpicbx img {
+  width: 60%;
+  margin: 0 auto;
+}
+
+/* '''''''''''''''''''''''' */
+
+
+
+.wpb-js-composer .vc_tta.vc_general .vc_tta-tab {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.vc_column-inner {
+  box-sizing: border-box;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+ul {
+      display: -webkit-inline-box;
+      margin-top: 50px;
+      margin-bottom: 30px;
+      padding: 0px;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
+#vc_tta-title_mono{
+    background-color: red;
+}
+
+.vc_tta.vc_general.vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab > a {
+    text-transform: none!important;
+    padding: 20px 16px!important;
+    text-decoration: none;
+}
+
+.vc_tta.vc_general.vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab > a {
+    border: none;
+    background-color: #f6f6f6;
+    color: #222;
+    border-radius: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.wpb-js-composer .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab>a {
+    border-color: #e3e3e3;
+    background-color: #ebebeb;
+    color: #666;
+}
+
+.wpb-js-composer .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab > a:focus,
+.wpb-js-composer .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab > a:hover {
+  background-color: #dcdcdc;
+  text-decoration: none;
+}
+
+.wpb-js-composer .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab>a:focus, .wpb-js-composer .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab>a:hover {
+    background-color: #dcdcdc;
+}
+
+/* <===================> */
+
+
+.vc_tta-panel-body{
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.vc_column-inner_body{
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.col-sm-3 a{
+    padding: 10px 20px;
+    background: #336fb5;
+    display: block;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+    color: white;
+}
+
+/* <===================> */
+
+.vc_single_image_body{
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.vc_single_image-wrapper{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* =================== */

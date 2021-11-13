@@ -1,0 +1,18 @@
+<ng-container>
+  <div class="main-container">
+    <div class="container">
+      <div class="payment-successfull">
+        <img src="assets/images/icons/pay-success.png">
+        <h3>Payment Successful!</h3>
+        <p>Order ID : {{orderData?.id}}</p>
+        <p>Transaction ID : {{orderData?.transaction_id}}</p>
+        <p>Amount Paid: <span>${{orderData?.amount}}</span></p>
+        <p>Payment successful and mail sent to {{userEmail}}.</p>
+        <div class="paymentBtn">
+          <p><button class="blue-button" (click)="goToHome()">Go To Home</button></p>
+          <p><button class="blue-button" [routerLink]="['/orderHistory']" [queryParams]="{orderId: orderData?.id}">Go To Order History</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

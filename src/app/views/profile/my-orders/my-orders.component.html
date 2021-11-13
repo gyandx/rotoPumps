@@ -1,0 +1,47 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#personal">Order History</a></li>
+</ul>
+
+<div class="tab-content">
+
+  <div id="order" class="tab-pane fade in active" *ngIf="this.orderHistoryData.length; else orderHistory">
+
+    <p>Below are the orders booked by you:-</p>
+
+    <div class="row">
+      <div class="col-md-12 history">
+        <div class="order-list" *ngFor="let eachOrder of orderHistoryData">
+          <div class="order-row">
+            <div class="col-md-3 col-xs-6">
+              <span>Order ID:</span>
+              <span class="bolder">{{eachOrder?.id}}</span>
+            </div>
+            <div class="col-md-2 col-xs-6">
+              <span>Placed On:</span>
+              <span class="bolder">{{eachOrder?.created_at | date: 'mediumDate'}}</span>
+            </div>
+            <div class="col-md-2 col-xs-6">
+              <span>Items:</span>
+              <span class="bolder">{{eachOrder?.itemQuantity}}</span>
+            </div>
+            <div class="col-md-2 col-xs-6">
+              <span>Order Amount:</span>
+              <span class="bolder">${{eachOrder?.amount}}</span>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <span class="viewDetails"><a href="javascript:void(0)" (click)="navigateToOrderDetails(eachOrder?.id)">View Details</a></span>
+            </div>
+          </div>
+          <div class="order-status">
+            <img style="padding-right: 3px" src="assets/images/icons/orange-dot.png">Ordered on, {{eachOrder?.updated_at | date: 'mediumDate'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #orderHistory>
+    <p>No orders found.</p>
+  </ng-template>
+
+</div>

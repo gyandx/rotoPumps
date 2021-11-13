@@ -1,0 +1,26 @@
+<div class="main-container about-page">
+  <app-banner></app-banner>
+
+  <div class="roto-retro">
+    <div class="container">
+      <div class="card">
+        <div class="dummy-pic">
+          <!-- <img src="assets/images/banner/tirrana-agricutural-1.png"> -->
+        </div>
+        <div class="card-title">
+          <h3 style="text-align: center">About Us</h3>
+        </div>
+        <div
+          class="about-content"
+          *ngIf="pageContent.length; else error"
+          [innerHtml]="pageContent[0]?.content"
+        >
+          <!-- {{pageContent[0]?.content}} -->
+        </div>
+        <ng-template #error>
+          <h3>No Data Found</h3>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

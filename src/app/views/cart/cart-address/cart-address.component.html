@@ -1,0 +1,252 @@
+<ngx-spinner bdColor = "rgb(0,0,0)" size = "medium" color = "#2e94ef" type = "ball-newton-cradle" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="main-container cartpage addresspage ">
+
+  <div class="breadcrum">
+    <div class="container">
+      <p><a href="javascript:void(0)" [routerLink]="['/home']">Home</a> / <a href="javascript:void(0)"
+          [routerLink]="['/cart']">Cart</a> <span>/</span> Address</p>
+    </div>
+  </div>
+
+
+  <div class="cart-scale">
+    <div class="container">
+      <div class="cart-scale-inner">
+        <div class="scale-no active-scale"><a style="pointer-events: none;">1</a><small>Cart</small></div>
+        <div class="scale-no"><a style="pointer-events: none;">2</a><small>Address</small></div>
+        <div class="scale-no"><a style="pointer-events: none;">3</a><small>Payment</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-section">
+    <div class="container">
+      <div class="cart-inner">
+        <div class="cart">
+          <div class="address-row same-add-row">
+            <h3>Use saved addresses</h3>
+            <div class="same-address">
+              <div class="address-box" *ngFor="let eachAddress of addressList;let addressCount = index">
+                <input type="radio" name="address" id="{{'address-'+addressCount}}"
+                  (change)="getSelectedAddress(eachAddress)" [checked]="addressCount === 0">
+                <label for="{{'address-'+addressCount}}">{{eachAddress?.house_no}} {{eachAddress?.city}}
+                  {{eachAddress?.state}} {{eachAddress?.country}} {{eachAddress?.pincode}}</label>
+              </div>
+
+              <div class="address-box">
+                <input type="radio" name="address" id="address" (change)="getSelectedAddress('newAddress')"
+                  [checked]="emptyAddress">
+                <label for="address">New Address</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="address-row" [ngStyle]="{display: toggleAddress === 'newAddress'? 'flex': 'none'}">
+
+            <h3>Contact Detail</h3>
+
+            <form [formGroup]="addressForm">
+              <div class="address-feild">
+                <label>Title <span>*</span></label>
+                <select formControlName="title"
+                  [ngClass]="(formControl?.title?.invalid && (formControl?.title?.touched || formControl?.title?.dirty))? 'red' : (formControl?.title?.valid && (formControl?.title?.touched || formControl?.title?.dirty)) ? 'green' : ''"
+                  required>
+                  <option value="" selected disabled>Select title</option>
+                  <option value="Mr">Mr.</option>
+                  <option value="Ms">Ms.</option>
+                  <option value=" "></option>
+                </select>
+                <p class="error-addressMsg"
+                  *ngIf="formControl?.title?.invalid && (formControl?.title?.touched || formControl?.title?.dirty)">
+                  Select title</p>
+              </div>
+
+              <div class="name-container">
+                <div class="address-feild address2">
+                  <label>First Name<span>*</span></label>
+                  <input type="text" placeholder="First Name" formControlName="first_name" appTextOnly
+                    [ngClass]="((formControl?.first_name?.errors?.maxlength || formControl?.first_name?.errors?.required) && (formControl?.first_name?.touched || formControl?.first_name?.dirty))? 'red' : (formControl?.first_name?.valid && (formControl?.first_name?.touched || formControl?.first_name?.dirty)) ? 'green' : ''"
+                    required>
+                  <ng-container
+                    *ngIf="formControl?.first_name?.invalid && (formControl?.first_name?.touched || formControl?.first_name?.dirty)">
+                    <p class="error-addressMsg" *ngIf="formControl?.first_name?.errors.required">First name is required</p>
+                    <p class="error-addressMsg" *ngIf="formControl?.first_name?.errors.maxlength">First name must not exceed 15 characters</p>
+                  </ng-container>
+                </div>
+                <div class="address-feild address2">
+                  <label>Middle Name</label>
+                  <!-- <input type="text" placeholder="Middle Name" formControlName="middle_name"
+                  [ngClass]="((formControl?.middle_name?.invalid) && (formControl?.middle_name?.touched || formControl?.middle_name?.dirty))? 'red' : (formControl?.last_name?.valid && (formControl?.last_name?.touched || formControl?.last_name?.dirty)) ? 'green' : ''"> -->
+                  <input type="text" placeholder="Middle Name" appTextOnly formControlName="middle_name">
+                </div>
+
+                <div class="address-feild address2">
+                  <label>Last Name <span>*</span></label>
+                  <input type="text" placeholder="Last Name" formControlName="last_name" appTextOnly
+                    [ngClass]="((formControl?.last_name?.errors?.maxlength ||formControl?.last_name?.errors?.required) && (formControl?.last_name?.touched || formControl?.last_name?.dirty))? 'red' : (formControl?.last_name?.valid && (formControl?.last_name?.touched || formControl?.last_name?.dirty)) ? 'green' : ''"
+                    required>
+                  <ng-container
+                    *ngIf="formControl?.last_name?.invalid && (formControl?.last_name?.touched || formControl?.last_name?.dirty)">
+                    <p class="error-addressMsg" *ngIf="formControl?.last_name?.errors.required">Last name is required</p>
+                    <p class="error-addressMsg" *ngIf="formControl?.last_name?.errors.maxlength">Last name must not exceed 15 characters</p>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="address-feild">
+                <label>Contact Number <span>*</span></label>
+                <input  type="text" placeholder="Contact Number" appNumOnly (input)="onInputChange($event.target.value, 'phone')" formControlName="phone"
+                  [ngClass]="((formControl?.phone?.errors?.required || formControl?.phone?.errors?.pattern) && (formControl?.phone?.touched || formControl?.phone?.dirty))? 'red' : (formControl?.phone?.valid && (formControl?.phone?.touched || formControl?.phone?.dirty)) ? 'green' : ''"
+                  required>
+                <ng-container
+                  *ngIf="formControl?.phone?.invalid && (formControl?.phone?.touched || formControl?.phone?.dirty)">
+                  <p class="error-addressMsg" *ngIf="formControl?.phone?.errors.required">Phone number is required</p>
+                  <p class="error-addressMsg" *ngIf="formControl?.phone?.errors.pattern">Enter valid phone number</p>
+                </ng-container>
+              </div>
+
+              <h3>Address</h3>
+
+              <div class="address-feild">
+                <label>Address (House No., Building , Street, Area) <span>*</span></label>
+                <input type="text" placeholder="Address" formControlName="house_no"
+                  [ngClass]="(formControl?.house_no?.invalid && (formControl?.house_no?.touched || formControl?.house_no?.dirty))? 'red' : (formControl?.house_no?.valid && (formControl?.house_no?.touched || formControl?.house_no?.dirty)) ? 'green' : ''"
+                  required>
+                <p class="error-addressMsg"
+                  *ngIf="formControl?.house_no?.invalid && (formControl?.house_no?.touched || formControl?.house_no?.dirty)">
+                  Address is required</p>
+              </div>
+
+              <div class="address-feild">
+                <label>Country <span>*</span></label>
+                <select formControlName="country" (change)="onChangeCountry($event.target.value)"
+                  [ngClass]="(formControl?.country?.invalid && (formControl?.country?.touched || formControl?.country?.dirty))? 'red' : (formControl?.country?.valid && (formControl?.country?.touched || formControl?.country?.dirty)) ? 'green' : ''"
+                  required>
+                  <option *ngFor="let eachCountry of countryInfo; let countryCount = index"
+                    value="{{eachCountry?.name}}">{{eachCountry.name}}</option>
+                </select>
+                <p class="error-addressMsg"
+                  *ngIf="formControl?.country?.invalid && (formControl?.country?.touched || formControl?.country?.dirty)">
+                  Select country from list</p>
+              </div>
+
+              <div class="address-feild">
+                <label>State <span>*</span></label>
+                <select formControlName="state" (change)="onChangeState($event.target.value)"
+                  [ngClass]="(formControl?.state?.invalid && (formControl?.state?.touched || formControl?.state?.dirty))? 'red' : (formControl?.state?.valid && (formControl?.state?.touched || formControl?.state?.dirty)) ? 'green' : ''"
+                  required>
+                  <option value="" selected disabled>Please select state</option>
+                  <option *ngFor="let eachState of stateInfo; let stateCount = index" value="{{eachState?.name}}">
+                    {{eachState.name}}</option>
+                </select>
+                <p class="error-addressMsg"
+                  *ngIf="formControl?.state?.invalid && (formControl?.state?.touched || formControl?.state?.dirty)">
+                  Select state from list</p>
+              </div>
+
+              <div class="address-feild">
+                <label>City <span>*</span></label>
+                <select formControlName="city"
+                  [ngClass]="(formControl?.city?.invalid && (formControl?.city?.touched || formControl?.city?.dirty))? 'red' : (formControl?.city?.valid && (formControl?.city?.touched || formControl?.city?.dirty)) ? 'green' : ''"
+                  required>
+                  <option value="" selected disabled>Please select state first</option>
+                  <option *ngFor="let eachCity of cityInfo; let cityCount = index" value="{{eachCity?.name}}">
+                    {{eachCity.name}}</option>
+                </select>
+                <p class="error-addressMsg"
+                  *ngIf="formControl?.city?.invalid && (formControl?.city?.touched || formControl?.city?.dirty)">
+                  Select city</p>
+              </div>
+
+              <div class="address-feild">
+                <label>Postal code<span>*</span></label>
+                <input type="text" placeholder="Zip Code" appNumOnly formControlName="pincode" (input)="onInputChange($event.target.value, 'zip')"
+                  [ngClass]="((formControl?.pincode?.errors?.required || formControl?.pincode?.errors?.pattern) && (formControl?.pincode?.touched || formControl?.pincode?.dirty))? 'red' : (formControl?.pincode?.valid && (formControl?.pincode?.touched || formControl?.pincode?.dirty)) ? 'green' : ''"
+                  required>
+                <ng-container
+                  *ngIf="formControl?.pincode?.invalid && (formControl?.pincode?.touched || formControl?.pincode?.dirty)">
+                  <p class="error-addressMsg" *ngIf="formControl?.pincode?.errors.required">Postal code is required</p>
+                  <p class="error-addressMsg" *ngIf="formControl?.pincode?.errors.pattern">Enter valid postal code</p>
+                </ng-container>
+              </div>
+            </form>
+            <div class="blue-button" (click)="saveAddress(addressForm)">Save this address</div>
+          </div>
+        </div>
+
+        <div class="price-detail" *ngIf="products.length > 0">
+          <h3 class="price-title">Price Detail</h3>
+
+          <div class="price-row" *ngFor="let eachProduct of products">
+            <div class="left-price" *ngIf="eachProduct?.type !== 'spare';else productSpare">
+              <h3>{{eachProduct?.description}}</h3>
+              <p *ngIf="eachProduct?.driveType !== ''">({{eachProduct?.driveType}})</p>
+            </div>
+
+            <ng-template #productSpare>
+              <div class="left-price">
+                <h3>{{eachProduct?.code}}</h3>
+                <p *ngIf="eachProduct?.description !== ''">({{eachProduct?.description}})</p>
+              </div>
+            </ng-template>
+
+            <!-- <div class="mid-price">
+              <span>{{eachProduct?.productQuantity}} x $ {{eachProduct?.discountPrice > 0 ? eachProduct?.discountPrice : eachProduct?.price}}</span>
+            </div> -->
+
+            <div class="right-price">
+              <h3>$ {{eachProduct?.productQuantity * (eachProduct?.discountPrice > 0 ? eachProduct?.discountPrice : eachProduct?.price)}}</h3>
+            </div>
+          </div>
+          <div class="price-row total-price">
+            <div class="left-price-spare">
+              <h3>Sub Total</h3>
+              <h3>${{grandTotal}}</h3>
+            </div>
+            <div class="left-price-spare">
+              <h3>Shipping & Handling</h3>
+              <h3>${{shippingCharges}}</h3>
+            </div>
+            <div class="left-price-spare" >
+              <h3>Total (including GST@10%) <br/>(In AUD)</h3>
+              <h3>${{finalPrice + gstPrice}}</h3>
+            </div>
+            <!-- <div class="left-price">
+              <h3>Sub Total</h3>
+            </div>
+
+            <div class="right-price">
+              <h3>$ {{grandTotal}}</h3>
+            </div> -->
+          </div>
+          <!-- <div class="price-row total-price" style="border-top:none;">
+            <div class="left-price">
+              <h3>Shipping & Handling</h3>
+            </div>
+
+            <div class="right-price">
+              <h3>$ {{shippingCharges}}</h3>
+            </div>
+          </div>
+
+          <div class="price-row total-price" style="border-top:none;">
+            <div class="left-price">
+              <h3>Total (including 10% GST)</h3>
+            </div>
+
+            <div class="right-price">
+              <h3>$ {{finalPrice + gstPrice}}</h3>
+            </div>
+          </div> -->
+          <button *ngIf="emptyAddress" disabled><a class="tooltip">Checkout <span
+                class="tooltiptext">Please enter your address to continue</span></a></button>
+          <button *ngIf="!emptyAddress"><a class="tooltip"
+              (click)="checkOut()">Checkout</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

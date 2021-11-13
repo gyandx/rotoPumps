@@ -1,0 +1,141 @@
+<ngx-spinner bdColor = "rgb(0,0,0)" size = "medium" color = "#2e94ef" type = "ball-newton-cradle" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<!-- <ngx-spinner name="sp3" [fullScreen]="false" type="ball-spin-clockwise" size="small"></ngx-spinner> -->
+
+<div class="main-container cartpage addresspage paymentpage ">
+
+  <div class="breadcrum">
+    <div class="container">
+      <p><a href="javascript:void(0)" [routerLink]="['/home']">Home</a> / <a href="javascript:void(0)"
+          [routerLink]="['/cart']">Cart</a> / Payment</p>
+    </div>
+  </div>
+
+
+  <div class="cart-scale">
+    <div class="container">
+      <div class="cart-scale-inner">
+        <div class="scale-no active-scale"><a style="pointer-events: none;">1</a><small>Cart</small></div>
+        <div class="scale-no"><a style="pointer-events: none;">2</a><small>Address</small></div>
+        <div class="scale-no"><a style="pointer-events: none;">3</a><small>Payment</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-section">
+    <div class="container">
+      <div class="cart-inner">
+
+        <div class="price-detail">
+          <div class="price-row total-price" style="border-top: none;">
+            <div class="left-price-spare">
+              <h3>Total Price(AUD)</h3>
+              <h3>${{total}}</h3>
+            </div>
+            <!-- <div class="left-price">
+              <h3>Total Price</h3>
+            </div>
+            <div class="right-price">
+              <h3>${{total}}</h3>
+            </div> -->
+          </div>
+
+          <!-- <button><a href="payment-successful.html">Checkout</a></button> -->
+        </div>
+
+        <div class="cart">
+          <div class="address-row full-address-row">
+            <form [formGroup]="paymentForm">
+              <!-- <div class="address-feild">
+                <label>Email <span>*</span></label>
+                <input type="email" formControlName="email" placeholder="abc@xyz.com" required
+                  [ngClass]="((formControl?.email?.errors?.email || formControl?.email?.errors?.required)  && (formControl?.email?.touched || formControl?.email?.dirty))?'red': (formControl?.email?.valid && (formControl?.email?.touched || formControl?.email?.dirty))?'green': ''">
+                  <p *ngIf="((formControl?.email?.errors?.email || formControl?.email?.errors?.required)  && (formControl?.email?.touched || formControl?.email?.dirty))" style="color: red;">Enter Valid Email</p>
+              </div> -->
+
+              <!-- <div class="address-feild">
+                <label>Card Information <span>*</span></label>
+                <div id="card-info" #cardInfo></div>
+                <p *ngIf="cardErrors" style="color: red;">{{cardErrors?.message}}</p>
+              </div> -->
+
+              <div class="address-feild">
+                <label>Card Information <span>*</span></label>
+                <div id="cc-number"  [ngClass]="toggleCardNumberError ? 'cardErr' : 'address-feildCard'"></div>
+                <p *ngIf="toggleCardNumberError" style="color: red !important;">{{cardNumberError}}</p>
+                <!-- <input id="cc-number" formControlName="cardNumber" #ccNumber="ccNumber"
+                  placeholder="5656 5656 5656 5656" type="tel" autocomplete="cc-number" ccNumber required
+                  [ngClass]="((formControl?.cardNumber?.errors?.ccNumber || formControl?.cardNumber?.errors?.required)  && (formControl?.cardNumber?.touched || formControl?.cardNumber?.dirty))?'red': (formControl?.cardNumber?.valid && (formControl?.cardNumber?.touched || formControl?.cardNumber?.dirty))?'green': ''">
+                  <p *ngIf="((formControl?.cardNumber?.errors?.ccNumber || formControl?.cardNumber?.errors?.required)  && (formControl?.cardNumber?.touched || formControl?.cardNumber?.dirty))" style="color: red;">Enter Valid Card Number</p> -->
+              </div>
+              <!-- <div class="address-feild">
+                <label>Card Information <span>*</span></label>
+                <div appNumOnly #cardNumber></div>
+                  <p *ngIf="cardErrors?.code === 'invalid_number'" style="color: red;">{{cardErrors?.message}}</p>
+              </div> -->
+
+              <!-- <div class="address-feild half-field">
+                <div class="address-feild">
+                  <label>Exp. Month & Year <span>*</span></label>
+                  <div appNumOnly #cardExpiry></div>
+                    <p *ngIf="cardErrors?.code === 'invalid_expiry_year_past'" style="color: red;">{{cardErrors?.message}}</p>
+                </div>
+                <div class="address-feild">
+                  <label> CVV <span>*</span></label>
+                  <div appNumOnly #cardCvc></div>
+                </div>
+
+                <img src="assets/images/icons/CVV.png" id="input_img"/>
+              </div> -->
+              <div class="address-feild half-field">
+                <div style="width: 50%;">
+                  <label>Exp. Month & Year <span>*</span></label>
+                  <div id="cc-exp-date" [ngClass]="toggleCardMonthError ? 'cardErr' : 'address-feildCard'"></div>
+                  <p *ngIf="toggleCardMonthError" style="color: red !important;">{{cardMonthError}}</p>
+                  <!-- <input id="cc-exp-date" formControlName="cardExpDate" type="tel" autocomplete="cc-exp"
+                    placeholder="12/24" ccExp required
+                    [ngClass]="((formControl?.cardExpDate?.errors?.expDate || formControl?.cardExpDate?.errors?.required)  && (formControl?.cardExpDate?.touched || formControl?.cardExpDate?.dirty))?'red': (formControl?.cardExpDate?.valid && (formControl?.cardExpDate?.touched || formControl?.cardExpDate?.dirty))?'green': ''">
+                    <p *ngIf="((formControl?.cardCVV?.errors?.expDate  || formControl?.cardCVV?.errors?.required)  && (formControl?.cardCVV?.touched || formControl?.cardCVV?.dirty))" style="color: red;">Enter Valid Exp. Month & Year</p> -->
+                </div>
+                <div style="width: 50%">
+                  <label> CVV <span>*</span></label>
+                  <div id="cc-cvc"   [ngClass]="toggleCardCvvError ? 'cardErr' : 'address-feildCard'"></div>
+                  <p *ngIf="toggleCardCvvError" style="color: red !important;">{{cardCvvError}}</p>
+                  <!-- <input id="cc-cvc" formControlName="cardCVV" appNumOnly type="password" maxlength="4"
+                    minlength="3" autocomplete="off" placeholder="CVC" ccCvc required
+                    [ngClass]="((formControl?.cardCVV?.errors?.pattern  || formControl?.cardCVV?.errors?.required)  && (formControl?.cardCVV?.touched || formControl?.cardCVV?.dirty))?'red': (formControl?.cardCVV?.valid && (formControl?.cardCVV?.touched || formControl?.cardCVV?.dirty))?'green': ''">
+                    <p *ngIf="((formControl?.cardCVV?.errors?.pattern  || formControl?.cardCVV?.errors?.required)  && (formControl?.cardCVV?.touched || formControl?.cardCVV?.dirty))" style="color: red;">Enter Valid CVV</p> -->
+                </div>
+              </div>
+
+              <div class="address-feild">
+                <label>Name on Card <span>*</span></label>
+                <input type="text" formControlName="cardUserName" placeholder="Navodita Aggarwal" required
+                  [ngClass]="((formControl?.cardUserName?.errors?.minlength || formControl?.cardUserName?.errors?.required)  && (formControl?.cardUserName?.touched || formControl?.cardUserName?.dirty))?'red': (formControl?.cardUserName?.valid && (formControl?.cardUserName?.touched || formControl?.cardUserName?.dirty))?'green': ''">
+                  <p *ngIf="((formControl?.cardUserName?.errors?.minlength || formControl?.cardUserName?.errors?.required)  && (formControl?.cardUserName?.touched || formControl?.cardUserName?.dirty))" style="color: red;">Name should be of minimum 5 characters</p>
+              </div>
+              <!-- <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"  (error)="error = $event" style="margin-bottom: 2px;"></ngx-stripe-card> -->
+
+              <!-- <div class="address-feild">
+                <label>Country or Region <span>*</span></label>
+                <select formControlName="country" required
+                  [ngClass]="((formControl?.country?.errors?.required)  && (formControl?.country?.touched || formControl?.country?.dirty))?'red': (formControl?.country?.valid && (formControl?.country?.touched || formControl?.country?.dirty))?'green': ''">
+                  <option value="" selected disabled>Select County or region
+                  </option>
+                  <option *ngFor="let eachCountry of countryList" [value]="eachCountry?.name">
+                    {{eachCountry?.name}}
+                  </option>
+                </select>
+                <p *ngIf="((formControl?.country?.errors?.required)  && (formControl?.country?.touched || formControl?.country?.dirty))" style="color: red;">Select Valid Country From List</p>
+              </div> -->
+
+              <!-- <button type="button" (click)="submitPaymentForm(paymentForm)">Pay $3680</button> -->
+              <button *ngIf="!paymentLoading"><a href="javascript:void(0)" (click)="submitPaymentForm(paymentForm)">Pay ${{total}}</a></button>
+              <button *ngIf="paymentLoading"><a href="javascript:void(0)"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Payment Processing  <i class="fas fa-spinner fa-spin"></i></a></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

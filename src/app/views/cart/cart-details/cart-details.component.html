@@ -1,0 +1,178 @@
+<div class="main-container cartpage">
+
+  <div class="breadcrum">
+    <div class="container">
+      <p><a href="javascript:void(0)" [routerLink]="['/home']">Home</a> <span>/</span> Cart</p>
+    </div>
+  </div>
+
+  <ng-container *ngIf="products.length > 0">
+    <div class="cart-scale">
+      <div class="container">
+        <div class="cart-scale-inner">
+          <div class="scale-no active-scale"><a style="pointer-events: none;">1</a><small>Cart</small></div>
+          <div class="scale-no"><a style="pointer-events: none;">2</a><small>Address</small></div>
+          <div class="scale-no"><a style="pointer-events: none;">3</a><small>Payment</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-section">
+      <div class="container">
+        <div class="cart-inner">
+          <div class="cart">
+            <h3 class="price-title">Cart</h3>
+            <div class="cart-row cart-row-products" *ngFor="let eachProduct of products; let productCount=index">
+              <div class="left-cart">
+                <div class="cart-pic"> <img [src]="eachProduct.img" height="40px" width="40px"></div>
+                <!-- <span>
+                  <strong>{{eachProduct?.code}}</strong>
+                  <p>{{eachProduct?.description}}</p>
+                  <p *ngIf="eachProduct?.driveType !== '' ">{{eachProduct?.driveType}}</p>
+                </span> -->
+              </div>
+
+              <!-- <div class="mid-cart">
+                <div class="number">
+                  <span class="minus" (click)="decrementProductQuantity(productCount)">-</span>
+                  <input type="text" [value]="eachProduct?.productQuantity" appNumOnly disabled />
+                  <span class="plus" (click)="incrementProductQuantity(productCount)">+</span>
+                </div>
+              </div> -->
+
+              <div class="right-cart">
+                <span>
+                  <strong>{{eachProduct?.code}}</strong>
+                  <p *ngIf="eachProduct?.description !== ''">
+                    {{eachProduct?.description}}</p>
+                  <p *ngIf="eachProduct?.driveType !== '' ">{{eachProduct?.driveType}}</p>
+                </span>
+                <div class="mid-cart">
+                  <div class="number">
+                    <span class="minus" (click)="decrementProductQuantity(productCount)">-</span>
+                    <input type="text" [value]="eachProduct?.productQuantity" appNumOnly disabled />
+                    <span class="plus" (click)="incrementProductQuantity(productCount)">+</span>
+                  </div>
+                </div>
+                <h3>$ {{eachProduct?.discountPrice > 0 ? eachProduct?.discountPrice : eachProduct?.price}}</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="price-detail">
+            <h3 class="price-title">Price Detail</h3>
+
+            <div class="price-row" *ngFor="let eachProduct of products">
+              <div class="left-price" *ngIf="eachProduct?.type !== 'spare';else productSpare">
+                <h3>{{eachProduct?.description}}</h3>
+                <p *ngIf="eachProduct?.driveType !== ''">({{eachProduct?.driveType}})</p>
+              </div>
+
+              <ng-template #productSpare>
+                <div class="left-price">
+                  <h3>{{eachProduct?.code}}</h3>
+                  <p *ngIf="eachProduct?.description !== ''">({{eachProduct?.description}})</p>
+                </div>
+              </ng-template>
+
+              <!-- <div class="mid-price">
+                <span>{{eachProduct?.productQuantity}} x $ {{eachProduct?.discountPrice > 0 ? eachProduct?.discountPrice : eachProduct?.price}}</span>
+              </div> -->
+
+              <div class="right-price">
+                <h3>$ {{eachProduct?.productQuantity * (eachProduct?.discountPrice > 0 ? eachProduct?.discountPrice : eachProduct?.price)}}</h3>
+              </div>
+            </div>
+
+            <div>
+              <div class="price-row total-price">
+                <div class="left-price-spare">
+                  <h3>Sub Total</h3>
+                  <h3>${{grandTotal}}</h3>
+                </div>
+                <div class="left-price-spare">
+                  <h3>Shipping & Handling</h3>
+                  <h3>${{shippingCharges}}</h3>
+                </div>
+                <div class="left-price-spare" >
+                  <h3>Total (including GST@10%) <br /> (In AUD)</h3>
+                  <h3>${{finalPrice + gstPrice}}</h3>
+                </div>
+                <!-- <div class="left-price">
+                  <h3>Sub Total</h3>
+                </div>
+
+                <div class="right-price">
+                  <h3>$ {{grandTotal}}</h3>
+                </div> -->
+              </div>
+              <!-- <div class="price-row total-price" style="border-top:none;">
+                <div class="left-price">
+                  <h3>Shipping & Handling</h3>
+                </div>
+
+                <div class="right-price">
+                  <h3>$ {{shippingCharges}}</h3>
+                </div>
+              </div>
+
+              <div class="price-row total-price" style="border-top:none;">
+                <div class="left-price">
+                  <h3>Total (including 10% GST)</h3>
+                </div>
+
+                <div class="right-price">
+                  <h3>$ {{finalPrice + gstPrice}}</h3>
+                </div>
+              </div> -->
+            </div>
+
+            <div class="sign-button-sec" *ngIf="!toggleBtn">
+              <!-- <button><a href="javascript:void(0)" (click)="onContinue('sign-up')">Sign-Up To Continue</a></button>
+              <button><a href="javascript:void(0)" (click)="onContinue('sign-in')">Sign-In To Continue</a></button> -->
+              <button><a class="tooltip" (click)="onContinue('sign-in')">Continue
+                <span
+                class="tooltiptext">Click here to sign-in</span>
+              </a></button>
+            </div>
+            <ng-container *ngIf="toggleBtn">
+              <button><a href="javascript:void(0)" (click)="onContinue('continue')">Continue</a></button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="products.length == 0">
+    <div class="epmtyCartImg">
+      <img src="assets/images/icons/EmptyCart.svg">
+    </div>
+    <p class="emptyCartMsg" *ngIf="!toggleBtn">Your cart is currently empty. Please <a (click)="redirect('sign-in')">Sign-in</a> or <a (click)="redirect('sign-up')">Sign-up</a> here.</p>
+    <p class="emptyCartMsg" *ngIf="toggleBtn">Your cart is currently empty. Please select a pump or spare part to purchase.</p>
+  </ng-container>
+
+  <div id="cartdeletemodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div> -->
+        <div class="modal-body">
+          <div class="delete-txt">
+            <div class="remove-sec">Are you sure to remove this item?
+              <p style="color: darkred;" *ngIf="showDeleteMsg">If you remove this, then accessories related to this will be removed and spares will be charged as per original price.</p>
+            </div>
+
+            <button class="blue-button" (click)="removeItemFromCart()">Yes</button>
+            <button class="blue-button" (click)="closeDeleteModal()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

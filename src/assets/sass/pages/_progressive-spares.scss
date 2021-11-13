@@ -1,0 +1,215 @@
+.border-grey {
+  border: 1px solid #d2d2d2;
+  margin: 0 0 50px 0;
+}
+.roto-spares {
+  padding-top: 0px;
+}
+.select-box-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0;
+  max-width: 80%;
+  width: 100%;
+  &.select-cat {
+    justify-content: normal;
+  }
+  @media screen and (max-width: 767px) {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  .select-box {
+    position: relative;
+    width: 100%;
+    &.clean {
+      margin-right: 40px;
+      width: 100%;
+    }
+    @media screen and (max-width: 568px) {
+      width: 100%;
+      margin: 0 0 20px 0;
+    }
+
+    label {
+      width: auto;
+      position: absolute;
+      font-weight: normal;
+      background: #fff;
+      top: -2px;
+      left: 14px;
+      padding: 0 4px;
+      border-radius: 5px;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #8c8c8c;
+    }
+    select {
+      padding: 9px 7px;
+      border: solid 1px #d2d2d2;
+      margin: 6px 0 0 0;
+      background: #f7f9fa;
+      border-radius: 5px;
+      font-size: 14px;
+      height: 40px;
+      width: 100%;
+      @media screen and (max-width: 568px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.progress-row-spare {
+  justify-content: space-between !important;
+  .left-progress {
+    width: 100px !important;
+    .progress-pic {
+      width: 100px !important;
+      height: 100%;
+      background: #cbb4;
+      border: 1px solid #cbb400;
+      border-radius: 4px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+    }
+  }
+
+  .right-progress{
+    max-width: 85% !important;
+    width: 100%;
+    background-color: #e7f8ff;
+    padding: 12px 10px;
+    height: 75px;
+    display: flex;
+  }
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  // background: #e7f8ff;
+  padding: 0px;
+  margin-bottom: 10px;
+  height: 100px;
+
+  @media screen and (max-width: 767px) {
+    flex-wrap: wrap;
+  }
+
+  .left-progress {
+    width: 100px;
+    height: 100%;
+  }
+
+  .progress-pic {
+    width: 70px;
+
+    img {
+      width: 54px;
+      height: 46px;
+      margin: 0 15px 0 0;
+    }
+  }
+
+  .right-progress {
+    flex: 0 0 89%;
+    max-width: 89%;
+    width: 100%;
+    @media screen and (max-width: 767px) {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin: 15px 0 0 0;
+    }
+
+    .top-progress {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      @media screen and (max-width: 480px) {
+        flex-wrap: wrap;
+      }
+      h3 {
+        margin: 0;
+        width: 80px;
+        font-size: 16px;
+        text-align: right;
+      }
+      strong {
+        width: 110px;
+      }
+      p {
+        width: 190px;
+        padding: 0px;
+        margin: 0;
+      }
+      .number {
+        width: 110px;
+      }
+    }
+
+    .mid-progress {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      margin: 0 !important;
+      .num-change {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+
+        span {
+          background: #05294e;
+          width: 36px;
+          display: inline-block;
+          height: 26px;
+          margin: 0 0 0 0;
+          color: #fff;
+          text-align: center;
+          font-size: 15px;
+          font-weight: 500;
+        }
+        input {
+          max-width: -webkit-max-content;
+          max-width: -moz-max-content;
+          max-width: max-content;
+          width: 37px;
+          text-align: center;
+          border: none;
+          height: 26px;
+          margin: 0 8px;
+        }
+      }
+      p {
+        color: rgba(0, 0, 0, 0.5);
+      }
+    }
+    .select-box-inner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      margin: 30px 0 5px;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}

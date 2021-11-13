@@ -1,0 +1,108 @@
+<div class="main-container profile-container">
+  <div class="breadcrum">
+    <div class="container">
+      <p><a href="javscript:void(0)" [routerLink]="['/home']">Home</a> / <a href="javascript:void(0)"
+          [routerLink]="['/account/my-orders']">Order History</a> <span>/</span>Order Details</p>
+    </div>
+  </div>
+  <div class="profile-section">
+    <div class="container">
+      <div class="account-section">
+        <div class="order-status-sec">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Item Details</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let eachOrder of orderData?.order_details">
+                <td><div class="order-img"><img style="width: 100px;height: 100px" src={{eachOrder?.img}}></div></td>
+                <td class="order-desc">
+                  <div>
+                    <h2>{{eachOrder?.code}}</h2>
+                    <p>{{eachOrder?.description}}</p>
+                  </div>
+                  <div class="order-button-section" *ngIf="eachOrder?.type === 1">
+                    <!-- <button class="white-button" (click)="downloadDataSheet(eachOrder)">Data Sheet</button>
+                    <button class="white-button" (click)="downloadGa(eachOrder?.description)">GA DWG</button>
+                    <button class="white-button"  (click)="downloadCs(eachOrder?.description)">CS DWG</button>
+                    <button class="white-button"  (click)="downloadPc(eachOrder?.description)">Performance Curve</button>
+                    <button class="white-button">ONM Manual</button> -->
+                    <a class="order-white-button" (click)="downloadDataSheet(eachOrder)"><i class="fa fa-download"></i>Data Sheet</a>
+                    <a class="order-white-button" (click)="downloadGa(eachOrder?.description)"><i class="fa fa-download"></i>GA DWG</a>
+                    <a class="order-white-button"  (click)="downloadCs(eachOrder?.description)"><i class="fa fa-download"></i>CS DWG</a>
+                    <a class="order-white-button"  (click)="downloadPc(eachOrder?.description, eachOrder)"><i class="fa fa-download"></i>Performance Curve</a>
+                    <a class="order-white-button" [download]="myFileName" [href]="fileUrl" (click)="downloadOM(eachOrder?.description)"><i class="fa fa-download"></i>O&M Manual</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="right"><span>Quantity: </span>{{eachOrder?.quantity}}</div>
+                </td>
+                <td>
+                  <div class="right"><span>Price: </span>{{eachOrder?.price * eachOrder?.quantity | currency}}</div>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+  <div class="profile-section">
+    <div class="container">
+      <div class="account-section">
+        <div class="order-status-sec">
+          <!-- <ng-container *ngFor="let eachOrder of orderData?.order_details">
+            <div class="order-row">
+              <div class="order-left">
+                <div class="order-img"><img src="assets/images/card-images/order-item.jpg"></div>
+                <div class="order-desc">
+                  <div>
+                    <h2>{{eachOrder?.code}}</h2>
+                    <p>{{eachOrder?.description}}</p>
+                  </div>
+                  <div class="right">QTY:{{eachOrder?.quantity}}</div>
+                  <div class="right">Price:{{eachOrder?.price * eachOrder?.quantity | currency}}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="button-section" *ngIf="eachOrder?.type === 1">
+              <button class="white-button btn-manual">Operation Manual</button>
+              <button class="white-button btn-warranty">Warranty Certificate</button>
+            </div>
+          </ng-container> -->
+
+          <div class="order-row">
+            <p class="detail-col">
+              <span class="highlight">Delivery Address</span>
+              <span>{{orderData?.order_address?.name}}</span>
+              <span>{{orderData?.order_address?.house_number}}, {{orderData?.order_address?.city}}, {{orderData?.order_address?.state}} </span>
+              <span>{{orderData?.order_address?.country}} {{orderData?.order_address?.pincode}}</span>
+            </p>
+
+            <p class="detail-col">
+              <span class="highlight">Phone Number</span>
+              <span>{{orderData?.order_address?.phone}}</span>
+            </p>
+
+            <p class="detail-col">
+              <span class="highlight">Total Amount (Including 5% shipping charges) <br /> (In AUD)</span>
+              <span>{{orderData?.amount | currency}}</span>
+              <span style="display: none;"><button class="btn btn-blue">Download Invoice</button></span>
+              <span style="display: none;"><button class="btn btn-red" (click)="cancelOrder()">Return Order</button></span>
+              <!-- <span class="sm-text">* 25% restocking fees is applied</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

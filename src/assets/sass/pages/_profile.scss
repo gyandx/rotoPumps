@@ -1,0 +1,109 @@
+.profile-container .breadcrum {
+    margin: 25px 0;
+    display: inline-block;
+    width: 100%;
+
+    .bread-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .download-section a {
+            text-transform: uppercase;
+            color: #2F80ED;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media screen and (max-width: 767px){
+flex-wrap: wrap;
+justify-content: center;
+        }
+    }
+}
+
+.account-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    @media screen and (max-width: 767px){
+        flex-wrap: wrap;
+    }
+
+    .account-sidebar {
+        max-width: 400px;
+        background: #F1F2F3;
+        width: 100%;
+        padding: 25px;
+        margin-right: 30px;
+
+
+        @media screen and (max-width: 767px){
+            max-width:100%;
+            margin-right: 0px;
+        }
+
+        h3 {
+            font-size: 26px;
+            margin: 0 0 13px 0;
+            font-weight: 600;
+        }
+
+        span{
+            font-size: 18px;
+            margin:20px 0 15px 0;
+            font-weight: 600;
+            display: inline-block;
+            width:100%;
+        }
+        ul{
+            padding: 0;
+            li{
+                padding: 0 0 10px 0;
+                list-style: none;
+                a{
+                    color:#333;
+                }
+
+                &.active{
+                    a{
+                        color: #2F80ED;
+                    }
+                }
+            }
+        }
+    }
+
+    .account-tab {
+        max-width: 62%;
+        flex: 0 0 62%;
+        width: 100%;
+
+        @media screen and (max-width: 767px){
+            max-width:100%;
+            flex: 0 0 100%;
+        }
+
+
+        .tab-content {
+        padding-top: 20px;
+
+        .tab-pane{
+            p{
+                margin: 10px 0 25px;
+            }
+        }
+    }
+    .nav-tabs > li a{
+        font-size: 18px;
+
+     }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: solid 2px #1D1F22;
+
+    }
+}
+}

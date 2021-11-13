@@ -1,0 +1,146 @@
+<div class="main-container surface-page" *ngIf="toggleDisplay === 'surfaceAgriPumps'">
+  <div class="full-banner">
+    <img src="assets/images/banner/top-banner-small.jpg" />
+    <div class="container">
+      <h2>Close Coupled Pumps</h2>
+    </div>
+  </div>
+
+  <div class="breadcrum">
+    <div class="container">
+      <p>
+        <a href="javascript:void(0)" [routerLink]="['/home']">Home</a> /
+        <a href="javascript:void(0)" [routerLink]="['/surfaceAgriPumps/', parentId]">Surface Agri Pumps</a>
+        <span>/</span> Close Coupled Pumps
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h3 class="pumpHeading">
+      Choose the pump from graph or model based on the media property
+      (Head/flow) <i class="fas fa-hand-point-left"></i>
+    </h3>
+  </div>
+
+  <div class="performance-curve">
+    <div class="container">
+      <div class="performance-box-outer">
+        <div class="performance-box">
+          <div class="performance-buttons">
+            <a href="javascript:void(0)" [ngClass]="eachBtn1 === btn4Active ? 'active-bttn' : ''"
+              *ngFor="let eachBtn1 of fourPoleButtons" [routerLink]="['../', parentId, eachBtn1, 4]">{{ eachBtn1 }}</a>
+          </div>
+          <strong class="poleType">4 Pole - 1450 RPM</strong>
+          <maphilight id="imageMap1" [config]="config">
+            <img [src]="graphImgSrc" class="mapper" [ngStyle]="{
+                visibility:
+                  graphImgSrc && graphImgSrc != '' ? 'visible' : 'hidden'
+              }" />
+            <map>
+              <area title="AGCA01A" [routerLink]="['../', parentId, 'AGCA01A', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)"
+                coords="55,312,56,353,244,353,244,318" shape="poly" />
+              <area title="AGCA01B" [routerLink]="['../', parentId, 'AGCA01B', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)"
+                coords="53,307,245,313,435,322,435,353,244,353,243,317,54,313,55,306,245,313" shape="poly" />
+              <area title="AGCA03A" [routerLink]="['../', parentId, 'AGCA03A', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)"
+                coords="54,285,54,307,245,312,245,297" shape="poly" />
+              <area title="AGCA03B" [routerLink]="['../', parentId, 'AGCA03B', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)"
+                coords="54,281,435,297,434,321,246,313,245,297,54,286" shape="poly" />
+              <area title="AGCA05A" [routerLink]="['../', parentId, 'AGCA05A', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)"
+                coords="55,234,55,281,245,288,245,252" shape="poly" />
+            </map>
+          </maphilight>
+          <!-- <map>
+              <area shape="poly" id="blue" rel="green,red" href="#" coords="54 234/">
+            </map> -->
+        </div>
+
+        <div class="performance-box">
+          <div class="performance-buttons">
+            <a href="javascript:void(0)" [ngClass]="eachBtn2 === btn6Active ? 'active-bttn' : ''"
+              *ngFor="let eachBtn2 of sixPoleButtons" [routerLink]="['../', parentId, eachBtn2, 6]">{{ eachBtn2 }}</a>
+          </div>
+          <strong class="poleType">6 Pole - 960 RPM</strong>
+          <maphilight id="imageMap2" [config]="config">
+            <img [src]="graphImgSrc1" class="mapper" [ngStyle]="{
+                visibility:
+                  graphImgSrc1 && graphImgSrc1 != '' ? 'visible' : 'hidden'
+              }" />
+            <map>
+              <area title="AGCA01A" [routerLink]="['../', parentId, 'AGCA01A', 6]" (mouseenter)="activateBtn(6, $event)" (mouseleave)="deActivateBtn(6)" coords="55,227,244,241,244,353,56,353" shape="poly" />
+              <area title="AGCA01B" [routerLink]="['../', parentId, 'AGCA01B', 6]" (mouseenter)="activateBtn(6, $event)" (mouseleave)="deActivateBtn(6)" coords="54,225,436,244,436,355,244,353,244,241,54,227" shape="poly" />
+              <area title="AGCA03A" [routerLink]="['../', parentId, 'AGCA03A', 6]" (mouseenter)="activateBtn(6, $event)" (mouseleave)="deActivateBtn(6)" coords="54,141,55,224,245,234,244,172" shape="poly" />
+              <area title="AGCA03B" [routerLink]="['../', parentId, 'AGCA03B', 6]" (mouseenter)="activateBtn(6, $event)" (mouseleave)="deActivateBtn(6)" coords="54,137,434,156,434,243,245,234,245,172,54,141" shape="poly" />
+            </map>
+          </maphilight>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-container surface-page" *ngIf="toggleDisplay === 'multiPurposePumps'">
+  <div class="full-banner">
+    <img src="assets/images/banner/top-banner.jpg" />
+    <div class="container">
+      <h2>Closed Couple Pumps</h2>
+    </div>
+  </div>
+
+  <div class="breadcrum">
+    <div class="container">
+      <p>
+        <a href="javascript:void(0)" routerLink="/home">Home</a> /
+        <a href="javascript:void(0)" [routerLink]="['/multiPurposePumps/', parentId]">Multi Purpose Pumps</a>
+        <span>/</span> Closed Couple Pumps
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h3 class="pumpHeading">
+      Select Pump based on Performance Curves
+      <i class="fas fa-hand-point-left"></i>
+    </h3>
+  </div>
+
+  <div class="performance-curve multi-box-curve" *ngIf="toggleDisplay === 'multiPurposePumps'">
+    <div class="container">
+      <!-- <h3>Select Pump based on Performance Curves</h3> -->
+      <div class="performance-box-outer">
+        <div class="performance-box">
+          <!-- <div class="performance-buttons">
+            <span>Plastic Body:</span>
+            <a class=" active-bttn" href="#">AGCA074</a>
+            <a href="#">AGCA074</a>
+            <a href="#">AGCA074</a>
+            <a href="#">AGCA074</a>
+          </div> -->
+
+          <div class="performance-buttons">
+            <!-- <span>Cast Iron Body:</span> -->
+            <!-- <a href="#">AGCA074</a>
+            <a href="#">AGCA074</a> -->
+            <a href="javascript:void(0)" [ngClass]="eachBtn1 === btn4Active ? 'active-bttn' : ''"
+              *ngFor="let eachBtn1 of fourPoleButtons" [routerLink]="['../', parentId, eachBtn1, 4]">{{ eachBtn1 }}</a>
+          </div>
+          <!-- <img src="assets/images/banner/performance-1.jpg"> -->
+          <strong class="poleType">4 Pole - 1450 RPM</strong>
+          <maphilight id="imageMap3" [config]="config">
+            <img [src]="graphImgSrc" class="mapper" [ngStyle]="{
+                visibility:
+                  graphImgSrc && graphImgSrc != '' ? 'visible' : 'hidden'
+              }" />
+            <map>
+              <area title="DCCC012"  [routerLink]="['../', parentId, 'DCCC012', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)" coords="86,338,87,362,467,362,467,342" shape="poly">
+              <area title="DCCC022"  [routerLink]="['../', parentId, 'DCCC022', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)" coords="85,322,467,329,467,342,85,338" shape="poly">
+              <area title="DCCC032"  [routerLink]="['../', parentId, 'DCCC032', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)"  coords="85,296,86,322,339,327,339,322" shape="poly">
+              <area title="DCAC041"  [routerLink]="['../', parentId, 'DCAC041', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)"  coords="85,201,86,297,276,315,277,237" shape="poly">
+              <area title="DCAC051"  [routerLink]="['../', parentId, 'DCAC051', 4]" (mouseenter)="activateBtn(4, $event)" (mouseleave)="deActivateBtn(4)"  coords="86,77,86,201,275,237,275,136" shape="poly">
+            </map>
+          </maphilight>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

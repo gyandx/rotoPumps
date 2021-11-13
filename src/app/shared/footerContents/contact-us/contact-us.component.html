@@ -1,0 +1,112 @@
+<div class="main-container about-page">
+  <app-banner></app-banner>
+
+  <div class="profile-section">
+    <div class="container">
+      <div class="card">
+        <div class="dummy-pic">
+          <!-- <img src="assets/images/banner/tirrana-agricutural-1.png"> -->
+        </div>
+        <div class="card-title">
+          <h3 style="text-align: center">Contact Us</h3>
+        </div>
+      </div>
+
+      <div class="cancel-form">
+        <form
+          [formGroup]="contactForm"
+          (ngSubmit)="submitContactForm(contactForm)"
+        >
+          <div
+            class="sign-field"
+          >
+            <label>Full Name <span style="color: red">*</span></label>
+            <div class="sign-input">
+              <input
+                type="text"
+                appTextOnly
+                placeholder="Ivan Pavlov"
+                formControlName="name"
+                [ngStyle]="{'border' : (formControl?.name?.errors?.maxlength || formControl?.name?.errors?.required) && (formControl?.name?.touched || formControl?.name?.dirty) ? '1px solid red' :
+                formControl?.name?.valid && (formControl?.name?.touched || formControl?.name?.dirty) ? '1px solid green' : ''}"
+                required
+              />
+            </div>
+          </div>
+          <ng-container
+            *ngIf="
+              formControl?.name?.invalid &&
+              (formControl?.name?.touched || formControl?.name?.dirty)
+            "
+          >
+            <p class="error-msg" *ngIf="formControl?.name?.errors.required">
+              Name Is Required
+            </p>
+            <p class="error-msg" *ngIf="formControl?.name?.errors.maxlength">
+              Name must not exceed 15 characters
+            </p>
+          </ng-container>
+
+          <div
+            class="sign-field"
+          >
+            <label>Email <span style="color: red">*</span></label>
+            <div class="sign-input">
+              <input
+                type="email"
+                placeholder="abc@xyz.com"
+                formControlName="email"
+                [ngStyle]="{'border': (formControl?.email?.errors?.pattern || formControl?.email?.errors?.required) &&
+                (formControl?.email?.touched || formControl?.email?.dirty) ? '1px solid red' : formControl?.email?.valid &&
+                (formControl?.email?.touched || formControl?.email?.dirty) ? '1px solid green' : ''}"
+                required
+              />
+            </div>
+          </div>
+          <ng-container
+            *ngIf="
+              formControl?.email?.invalid &&
+              (formControl?.email?.touched || formControl?.email?.dirty)
+            "
+          >
+            <p class="error-msg" *ngIf="formControl?.email?.errors.required">
+              Email Is Required
+            </p>
+            <p class="error-msg" *ngIf="formControl?.email?.errors.pattern">
+              Enter valid email(abc@abc.abc)
+            </p>
+          </ng-container>
+
+          <div
+            class="sign-field"
+          >
+            <label>Query <span style="color: red">*</span></label>
+            <div class="sign-input">
+              <textarea
+                name="message"
+                id="query"
+                cols="20"
+                rows="10"
+                formControlName="message"
+                [ngStyle]="{'border': formControl?.message?.errors?.required &&  (formControl?.message?.touched || formControl?.message?.dirty) ?
+                  '1px solid red' : formControl?.message?.valid && (formControl?.message?.touched || formControl?.message?.dirty) ? '1px solid green' : ''}"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <ng-container
+            *ngIf="
+              formControl?.message?.invalid &&
+              (formControl?.message?.touched || formControl?.message?.dirty)
+            "
+          >
+            <p class="error-msg" *ngIf="formControl?.message?.errors.required">
+              Query Is Required
+            </p>
+          </ng-container>
+          <button class="blue-button" type="submit">Contact</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+.payment-successfull {
+    max-width: 724px;
+    background: #fff;
+    text-align: center;
+    margin: 60px auto;
+    padding: 50px 20px 60px;
+    border-radius: 6px;
+
+    img {
+        width: 100px;
+        height: 100px;
+        margin: 0 0 15px 0;
+    }
+    h3{
+        margin: 7px 0 32px 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+
+    p{
+        font-size: 22px;
+        font-weight: normal;
+
+        span{
+            color: #2F80ED;
+        }
+    }
+  .paymentBtn{
+    display: flex;
+    justify-content: center;
+   p{
+     &:first-child{
+      margin-right: 16px;
+     }
+
+   }
+  }
+
+}

@@ -1,0 +1,268 @@
+<header *ngIf="userName !== ''; else elseBlock">
+  <div class="container">
+    <div class="header-row">
+      <div class="logo">
+        <a href="javascript:void(0)" routerLink="/home"><img src="assets/images/logo/logo.png" /></a>
+      </div>
+      <!-- <div class="input-group header-search-box-wrapper">
+        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" />
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div> -->
+      <div class="right-header">
+        <div class="cart cart-wrapper">
+          <a href="javascript:void(0)" [routerLink]="['/cart']"><img src="assets/images/icons/cart.png" />
+            <span class="cart-title">Cart</span>
+          </a>
+          <span class="cart-quantity-wrapper" *ngIf="cartItemsQuantity != 0">{{ cartItemsQuantity }} </span>
+        </div>
+        <div class="dealer-icon-wrapper">
+          <a href="#delarModal" data-toggle="modal">
+            <i class="far fa-handshake"></i>
+            <span class="text-center">
+              Dealership Enquiry
+            </span>
+          </a>
+        </div>
+        <div class="cart" *ngIf="userName">
+          <a href="javascript:void(0)" [routerLink]="['/account']" style="text-decoration: none"><img
+              src="assets/images/icons/user.png" />
+            <p>{{ userName }}</p>
+          </a>
+        </div>
+        <div class="cart" *ngIf="userName === ''">
+          <a href="javascript:void(0)" [routerLink]="['/account']" style="text-decoration: none"><img
+              src="assets/images/icons/user.png" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<ng-template #elseBlock>
+  <header>
+    <div class="container">
+      <div class="header-row">
+        <div class="logo">
+          <a href="javascript:void(0)" routerLink="/home"><img src="assets/images/logo/logo.png" /></a>
+        </div>
+        <!-- <div class="input-group header-search-box-wrapper">
+          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" />
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div> -->
+        <div class="right-header" *ngIf="headerButton">
+          <!-- <div class="cart">
+            <a href="javascript:void(0)" (click)="gotoCart()"><img src="assets/images/icons/cart.png" /></a><span
+              *ngIf="cartItemsQuantity != 0">{{ cartItemsQuantity }}</span>
+          </div> -->
+          <div class="cart cart-wrapper2">
+            <a href="javascript:void(0)" (click)="gotoCart()"><img src="assets/images/icons/cart.png" />
+              <span class="cart-title">Cart</span>
+            </a>
+            <span class="cart-quantity-wrapper" *ngIf="cartItemsQuantity != 0">{{ cartItemsQuantity }} </span>
+          </div>
+          <div class="dealer-icon-wrapper">
+            <a href="#delarModal" data-toggle="modal">
+              <i class="far fa-handshake"></i>
+              <span class="text-center">
+                Dealership Enquiry
+              </span>
+            </a>
+          </div>
+          <div class="header-top-bttn">
+            <button class="white-button" (click)="signIn()">Log in</button>
+            <button class="blue-button" (click)="signUp()">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</ng-template>
+
+<!-- Modal -->
+<div id="delarModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content enquiry-form-wrapper">
+      <div class="modal-header">
+        <h5 class="modal-title">Dealership Form</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="resetForm()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="address-row">
+          <!-- <h3>Post Your Enquiry</h3> -->
+
+          <form [formGroup]="dealershipForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="name-container">
+                  <div class="address-feild address2">
+                    <label>Company Name<span>*</span></label>
+                    <input appTextOnly type="text" placeholder="Company Name" formControlName="company_name"
+                      class="form-control" [ngStyle]="{
+                        border:
+                            formControl?.company_name?.errors?.required &&
+                          (formControl?.company_name?.touched ||
+                            formControl?.company_name?.dirty)
+                            ? '1px solid red'
+                            : formControl?.company_name?.valid &&
+                              (formControl?.company_name?.touched ||
+                                formControl?.company_name?.dirty)
+                            ? '1px solid green'
+                            : ''
+                      }" required />
+                    <ng-container *ngIf="
+                        formControl?.company_name?.invalid &&
+                        (formControl?.company_name?.touched || formControl?.company_name?.dirty)
+                      ">
+                      <p class="error-addressMsg" *ngIf="formControl?.company_name?.errors.required">
+                        Company name is required
+                      </p>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="name-container">
+                  <div class="address-feild address2">
+                    <label>Full Name<span>*</span></label>
+                    <input appTextOnly type="text" placeholder="Full Name" formControlName="full_name" class="form-control"
+                      [ngStyle]="{
+                        border:
+                          (formControl?.full_name?.errors?.maxlength ||
+                            formControl?.full_name?.errors?.required) &&
+                          (formControl?.full_name?.touched ||
+                            formControl?.full_name?.dirty)
+                            ? '1px solid red'
+                            : formControl?.full_name?.valid &&
+                              (formControl?.full_name?.touched ||
+                                formControl?.full_name?.dirty)
+                            ? '1px solid green'
+                            : ''
+                      }" required />
+                    <ng-container *ngIf="
+                        formControl?.name?.invalid &&
+                        (formControl?.name?.touched || formControl?.name?.dirty)
+                      ">
+                      <p class="error-addressMsg" *ngIf="formControl?.name?.errors.required">
+                        Full name is required
+                      </p>
+                      <p class="error-addressMsg" *ngIf="formControl?.name?.errors.maxlength">
+                        Full name must not exceed 15 characters
+                      </p>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="name-container">
+                  <div class="address-feild address2">
+                    <label>Email<span>*</span></label>
+                    <input type="text" placeholder="abc@xyz.com" formControlName="email" class="form-control" [ngStyle]="{
+                        border:
+                          (formControl?.email?.errors?.pattern ||
+                            formControl?.email?.errors?.required) &&
+                          (formControl?.email?.touched ||
+                            formControl?.email?.dirty)
+                            ? '1px solid red'
+                            : formControl?.email?.valid &&
+                              (formControl?.email?.touched ||
+                                formControl?.email?.dirty)
+                            ? '1px solid green'
+                            : ''
+                      }" required />
+                    <ng-container *ngIf="
+                        formControl?.email?.invalid &&
+                        (formControl?.email?.touched ||
+                          formControl?.email?.dirty)
+                      ">
+                      <p class="error-addressMsg" *ngIf="formControl?.email?.errors.required">
+                        Email is required
+                      </p>
+                      <p class="error-addressMsg" *ngIf="formControl?.email?.errors.pattern">
+                        Enter valid email(abc@abc.abc)
+                      </p>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="address-feild">
+                  <label>Contact Number <span>*</span></label>
+                  <input type="text" placeholder="Contact Number" appNumOnly
+                    (input)="onInputChange($event.target.value)" formControlName="number" [ngStyle]="{
+                      border:
+                        (formControl?.number?.errors?.pattern ||
+                          formControl?.number?.errors?.required) &&
+                        (formControl?.number?.touched || formControl?.number?.dirty)
+                          ? '1px solid red'
+                          : formControl?.number?.valid &&
+                            (formControl?.number?.touched ||
+                              formControl?.number?.dirty)
+                          ? '1px solid green'
+                          : ''
+                    }" required />
+                  <ng-container *ngIf="
+                      formControl?.number?.invalid &&
+                      (formControl?.number?.touched || formControl?.number?.dirty)
+                    ">
+                    <p class="validation-error" *ngIf="formControl?.number?.errors.required">
+                      Phone number is required
+                    </p>
+                    <p class="validation-error" *ngIf="formControl?.number?.errors.pattern">
+                      Enter valid Phone number
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="address-feild">
+              <label>Interested In <span>*</span></label>
+              <textarea formControlName="intrested_in" style="width: 100%; background: rgba(0, 0, 0, 0.05)" [ngStyle]="{
+                  border:
+                    formControl?.intrested_in?.errors?.required &&
+                    (formControl?.intrested_in?.touched ||
+                      formControl?.intrested_in?.dirty)
+                      ? '1px solid red'
+                      : formControl?.intrested_in?.valid &&
+                        (formControl?.intrested_in?.touched ||
+                          formControl?.intrested_in?.dirty)
+                      ? '1px solid green'
+                      : ''
+                }" required></textarea>
+              <ng-container *ngIf="
+                  formControl?.intrested_in?.invalid &&
+                  (formControl?.intrested_in?.touched || formControl?.intrested_in?.dirty)
+                ">
+                <p class="validation-error" *ngIf="formControl?.intrested_in?.errors.required">
+                  Interestedin is required
+                </p>
+              </ng-container>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="blue-button" (click)="addDealer(dealershipForm)">
+          Submit
+        </button>
+        <!-- <button type="button" class="blue-button" #btnClose (click)="resetForm()" data-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+
+  </div>
+</div>

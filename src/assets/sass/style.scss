@@ -1,0 +1,19 @@
+// Merge all stylesheets into one
+// Global
+
+// Core bootstrap variables and mixins
+// @import "bootstrap/variables";
+// @import "bootstrap/mixins";
+
+// Core App variables and mixins
+
+// Layout Style
+@import "layouts/layouts";
+// Components
+@import "components/components";
+
+// Pages
+@import "pages/pages";
+
+//Mobile-View
+@import "mobile-view/mobile-view";

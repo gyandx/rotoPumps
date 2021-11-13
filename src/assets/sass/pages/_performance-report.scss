@@ -1,0 +1,105 @@
+
+.performance-section{
+    margin-top: 20px;
+    .performance-section-inner {
+        background: #fff;
+        padding: 20px;
+        display: block;
+        width: 100%;
+        clear: both;
+        float: left;
+
+        @media screen and (max-width: 767px){
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+
+    
+.tab {
+    float: left;
+    border: none;
+    background-color: transparent;
+    width: 30%;
+    height: auto;
+
+    @media screen and (max-width: 767px){
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    }
+
+ button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 14px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    font-size: 16px;
+    background: #ECF3F6;
+    border-radius: 4px;
+    margin: 0 0 12px 0;
+    @media screen and (max-width: 767px){
+width:110px;
+    }
+  }
+  .tab-title{
+      margin: 0 0 30px 0;
+      @media screen and (max-width: 767px){
+      flex: 0 0 100%;
+      }
+
+       h3 {
+        margin: 0 0 7px 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+  }
+}
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background: #2F80ED;
+    box-shadow: 0px 0px 10px rgba(47, 128, 237, 0.3);
+    color:#fff;
+  }
+  
+  /* Create an active/current "tab button" class */
+  .tab button.active {
+    background: #2F80ED;
+    box-shadow: 0px 0px 10px rgba(47, 128, 237, 0.3);
+    color:#fff;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: none;
+    width: 70%;
+    border-left: none;
+    height: 100%;
+
+    @media screen and (max-width: 767px){
+width:100%;
+margin-top: 30px;
+    }
+
+    > img{
+        width: 100%;
+    } 
+  }
+
+}
+
+}

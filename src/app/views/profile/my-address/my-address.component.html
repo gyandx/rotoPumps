@@ -1,0 +1,190 @@
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#personal">Address Details</a></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <div id="order" class="tab-pane fade in active">
+
+      <p>Manage all the shipping addresses you want (work place, home address ...) This way you won't have to enter the
+        shipping address manually with each order.</p>
+
+      <button class="blue-button" (click)="openModal('add', '')" style="margin-bottom: 2px;">Add Address</button>
+
+
+      <div class="order-row address-detail" *ngFor="let eachAddress of addressList; let addressCount = index">
+        <div class="order-left">
+          <div class="order-desc">
+            <h2>{{eachAddress?.name}}</h2>
+            <p>
+              {{eachAddress?.house_no}}
+              {{eachAddress?.city}} {{eachAddress?.state}},
+              {{eachAddress?.country}} {{eachAddress?.pincode}}
+              {{eachAddress?.phone}}</p>
+          </div>
+        </div>
+        <div class="order-status">
+          <button class="blue-button" style="margin-right: 4px;"
+            (click)="openModal('update', eachAddress?.id)">Change</button>
+          <button [ngStyle]="{'visibility': addressCount === 0? 'hidden': 'visible'}" class="white-button" (click)="openModal('delete', eachAddress?.id)">Delete</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="changeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <!-- <div class="modal-content" style="height: 80vh; overflow-y: scroll;"> -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{modalText}}</h5>
+          <button type="button" class="close" (click)="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="address-row">
+
+            <h3>Contact Detail</h3>
+
+            <form [formGroup]="addressForm">
+              <div class="address-feild">
+                <label>Title <span>*</span></label>
+                <select formControlName="title"
+                  [ngClass]="(formControl?.title?.invalid && (formControl?.title?.touched || formControl?.title?.dirty))? 'red' : (formControl?.title?.valid && (formControl?.title?.touched || formControl?.title?.dirty)) ? 'green' : ''"
+                  required>
+                  <option [ngValue]="null" disabled="disabled">Select title</option>
+                  <option value="Mr">Mr.</option>
+                  <option value="Ms">Ms.</option>
+                  <option value=" "></option>
+                </select>
+                <p class="error-addressMsg"
+                  *ngIf="formControl?.title?.invalid && (formControl?.title?.touched || formControl?.title?.dirty)">
+                  Select title</p>
+              </div>
+
+              <div class="name-container">
+                <div class="address-feild address2">
+                  <label>First Name<span>*</span></label>
+                  <input type="text" placeholder="First Name" formControlName="first_name"
+                    [ngClass]="((formControl?.first_name?.errors?.maxlength || formControl?.first_name?.errors?.required) && (formControl?.first_name?.touched || formControl?.first_name?.dirty))? 'red' : (formControl?.first_name?.valid && (formControl?.first_name?.touched || formControl?.first_name?.dirty)) ? 'green' : ''"
+                    required>
+                  <ng-container
+                    *ngIf="formControl?.first_name?.invalid && (formControl?.first_name?.touched || formControl?.first_name?.dirty)">
+                    <p class="error-addressMsg" *ngIf="formControl?.first_name?.errors.required">First name is required</p>
+                    <p class="error-addressMsg" *ngIf="formControl?.first_name?.errors.maxlength">First name must not exceed 15 characters</p>
+                  </ng-container>
+                </div>
+                <div class="address-feild address2">
+                  <label>Middle Name</label>
+                  <!-- <input type="text" placeholder="Middle Name" formControlName="middle_name"
+                  [ngClass]="(formControl?.middle_name?.invalid && (formControl?.middle_name?.touched || formControl?.middle_name?.dirty))? 'red' : (formControl?.middle_name?.valid && (formControl?.middle_name?.touched || formControl?.middle_name?.dirty)) ? 'green' : ''"> -->
+                  <input type="text" placeholder="Middle Name" formControlName="middle_name">
+                </div>
+
+                <div class="address-feild address2">
+                  <label>Last Name <span>*</span></label>
+                  <input type="text" placeholder="Last Name" formControlName="last_name"
+                    [ngClass]="((formControl?.last_name?.errors?.maxlength || formControl?.last_name?.errors?.required) && (formControl?.last_name?.touched || formControl?.last_name?.dirty))? 'red' : (formControl?.last_name?.valid && (formControl?.last_name?.touched || formControl?.last_name?.dirty)) ? 'green' : ''"
+                    required>
+                  <ng-container
+                    *ngIf="formControl?.last_name?.invalid && (formControl?.last_name?.touched || formControl?.last_name?.dirty)">
+                    <p class="error-addressMsg" *ngIf="formControl?.last_name?.errors.required">Last name is required
+                    </p>
+                    <p class="error-addressMsg" *ngIf="formControl?.last_name?.errors.maxlength">Last name must not exceed 15 characters</p>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="address-feild">
+                <label>Contact Number <span>*</span></label>
+                <input type="text" placeholder="Contact Number" appNumOnly (input)="onInputChange($event.target.value, 'phone')" formControlName="phone"
+                [ngClass]="((formControl?.phone?.errors?.required || formControl?.phone?.errors?.pattern) && (formControl?.phone?.touched || formControl?.phone?.dirty))? 'red' : (formControl?.phone?.valid && (formControl?.phone?.touched || formControl?.phone?.dirty)) ? 'green' : ''" required>
+                <ng-container *ngIf="formControl?.phone?.invalid && (formControl?.phone?.touched || formControl?.phone?.dirty)">
+                  <p class="validation-error" *ngIf="formControl?.phone?.errors.required">Phone number is required</p>
+                  <p class="validation-error" *ngIf="formControl?.phone?.errors.pattern">Enter valid phone number</p>
+                </ng-container>
+              </div>
+              <h3>Address</h3>
+
+              <div class="address-feild">
+                <label>Address(House No., Building , street)<span>*</span></label>
+                <input type="text" placeholder="Address" formControlName="house_no"
+                [ngClass]="(formControl?.house_no?.invalid && (formControl?.house_no?.touched || formControl?.house_no?.dirty))? 'red' : (formControl?.house_no?.valid && (formControl?.house_no?.touched || formControl?.house_no?.dirty)) ? 'green' : ''" required>
+                <p class="validation-error" *ngIf="formControl?.house_no?.invalid && (formControl?.house_no?.touched || formControl?.house_no?.dirty)">Address Is Required</p>
+              </div>
+
+              <div class="address-feild">
+                <label>Country <span>*</span></label>
+                <select formControlName="country" (change)="onChangeCountry($event.target.value)"
+                [ngClass]="(formControl?.country?.invalid && (formControl?.country?.touched || formControl?.country?.dirty))? 'red' : (formControl?.country?.valid && (formControl?.country?.touched || formControl?.country?.dirty)) ? 'green' : ''">
+                  <option *ngFor="let eachCountry of countryInfo; let countryCount = index" value="{{eachCountry?.name}}">{{eachCountry.name}}</option>
+                </select>
+                <!-- <p class="validation-error" *ngIf="formControl?.country?.invalid && (formControl?.country?.touched || formControl?.country?.dirty)">Select Country From List</p> -->
+              </div>
+
+              <div class="address-feild">
+                <label>State <span>*</span></label>
+                <select formControlName="state" (change)="onChangeState($event.target.value)"
+                [ngClass]="(formControl?.state?.invalid && (formControl?.state?.touched || formControl?.state?.dirty))? 'red' : (formControl?.state?.valid && (formControl?.state?.touched || formControl?.state?.dirty)) ? 'green' : ''" required>
+                <option [ngValue]="null" disabled="disabled">Please select state</option>
+                <option *ngFor="let eachState of stateInfo; let stateCount = index" value="{{eachState?.name}}">{{eachState.name}}</option>
+                </select>
+                <p class="validation-error" *ngIf="formControl?.state?.invalid && (formControl?.state?.touched || formControl?.state?.dirty)">Select state from list</p>
+              </div>
+
+              <div class="address-feild" >
+                <label>City <span>*</span></label>
+                <select formControlName="city"
+                [ngClass]="(formControl?.city?.invalid && (formControl?.city?.touched || formControl?.city?.dirty))? 'red' : (formControl?.state?.valid && (formControl?.city?.touched || formControl?.city?.dirty)) ? 'green' : ''" required>
+                <option [ngValue]="null" disabled="disabled">Please select city</option>
+                <option *ngFor="let eachCity of cityInfo; let cityCount = index" value="{{eachCity?.name}}">{{eachCity.name}}</option>
+                </select>
+                <p class="error-addressMsg" *ngIf="formControl?.city?.invalid && (formControl?.city?.touched || formControl?.city?.dirty)">Select city from list</p>
+              </div>
+
+              <div class="address-feild">
+                <label>Postal code<span>*</span></label>
+                <input type="text" placeholder="Pin Code" appNumOnly (input)="onInputChange($event.target.value, 'zip')" formControlName="pincode"
+                [ngClass]="((formControl?.pincode?.errors?.required || formControl?.pincode?.errors?.pattern) && (formControl?.pincode?.touched || formControl?.pincode?.dirty))? 'red' : (formControl?.pincode?.valid && (formControl?.pincode?.touched || formControl?.pincode?.dirty)) ? 'green' : ''" required>
+                <ng-container *ngIf="formControl?.pincode?.invalid && (formControl?.pincode?.touched || formControl?.pincode?.dirty)">
+                  <div class="validation-error" *ngIf="formControl?.pincode?.errors.required">Postal code is required</div>
+                  <div class="validation-error" *ngIf="formControl?.pincode?.errors.pattern">Enter valid postal code</div>
+                </ng-container>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class=" blue-button" (click)="updateAddress(addressForm)">Save</button>
+          <button type="button" class=" blue-button" (click)="closeModal('update')">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div> -->
+        <div class="modal-body">
+          <div class="delete-txt">
+            <div class="remove-sec">Are you sure to delete this ?<p></p>
+            </div>
+
+            <button class="blue-button" (click)="deleteAddress()">Yes</button>
+            <button class="blue-button" (click)="closeModal('delete')">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
