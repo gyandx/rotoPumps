@@ -50,15 +50,12 @@ export class CartDetailsComponent implements OnInit, OnDestroy {
       // if (localStorage.getItem('cartId')) { // checking cartId is present or not
       if (sessionStorage.getItem('cartId')) {
         // checking cartId is present or not
-        console.log('My Cart')
-        console.log(window.atob(sessionStorage.getItem('userType')))
         if (
           window.atob(sessionStorage.getItem('userType')) ===
             'Dealer' &&
           window.atob(sessionStorage.getItem('userStatus')) === 'D'
         ) {
           this.applyDealerDiscount = true;
-          console.log('hi', this.applyDealerDiscount)
         }
         if (sessionStorage.getItem('cart')) {
           // checking cart data is present or not

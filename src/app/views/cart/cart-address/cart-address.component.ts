@@ -30,6 +30,8 @@ export class CartAddressComponent implements OnInit, CanComponentDeactivate, OnD
   buyNowCartId: string = ''; // assign value of buyNowCartId
   toggleCanDeactivate: boolean = true; // change CanDeactivate resolve according to condition
   gstPrice: number;
+  applyDealerDiscount: boolean = false; // used to apply for dealer discount
+  dealerDiscountAmount: number = 0; // initial dealer discount
 
   constructor(private apiService: ApiService, private fb: FormBuilder,
               private toaster: ToastrService, private route: Router, private spinner: NgxSpinnerService) { }
@@ -44,6 +46,14 @@ export class CartAddressComponent implements OnInit, CanComponentDeactivate, OnD
     if (sessionStorage.getItem('id')) { // checking if userId is present or not
       this.userId = window.atob(sessionStorage.getItem('id')); // assigning userId from sessionStorage Id
       this.getAddressList(window.atob(sessionStorage.getItem('id')));
+    }
+
+    if (
+      window.atob(sessionStorage.getItem('userType')) ===
+        'Dealer' &&
+      window.atob(sessionStorage.getItem('userStatus')) === 'D'
+    ) {
+      this.applyDealerDiscount = true;
     }
 
     if (sessionStorage.getItem('buyNow')) { // checking if buyNow value is present or not
@@ -111,6 +121,7 @@ export class CartAddressComponent implements OnInit, CanComponentDeactivate, OnD
     this.shippingCharges = Math.round(+(0.05 * this.grandTotal).toFixed(3)); // 5% of totalCharges
     this.finalPrice = Math.round(this.grandTotal + this.shippingCharges); // adding price with shippingCharges and assigning to total
     this.gstPrice = Math.round(+(0.10 * this.finalPrice).toFixed(3));
+    this.dealerDiscountAmount = Math.round(+(0.1 * (this.finalPrice + this.gstPrice)).toFixed(3));
     const additionalPaymentDetails = window.btoa(JSON.stringify({
       subtotal_amount: this.grandTotal, 
       shipping_amount: this.shippingCharges, 

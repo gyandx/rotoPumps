@@ -51,6 +51,8 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
   cardNumberError: string;
   cardCvvError: string;
   cardMonthError: string;
+  dealerDiscountAmount: number = 0;
+  applyDealerDiscount: boolean = false; // used to apply for dealer discount
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router,
               private toastr: ToastrService, private ngZone: NgZone, private activatedRoute: ActivatedRoute,
@@ -63,10 +65,16 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
       if (res.id1) {
         this.addressId = res.id1;
         this.buyNowCartId = res.id2;
-        console.log('buyNow', this.buyNowCartId);
         this.getAddress(res.id1);
       }
     }));
+    if (
+      window.atob(sessionStorage.getItem('userType')) ===
+        'Dealer' &&
+      window.atob(sessionStorage.getItem('userStatus')) === 'D'
+    ) {
+      this.applyDealerDiscount = true;
+    }
     if (this.buyNowCartId.length === 0) { // checking buyNow cartId is present or not
       // this.subscribe.push(this.apiService.getCartById(window.atob(localStorage.getItem('cartId'))).subscribe(res => {
       this.subscribe.push(this.apiService.getCartById(window.atob(sessionStorage.getItem('cartId'))).subscribe(res => {
@@ -81,7 +89,6 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
       this.subscribe.push(this.apiService.getCartById(this.buyNowCartId).subscribe(res => {
         if (res[`code`] === 200) {
           this.products = (JSON.parse(res[`details`].cart) as CartDetails[]); // assigning cartDetails from response to products
-          console.log(this.products, 'products');
           this.findGrandTotal();
         }
       }, err => {
@@ -192,6 +199,7 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
     subPrice = price + shippingCharges; // adding price with shippingCharges and assigning to total
     gstPrice = 0.10 * subPrice;
     this.total = Math.round(gstPrice + subPrice); // adding price with shippingCharges and assigning to total
+    this.dealerDiscountAmount = Math.round(0.10 * this.total);
   }
 
   // function to getAddress using addressId

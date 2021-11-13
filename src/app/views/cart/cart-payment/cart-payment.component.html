@@ -39,10 +39,16 @@
       <div class="cart-inner">
         <div class="price-detail">
           <div class="price-row total-price" style="border-top: none">
-            <div class="left-price-spare">
+            <div class="left-price-spare" *ngIf="!applyDealerDiscount; else elsePart">
               <h3>Total Price(AUD)</h3>
               <h3>${{ total }}</h3>
             </div>
+            <ng-template #elsePart>
+              <div class="left-price-spare">
+                <h3>Total Price(AUD)</h3>
+                <h3>${{ total - dealerDiscountAmount }}</h3>
+              </div>
+            </ng-template>
             <!-- <div class="coupon-input">
               <input type="text" placeholder="Apply Coupon" />
               <button type="button">Apply Coupon</button>
