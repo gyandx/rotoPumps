@@ -138,8 +138,7 @@
                     <input appTextOnly type="text" placeholder="Full Name" formControlName="full_name" class="form-control"
                       [ngStyle]="{
                         border:
-                          (formControl?.full_name?.errors?.maxlength ||
-                            formControl?.full_name?.errors?.required) &&
+                          (formControl?.full_name?.errors?.required) &&
                           (formControl?.full_name?.touched ||
                             formControl?.full_name?.dirty)
                             ? '1px solid red'
@@ -155,9 +154,6 @@
                       ">
                       <p class="error-addressMsg" *ngIf="formControl?.name?.errors.required">
                         Full name is required
-                      </p>
-                      <p class="error-addressMsg" *ngIf="formControl?.name?.errors.maxlength">
-                        Full name must not exceed 15 characters
                       </p>
                     </ng-container>
                   </div>

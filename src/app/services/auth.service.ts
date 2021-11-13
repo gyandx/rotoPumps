@@ -22,8 +22,8 @@ export class AuthService implements OnDestroy {
     sessionStorage.setItem('token', userDetails[`access_token`]);
     sessionStorage.setItem('id', window.btoa(userDetails[`user`].id));
     sessionStorage.setItem('currentUser', window.btoa(userDetails[`user`].name));
-    // console.log('current',userDetails)
-    // console.log('currentId',userDetails[`user`].cart[`id`])
+    sessionStorage.setItem('userType', window.btoa(userDetails[`user`].user_type));
+    sessionStorage.setItem('userStatus', window.btoa(userDetails[`user`].status));
     if (userDetails[`user`].cart[`id`]){
       // localStorage.setItem('cartId', window.btoa(userDetails[`user`].cart.id));
       sessionStorage.setItem('cartId', window.btoa(userDetails[`user`].cart.id));

@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   createDealershipForm(): void {
     this.dealershipForm = this.fb.group({
       company_name: new FormControl('', Validators.required),
-      full_name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      full_name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$'), Validators.required]),
       number: new FormControl('', [Validators.pattern('[0-9 ]{10,12}'), Validators.required]),
       intrested_in: new FormControl('', Validators.required),
@@ -89,13 +89,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       this.validateAllFields(form);  // if form in invalid then call validateAllfields function
     } else {
-      console.log(form.value, 'dealer');
       const reqBody = this.dealershipForm.getRawValue();
-      console.log('hello this is the enquiry form', reqBody);
-      this.apiService.addDealer(reqBody).subscribe((res) => {
-        this.toasterService.success('Add dealer successfully');
-        $('#delarModal').modal('hide');
-      });
+      // this.apiService.addDealer(reqBody).subscribe((res) => {
+      //   this.toasterService.success('Add dealer successfully');
+      // });
+      $('#delarModal').modal('hide');
+      this.router.navigate(['/thank-you'], { queryParams: { type: 'dealership'} });
     }
   }
 

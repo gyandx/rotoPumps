@@ -99,6 +99,10 @@
                   <h3>Total (including GST@10%) <br /> (In AUD)</h3>
                   <h3>${{finalPrice + gstPrice}}</h3>
                 </div>
+                <div class="left-price-spare" *ngIf="applyDealerDiscount">
+                  <h3>Dealer Discount (10%) <br /> (In AUD)</h3>
+                  <h3>${{finalPrice + gstPrice - dealerDiscountAmount}}</h3>
+                </div>
                 <!-- <div class="left-price">
                   <h3>Sub Total</h3>
                 </div>

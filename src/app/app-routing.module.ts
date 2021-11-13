@@ -23,6 +23,7 @@ import { ResearchComponent } from './shared/footerContents/research/research.com
 import { TirranaAgriculturalPumpNewComponent } from './shared/footerContents/tirrana-agricultural-pump-new/tirrana-agricultural-pump-new.component';
 import { TirranaGeneralPumpComponent } from './shared/footerContents/tirrana-general-pump/tirrana-general-pump.component';
 import { RetrofitSparePartsComponent } from './shared/footerContents/retrofit-spare-parts/retrofit-spare-parts.component';
+import { ThankyouComponent } from './views/thankyou/thankyou.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -52,6 +53,7 @@ const routes: Routes = [
   {path: 'rotoSpares/:id', component: RotoSparesComponent} ,
   // {path: 'retroSpares/:id', component: RetroSparesComponent, resolve: { retroSpare: RetroSpareResolver}} ,
   {path: 'payment-successful', component: PaymentSuccessfulComponent} ,
+  {path: 'thank-you', component: ThankyouComponent} ,
   {path: 'comingSoon', component: ComingSoonComponent} ,
   {path: 'error', component: ErrorComponent} ,
   {path: '**', redirectTo: '/error'}

@@ -1,0 +1,12 @@
+<div class="main-container">
+    <div class="container">
+      <div class="payment-successfull">
+        <img src="assets/images/icons/pay-success.png">
+        <h3>Thank You!!!</h3>
+        <p>Your {{ routerParam === 'enquiry' ? 'enquiry' : routerParam }} submitted successfully.</p>
+        <div class="paymentBtn">
+          <p><button class="blue-button" (click)="goToHome()">Go To Home</button></p>
+        </div>
+      </div>
+    </div>
+  </div>

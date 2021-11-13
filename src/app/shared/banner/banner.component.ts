@@ -42,7 +42,7 @@ export class BannerComponent implements OnInit, OnDestroy {
   // function to create addressForm
   createEnquiryForm(): void {
     this.enquiryForm = this.fb.group({
-      name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$'), Validators.required]),
       number: new FormControl('', [Validators.pattern('[0-9 ]{10,12}'), Validators.required]),
       message: new FormControl('', Validators.required),
@@ -121,11 +121,11 @@ export class BannerComponent implements OnInit, OnDestroy {
       // if form in invalid then call validateAllfields function
     } else {
       const reqBody = this.enquiryForm.getRawValue();
-      console.log('hello this is the enquiry form', reqBody);
-      this.apiService.addEnquiry(reqBody).subscribe((res) => {
-        this.toasterService.success('Your enquiry submitted successfully');
-        $('#changeModal').modal('hide');
-      });
+      // this.apiService.addEnquiry(reqBody).subscribe((res) => {
+        
+      // });
+      $('#changeModal').modal('hide');
+      this.router.navigate(['/thank-you'], { queryParams: { type: 'enquiry'} });
     }
   }
 

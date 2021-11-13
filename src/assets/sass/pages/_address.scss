@@ -77,13 +77,16 @@
           }
         }
 
-        input::-webkit-input-placeholder{
-          color:rgba(190,193,197,0.9);
+        input::-webkit-input-placeholder {
+          color: rgba(190, 193, 197, 0.9);
           font-size: 0.9em;
-          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+            "Lucida Sans", Arial, sans-serif;
         }
 
-        input:focus::-webkit-input-placeholder { color:transparent; }
+        input:focus::-webkit-input-placeholder {
+          color: transparent;
+        }
 
         // input:focus::placeholder {
         //   color: transparent;
@@ -105,7 +108,8 @@
       max-width: 100%;
 
       input,
-      select, .address-feildCard {
+      select,
+      .address-feildCard {
         background: transparent;
         border: solid 1px #d2d2d2 !important;
       }
@@ -157,11 +161,10 @@
   select.red {
     border: solid 1px #ff0000 !important;
   }
-
 }
 
-.paymentpage{
-  .scale-no:nth-child(2n+1) a {
+.paymentpage {
+  .scale-no:nth-child(2n + 1) a {
     background: #2f80ed !important;
   }
 
@@ -169,6 +172,27 @@
     background: #2f80ed;
   }
 
+  .coupon-field {
+    input {
+      width: 100%;
+      font-size: 14px;
+      font-weight: normal;
+      height: 48px;
+      padding: 10px;
+      border: none;
+      border-radius: 2px;
+      background: rgba(0, 0, 0, 0.05);
+      appearance: none;
+      -webkit-appearance: none;
+
+      &:focus {
+        border: 1px solid rgba(18, 37, 58, 0.4);
+      }
+    }
+    .coupon-btn {
+      margin: 0 0 0 20px !important;
+    }
+  }
 }
 
 .full-address-row .address-feild input.green {

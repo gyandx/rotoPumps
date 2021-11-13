@@ -67,12 +67,11 @@
                 <div class="address-feild address2">
                   <label>First Name<span>*</span></label>
                   <input type="text" placeholder="First Name" formControlName="first_name" appTextOnly
-                    [ngClass]="((formControl?.first_name?.errors?.maxlength || formControl?.first_name?.errors?.required) && (formControl?.first_name?.touched || formControl?.first_name?.dirty))? 'red' : (formControl?.first_name?.valid && (formControl?.first_name?.touched || formControl?.first_name?.dirty)) ? 'green' : ''"
+                    [ngClass]="(formControl?.first_name?.errors?.required && (formControl?.first_name?.touched || formControl?.first_name?.dirty))? 'red' : (formControl?.first_name?.valid && (formControl?.first_name?.touched || formControl?.first_name?.dirty)) ? 'green' : ''"
                     required>
                   <ng-container
                     *ngIf="formControl?.first_name?.invalid && (formControl?.first_name?.touched || formControl?.first_name?.dirty)">
                     <p class="error-addressMsg" *ngIf="formControl?.first_name?.errors.required">First name is required</p>
-                    <p class="error-addressMsg" *ngIf="formControl?.first_name?.errors.maxlength">First name must not exceed 15 characters</p>
                   </ng-container>
                 </div>
                 <div class="address-feild address2">
@@ -85,12 +84,11 @@
                 <div class="address-feild address2">
                   <label>Last Name <span>*</span></label>
                   <input type="text" placeholder="Last Name" formControlName="last_name" appTextOnly
-                    [ngClass]="((formControl?.last_name?.errors?.maxlength ||formControl?.last_name?.errors?.required) && (formControl?.last_name?.touched || formControl?.last_name?.dirty))? 'red' : (formControl?.last_name?.valid && (formControl?.last_name?.touched || formControl?.last_name?.dirty)) ? 'green' : ''"
+                    [ngClass]="(formControl?.last_name?.errors?.required && (formControl?.last_name?.touched || formControl?.last_name?.dirty))? 'red' : (formControl?.last_name?.valid && (formControl?.last_name?.touched || formControl?.last_name?.dirty)) ? 'green' : ''"
                     required>
                   <ng-container
                     *ngIf="formControl?.last_name?.invalid && (formControl?.last_name?.touched || formControl?.last_name?.dirty)">
                     <p class="error-addressMsg" *ngIf="formControl?.last_name?.errors.required">Last name is required</p>
-                    <p class="error-addressMsg" *ngIf="formControl?.last_name?.errors.maxlength">Last name must not exceed 15 characters</p>
                   </ng-container>
                 </div>
               </div>
@@ -162,7 +160,7 @@
 
               <div class="address-feild">
                 <label>Postal code<span>*</span></label>
-                <input type="text" placeholder="Zip Code" appNumOnly formControlName="pincode" (input)="onInputChange($event.target.value, 'zip')"
+                <input type="text" placeholder="1234" appNumOnly formControlName="pincode" (input)="onInputChange($event.target.value, 'zip')"
                   [ngClass]="((formControl?.pincode?.errors?.required || formControl?.pincode?.errors?.pattern) && (formControl?.pincode?.touched || formControl?.pincode?.dirty))? 'red' : (formControl?.pincode?.valid && (formControl?.pincode?.touched || formControl?.pincode?.dirty)) ? 'green' : ''"
                   required>
                 <ng-container

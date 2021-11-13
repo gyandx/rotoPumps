@@ -26,6 +26,7 @@ import { MaphilightModule } from 'ng-maphilight';
 import { AboutUsComponent } from './shared/footerContents/about-us/about-us.component';
 import { RetroSelectionComponent } from './views/retro-selection/retro-selection.component';
 import { ComingSoonComponent } from './views/coming-soon/coming-soon.component';
+import { ThankyouComponent } from './views/thankyou/thankyou.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { ComingSoonComponent } from './views/coming-soon/coming-soon.component';
     RetroSparesComponent,
     AboutUsComponent,
     RetroSelectionComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    ThankyouComponent
   ],
   imports: [
     BrowserModule,

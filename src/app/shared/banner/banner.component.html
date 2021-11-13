@@ -65,8 +65,7 @@
                     <input appTextOnly type="text" placeholder="Full Name" formControlName="name" class="form-control"
                       [ngStyle]="{
                         border:
-                          (formControl?.name?.errors?.maxlength ||
-                            formControl?.name?.errors?.required) &&
+                          (formControl?.name?.errors?.required) &&
                           (formControl?.name?.touched ||
                             formControl?.name?.dirty)
                             ? '1px solid red'
@@ -82,9 +81,6 @@
                       ">
                       <p class="error-addressMsg" *ngIf="formControl?.name?.errors.required">
                         Full name is required
-                      </p>
-                      <p class="error-addressMsg" *ngIf="formControl?.name?.errors.maxlength">
-                        Full name must not exceed 15 characters
                       </p>
                     </ng-container>
                   </div>
@@ -282,7 +278,7 @@
               <div class="col-md-6">
                 <div class="address-feild">
                   <label>Postal code<span>*</span></label>
-                  <input type="text" placeholder="Pin Code" appNumOnly
+                  <input type="text" placeholder="1234" appNumOnly
                     (input)="onInputChange($event.target.value, 'zip')" formControlName="postal_code" [ngStyle]="{
                       border:
                         (formControl?.postal_code?.errors?.required ||

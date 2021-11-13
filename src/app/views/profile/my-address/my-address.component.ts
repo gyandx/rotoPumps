@@ -37,9 +37,9 @@ export class MyAddressComponent implements OnInit, OnDestroy {
   createAddressForm(): void {
     this.addressForm = this.fb.group({
       title: new FormControl('', Validators.required),
-      first_name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      first_name: new FormControl('', Validators.required),
       middle_name: new FormControl(''),
-      last_name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      last_name: new FormControl('', Validators.required),
       phone: new FormControl('', [Validators.pattern('[0-9 ]{10,12}'), Validators.required]),
       house_no: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
