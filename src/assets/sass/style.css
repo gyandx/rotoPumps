@@ -1725,7 +1725,7 @@ div#cartdeletemodal,
 
 #productCarousel .thumbnail img {
   height: auto;
-  margin-top: 50px;
+  margin-top: 10px;
   max-width: 59%;
 }
 
@@ -1733,11 +1733,14 @@ div#cartdeletemodal,
   text-align: center;
   font-size: 14px;
   line-height: 20px;
+  background: #2F80ED;
+  padding: 10px;
+  color: #fff;
 }
 
 #productCarousel .carousel-control {
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1748,8 +1751,8 @@ div#cartdeletemodal,
       -ms-flex-align: center;
           align-items: center;
   top: calc(50% - 37px);
-  color: white;
-  background-color: black;
+  color: #fff;
+  background-color: #2F80ED;
 }
 
 #productCarousel .carousel-control i {
@@ -3024,6 +3027,236 @@ div#cartdeletemodal,
 }
 
 .sign-up .sign-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.sign-up2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .sign-up2 {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    min-height: auto;
+  }
+}
+
+.sign-up2 .signUpPage2 {
+  height: 100% !important;
+  padding: 32px 24px !important;
+  border-radius: 8px;
+  border: 1px solid #d3d3d3;
+}
+
+.sign-up2 .signUpPage2 form {
+  height: 100%;
+  padding: 16px;
+}
+
+.sign-up2 .sign-up-form2 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+  max-width: 50%;
+  background: #fff;
+  padding: 5% 50px;
+  height: 100vh;
+  margin: 100px 0px;
+}
+
+@media screen and (max-width: 991px) {
+  .sign-up2 .sign-up-form2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-height: auto;
+    padding: 20px;
+  }
+}
+
+.sign-up2 .sign-up-form2 .sign-up-title {
+  margin: 0 0 20px 0;
+}
+
+.sign-up2 .sign-up-form2 .sign-up-title .sign-back a {
+  font-size: 20px;
+  margin: 0 0 35px 0;
+  display: inline-block;
+  width: 100%;
+  color: #2f80ed;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.sign-up2 .sign-up-form2 .sign-up-title .sign-back a img {
+  margin: 0 9px 0 0px;
+}
+
+.sign-up2 .sign-up-form2 .sign-up-title h1 {
+  font-size: 47px;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 991px) {
+  .sign-up2 .sign-up-form2 .sign-up-title h1 {
+    font-size: 30px;
+  }
+}
+
+.sign-up2 .sign-up-form2 .sign-up-title p {
+  color: rgba(40, 44, 64, 0.6);
+  font-size: 20px;
+}
+
+.sign-up2 .sign-up-form2 .sign-field {
+  margin: 0 0 20px 0;
+}
+
+.sign-up2 .sign-up-form2 .sign-field label {
+  width: 100%;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #82869a;
+  font-weight: normal;
+}
+
+.sign-up2 .sign-up-form2 .sign-field .radio-input {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.sign-up2 .sign-up-form2 .sign-field .radio-input label {
+  width: 100px;
+  margin-left: 4px;
+}
+
+.sign-up2 .sign-up-form2 .sign-field .sign-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: solid 1px #d2d2d2;
+}
+
+.sign-up2 .sign-up-form2 .sign-field .sign-input img {
+  width: 23px;
+  height: auto;
+  margin: 0 0 0 0;
+}
+
+.sign-up2 .sign-up-form2 .sign-field .sign-input input {
+  width: 100%;
+  height: 50px;
+  border: none;
+  max-width: 95%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 95%;
+          flex: 0 0 95%;
+}
+
+.sign-up2 .sign-up-form2 .sign-field .sign-input input:focus {
+  border: none;
+}
+
+.sign-up2 .sign-up-form2 .sign-field .sign-input input::-webkit-input-placeholder {
+  color: rgba(190, 193, 197, 0.9);
+  font-size: 0.9em;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+.sign-up2 .sign-up-form2 .sign-field .sign-input input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.sign-up2 .sign-up-form2 .sign-field.right-inp {
+  border-bottom: solid 1px #2dd348 !important;
+}
+
+.sign-up2 .sign-up-form2 .sign-field.wrong-inp {
+  border-bottom: solid 1px #ff0000 !important;
+}
+
+.sign-up2 .sign-up-form2 button {
+  background: #2f80ed;
+  border-radius: 13.0938px;
+  height: 50px;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  width: 80%;
+  border: none;
+  margin: 0px 0 0 30px;
+  -webkit-filter: drop-shadow(0px 13.0938px 26.1875px rgba(0, 0, 0, 0.15));
+          filter: drop-shadow(0px 13.0938px 26.1875px rgba(0, 0, 0, 0.15));
+}
+
+.sign-up2 .sign-up-form2 button:hover {
+  background: #000;
+}
+
+.sign-up2 .sign-up-form2 .already-acc {
+  text-align: center;
+  margin: 30px 0 0;
+}
+
+.sign-up2 .sign-up-form2 .remember-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 0 20px 0;
+}
+
+.sign-up2 .sign-up-form2 .remember-section input {
+  margin: 0 7px 0 0;
+}
+
+.sign-up2 .sign-img {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  max-width: 50%;
+  height: 100vh;
+  width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  .sign-up2 .sign-img {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+    min-height: auto;
+  }
+}
+
+.sign-up2 .sign-img img {
   width: 100%;
   height: 100%;
 }
