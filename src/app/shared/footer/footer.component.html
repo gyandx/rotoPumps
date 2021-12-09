@@ -4,8 +4,8 @@
       <div class="footer-list">
         <ul>
           <li><a [routerLink]="['/home']">Home</a></li>
-          <li><a  [routerLink]="['/aboutUs']">About Us</a></li>
-          <li><a  [routerLink]="['/contactUs']">Contact Us</a></li>
+          <li><a [routerLink]="['/aboutUs']">About Us</a></li>
+          <li><a [routerLink]="['/contactUs']">Contact Us</a></li>
           <!-- <li><a href="javascript:void(0)" [routerLink]="['/products']">Products</a></li> -->
           <li><a [routerLink]="['/rotoEdge']">Roto Edge</a></li>
           <li><a [routerLink]="['/awards']">Awards & Certificates</a></li>
@@ -15,36 +15,68 @@
       <div class="footer-list">
         <ul>
           <li><a [routerLink]="['/research']">Research & Development</a></li>
-          <li><a [routerLink]="['/returnandcancellation']">Return & Cancellation</a></li>
+          <li>
+            <a [routerLink]="['/returnandcancellation']"
+              >Return & Cancellation</a
+            >
+          </li>
           <li><a [routerLink]="['/termsConditions']">Terms & Conditions</a></li>
           <li><a [routerLink]="['/privacyPolicy']">Privacy Policy</a></li>
-          <li><a [routerLink]="['/serviceandsupport']">Services & Supports</a></li>
+          <li>
+            <a [routerLink]="['/serviceandsupport']">Services & Supports</a>
+          </li>
         </ul>
       </div>
 
       <div class="footer-list">
         <ul>
-          <li><a  style="cursor: none; text-decoration: none;"><img src="assets/images/icons/map.png">26, Deans Court, Dandenong South,
-              Victoria 3175</a></li>
-          <li><a href="tel:+61397945200"><img src="assets/images/icons/call.png">+61 397945200</a></li>
-          <li><a href="mailto:sales@rotopumps.com.au" target="_blank"><img src="assets/images/icons/mail.png"> sales@rotopumps.com.au</a></li>
+          <li>
+            <a style="cursor: none; text-decoration: none"
+              ><img src="assets/images/icons/map.png" />26, Deans Court,
+              Dandenong South, Victoria 3175</a
+            >
+          </li>
+          <li>
+            <a href="tel:+61397945200"
+              ><img src="assets/images/icons/call.png" />+61 397945200</a
+            >
+          </li>
+          <li>
+            <a href="mailto:sales@rotopumps.com.au" target="_blank"
+              ><img src="assets/images/icons/mail.png" />
+              sales@rotopumps.com.au</a
+            >
+          </li>
         </ul>
 
         <div class="social">
           <h3>Social</h3>
           <div class="social-icons">
-            <a href="https://www.facebook.com/Rotopump/" target="_blank"><img src="assets/images/icons/fb.png"></a>
-            <a href="https://www.linkedin.com/company/roto-pumps-ltd/" target="_blank"><img src="assets/images/icons/linkden.png"></a>
-            <a href="https://twitter.com/Rotopump" target="_blank"><img src="assets/images/icons/tweet.png"></a>
-            <a href="https://www.youtube.com/channel/UCjhw0H3JHPSPkQSaCn3ztWA" target="_blank"><img src="assets/images/icons/youtube.png"></a>
+            <a href="https://www.facebook.com/Rotopump/" target="_blank"
+              ><img src="assets/images/icons/fb.png"
+            /></a>
+            <a
+              href="https://www.linkedin.com/company/roto-pumps-ltd/"
+              target="_blank"
+              ><img src="assets/images/icons/linkden.png"
+            /></a>
+            <a href="https://twitter.com/Rotopump" target="_blank"
+              ><img src="assets/images/icons/tweet.png"
+            /></a>
+            <a
+              href="https://www.youtube.com/channel/UCjhw0H3JHPSPkQSaCn3ztWA"
+              target="_blank"
+              ><img src="assets/images/icons/youtube.png"
+            /></a>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="footer-copy">
-  <div class="container">
-    <p>Copyright © {{this.year}} | Roto Pumps Australia.</p>
+
+  <div class="footer-copy">
+    <div class="container">
+      <p>Copyright © {{ this.year }} | Roto Pumps Australia.</p>
+    </div>
   </div>
 </div>

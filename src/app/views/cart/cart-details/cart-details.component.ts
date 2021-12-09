@@ -34,6 +34,8 @@ export class CartDetailsComponent implements OnInit, OnDestroy {
   gstPrice: number;
   applyDealerDiscount: boolean = false; // used to apply for dealer discount
   dealerDiscountAmount: number = 0; // initial dealer discount
+  dealerDiscountPercentage: number ;
+
 
   constructor(
     private apiService: ApiService,
@@ -56,6 +58,12 @@ export class CartDetailsComponent implements OnInit, OnDestroy {
           window.atob(sessionStorage.getItem('userStatus')) === 'D'
         ) {
           this.applyDealerDiscount = true;
+          this.apiService.dealerDiscount().subscribe(res => {
+            if (res[`return`] === true) {
+              this.dealerDiscountPercentage = res[`data`][0].discount_rate;
+              this.dealerDiscountPercentage = this.dealerDiscountPercentage * 0.01;
+            }
+          })
         }
         if (sessionStorage.getItem('cart')) {
           // checking cart data is present or not
@@ -582,7 +590,7 @@ export class CartDetailsComponent implements OnInit, OnDestroy {
     this.shippingCharges = Math.round(+(0.05 * this.grandTotal).toFixed(3)); // 5% of totalCharges
     this.finalPrice = Math.round(this.grandTotal + this.shippingCharges); // adding price with shippingCharges and assigning to total
     this.gstPrice = Math.round(+(0.1 * this.finalPrice).toFixed(3));
-    this.dealerDiscountAmount = Math.round(+(0.1 * (this.finalPrice + this.gstPrice)).toFixed(3));
+    this.dealerDiscountAmount = Math.round(+(this.dealerDiscountPercentage * (this.finalPrice + this.gstPrice)).toFixed(3));
   }
 
   // function to decrease productQuantity

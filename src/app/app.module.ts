@@ -27,6 +27,7 @@ import { AboutUsComponent } from './shared/footerContents/about-us/about-us.comp
 import { RetroSelectionComponent } from './views/retro-selection/retro-selection.component';
 import { ComingSoonComponent } from './views/coming-soon/coming-soon.component';
 import { ThankyouComponent } from './views/thankyou/thankyou.component';
+import { MainComponent } from './views/main/main.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { ThankyouComponent } from './views/thankyou/thankyou.component';
     AboutUsComponent,
     RetroSelectionComponent,
     ComingSoonComponent,
-    ThankyouComponent
+    ThankyouComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

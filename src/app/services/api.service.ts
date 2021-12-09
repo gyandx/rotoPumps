@@ -105,6 +105,7 @@ export class ApiService implements OnDestroy {
   footerContents = () => this.httpService.get(`${environment.apiUrl}cms_pages`);
   awardAndCertificates = () => this.httpService.get(`${environment.apiUrl}get-awards-and-certificates`);
   researchAndDevelopment = () => this.httpService.get(`${environment.apiUrl}get-research-and-development`);
+  dealerDiscount = () => this.httpService.get(`${environment.apiUrl}get-dealers-discount`);
 
   // cart Api's
   addToCart = (cartData) => this.httpService.post(`${environment.apiUrl}cart/add-to-cart`, cartData);

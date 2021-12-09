@@ -1,6 +1,6 @@
 <header *ngIf="userName !== ''; else elseBlock">
   <div class="container">
-    <div class="header-row center">
+    <div class="header-row">
       <div class="logo">
         <a href="javascript:void(0)" routerLink="/home"><img src="assets/images/logo/logo.png" /></a>
       </div>
@@ -45,7 +45,7 @@
 <ng-template #elseBlock>
   <header>
     <div class="container">
-      <div class="header-row">
+      <div class="header-row" [ngStyle]="{'justify-content': headerButton ? 'space-between' : 'center'}">
         <div class="logo">
           <a href="javascript:void(0)" routerLink="/home"><img src="assets/images/logo/logo.png" /></a>
         </div>

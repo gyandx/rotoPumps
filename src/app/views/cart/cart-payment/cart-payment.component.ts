@@ -53,6 +53,7 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
   cardMonthError: string;
   dealerDiscountAmount: number = 0;
   applyDealerDiscount: boolean = false; // used to apply for dealer discount
+  dealerDiscountPercentage: number;
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router,
               private toastr: ToastrService, private ngZone: NgZone, private activatedRoute: ActivatedRoute,
@@ -74,6 +75,12 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
       window.atob(sessionStorage.getItem('userStatus')) === 'D'
     ) {
       this.applyDealerDiscount = true;
+      this.apiService.dealerDiscount().subscribe(res => {
+        if (res[`return`] === true) {
+          this.dealerDiscountPercentage = res[`data`][0].discount_rate;
+          this.dealerDiscountPercentage = this.dealerDiscountPercentage * 0.01;
+        }
+      })
     }
     if (this.buyNowCartId.length === 0) { // checking buyNow cartId is present or not
       // this.subscribe.push(this.apiService.getCartById(window.atob(localStorage.getItem('cartId'))).subscribe(res => {
@@ -199,7 +206,7 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
     subPrice = price + shippingCharges; // adding price with shippingCharges and assigning to total
     gstPrice = 0.10 * subPrice;
     this.total = Math.round(gstPrice + subPrice); // adding price with shippingCharges and assigning to total
-    this.dealerDiscountAmount = Math.round(0.10 * this.total);
+    this.dealerDiscountAmount = Math.round(this.dealerDiscountPercentage * this.total);
   }
 
   // function to getAddress using addressId

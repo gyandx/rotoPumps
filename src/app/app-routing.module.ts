@@ -24,9 +24,11 @@ import { TirranaAgriculturalPumpNewComponent } from './shared/footerContents/tir
 import { TirranaGeneralPumpComponent } from './shared/footerContents/tirrana-general-pump/tirrana-general-pump.component';
 import { RetrofitSparePartsComponent } from './shared/footerContents/retrofit-spare-parts/retrofit-spare-parts.component';
 import { ThankyouComponent } from './views/thankyou/thankyou.component';
+import { MainComponent } from './views/main/main.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/main', pathMatch: 'full'},
+  {path: 'main', component: MainComponent} ,
   {path: 'home', component: HomeComponent, resolve: { homeData : HomeDetailsResolver} } ,
   {path: 'aboutUs', component: AboutUsComponent} ,
   {path: 'contactUs', component: ContactUsComponent} ,
