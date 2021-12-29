@@ -4,27 +4,32 @@
       <div class="logo">
         <a href="javascript:void(0)" routerLink="/home"><img src="assets/images/logo/logo.png" /></a>
       </div>
-      <!-- <div class="input-group header-search-box-wrapper">
-        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" />
+      <div class="input-group header-search-box-wrapper">
+        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" #searchText />
         <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
+          <button class="btn btn-default" type="button" (click)="search(searchText.value)">
             <i class="fas fa-search"></i>
           </button>
+          <ul *ngIf="toogleSearch">
+            <li *ngFor="let eachSearch of searchResults">
+              <a [routerLink]="eachSearch?.routePath" [queryParams]="{search: eachSearch?.code, driveType: eachSearch?.drive_type}"
+                (click)="hideSearchResults()">{{ eachSearch?.description }}({{ eachSearch?.drive_type }})</a>
+            </li>
+          </ul>
         </div>
-      </div> -->
+      </div>
       <div class="right-header">
         <div class="cart cart-wrapper">
           <a href="javascript:void(0)" [routerLink]="['/cart']"><img src="assets/images/icons/cart.png" />
             <span class="cart-title">Cart</span>
           </a>
-          <span class="cart-quantity-wrapper" *ngIf="cartItemsQuantity != 0">{{ cartItemsQuantity }} </span>
+          <span class="cart-quantity-wrapper" *ngIf="cartItemsQuantity != 0">{{ cartItemsQuantity }}
+          </span>
         </div>
         <div class="dealer-icon-wrapper">
           <a href="#delarModal" data-toggle="modal">
             <i class="far fa-handshake"></i>
-            <span class="text-center">
-              Dealership Enquiry
-            </span>
+            <span class="text-center"> Dealership Enquiry </span>
           </a>
         </div>
         <div class="cart" *ngIf="userName">
@@ -45,18 +50,26 @@
 <ng-template #elseBlock>
   <header>
     <div class="container">
-      <div class="header-row" [ngStyle]="{'justify-content': headerButton ? 'space-between' : 'center'}">
+      <div class="header-row" [ngStyle]="{
+          'justify-content': headerButton ? 'space-between' : 'center'
+        }">
         <div class="logo">
           <a href="javascript:void(0)" routerLink="/home"><img src="assets/images/logo/logo.png" /></a>
         </div>
-        <!-- <div class="input-group header-search-box-wrapper">
-          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" />
+        <div class="input-group header-search-box-wrapper" *ngIf="headerButton">
+          <input type="text" class="form-control" placeholder="Search" (input)="textChange($event.target.value)" name="srch-term" id="srch-term" #searchText />
           <div class="input-group-btn">
-            <button class="btn btn-default" type="submit">
+            <button class="btn btn-default" type="button" (click)="search(searchText.value)">
               <i class="fas fa-search"></i>
             </button>
           </div>
-        </div> -->
+          <ul *ngIf="toogleSearch">
+            <li *ngFor="let eachSearch of searchResults">
+              <a [routerLink]="eachSearch?.routePath" [queryParams]="{ search: eachSearch?.code, driveType: eachSearch?.drive_type }"
+                (click)="hideSearchResults()">{{ eachSearch?.description }} ({{ eachSearch?.drive_type }})</a>
+            </li>
+          </ul>
+        </div>
         <div class="right-header" *ngIf="headerButton">
           <!-- <div class="cart">
             <a href="javascript:void(0)" (click)="gotoCart()"><img src="assets/images/icons/cart.png" /></a><span
@@ -66,14 +79,13 @@
             <a href="javascript:void(0)" (click)="gotoCart()"><img src="assets/images/icons/cart.png" />
               <span class="cart-title">Cart</span>
             </a>
-            <span class="cart-quantity-wrapper" *ngIf="cartItemsQuantity != 0">{{ cartItemsQuantity }} </span>
+            <span class="cart-quantity-wrapper" *ngIf="cartItemsQuantity != 0">{{ cartItemsQuantity }}
+            </span>
           </div>
           <div class="dealer-icon-wrapper">
             <a href="#delarModal" data-toggle="modal">
               <i class="far fa-handshake"></i>
-              <span class="text-center">
-                Dealership Enquiry
-              </span>
+              <span class="text-center"> Dealership Enquiry </span>
             </a>
           </div>
           <div class="header-top-bttn">
@@ -89,12 +101,13 @@
 <!-- Modal -->
 <div id="delarModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content enquiry-form-wrapper">
       <div class="modal-header">
         <h5 class="modal-title">Dealership Form</h5>
-        <button type="button" class="close" data-dismiss="modal" (click)="resetForm()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" (click)="resetForm()">
+          &times;
+        </button>
       </div>
       <div class="modal-body">
         <div class="address-row">
@@ -109,7 +122,7 @@
                     <input appTextOnly type="text" placeholder="Company Name" formControlName="company_name"
                       class="form-control" [ngStyle]="{
                         border:
-                            formControl?.company_name?.errors?.required &&
+                          formControl?.company_name?.errors?.required &&
                           (formControl?.company_name?.touched ||
                             formControl?.company_name?.dirty)
                             ? '1px solid red'
@@ -121,7 +134,8 @@
                       }" required />
                     <ng-container *ngIf="
                         formControl?.company_name?.invalid &&
-                        (formControl?.company_name?.touched || formControl?.company_name?.dirty)
+                        (formControl?.company_name?.touched ||
+                          formControl?.company_name?.dirty)
                       ">
                       <p class="error-addressMsg" *ngIf="formControl?.company_name?.errors.required">
                         Company name is required
@@ -135,10 +149,10 @@
                 <div class="name-container">
                   <div class="address-feild address2">
                     <label>Full Name<span>*</span></label>
-                    <input appTextOnly type="text" placeholder="Full Name" formControlName="full_name" class="form-control"
-                      [ngStyle]="{
+                    <input appTextOnly type="text" placeholder="Full Name" formControlName="full_name"
+                      class="form-control" [ngStyle]="{
                         border:
-                          (formControl?.full_name?.errors?.required) &&
+                          formControl?.full_name?.errors?.required &&
                           (formControl?.full_name?.touched ||
                             formControl?.full_name?.dirty)
                             ? '1px solid red'
@@ -202,7 +216,8 @@
                       border:
                         (formControl?.number?.errors?.pattern ||
                           formControl?.number?.errors?.required) &&
-                        (formControl?.number?.touched || formControl?.number?.dirty)
+                        (formControl?.number?.touched ||
+                          formControl?.number?.dirty)
                           ? '1px solid red'
                           : formControl?.number?.valid &&
                             (formControl?.number?.touched ||
@@ -212,7 +227,8 @@
                     }" required />
                   <ng-container *ngIf="
                       formControl?.number?.invalid &&
-                      (formControl?.number?.touched || formControl?.number?.dirty)
+                      (formControl?.number?.touched ||
+                        formControl?.number?.dirty)
                     ">
                     <p class="validation-error" *ngIf="formControl?.number?.errors.required">
                       Phone number is required
@@ -223,7 +239,6 @@
                   </ng-container>
                 </div>
               </div>
-
             </div>
 
             <div class="address-feild">
@@ -242,7 +257,8 @@
                 }" required></textarea>
               <ng-container *ngIf="
                   formControl?.intrested_in?.invalid &&
-                  (formControl?.intrested_in?.touched || formControl?.intrested_in?.dirty)
+                  (formControl?.intrested_in?.touched ||
+                    formControl?.intrested_in?.dirty)
                 ">
                 <p class="validation-error" *ngIf="formControl?.intrested_in?.errors.required">
                   Interestedin is required
@@ -259,6 +275,5 @@
         <!-- <button type="button" class="blue-button" #btnClose (click)="resetForm()" data-dismiss="modal">Close</button> -->
       </div>
     </div>
-
   </div>
 </div>

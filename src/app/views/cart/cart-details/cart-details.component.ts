@@ -7,7 +7,6 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { element } from 'protractor';
 import { Subscription } from 'rxjs';
 import { CartDetails } from 'src/app/dataModels/cart-details';
 import { ApiService } from '../../../services/api.service';
@@ -58,12 +57,17 @@ export class CartDetailsComponent implements OnInit, OnDestroy {
           window.atob(sessionStorage.getItem('userStatus')) === 'D'
         ) {
           this.applyDealerDiscount = true;
-          this.apiService.dealerDiscount().subscribe(res => {
-            if (res[`return`] === true) {
-              this.dealerDiscountPercentage = res[`data`][0].discount_rate;
-              this.dealerDiscountPercentage = this.dealerDiscountPercentage * 0.01;
-            }
-          })
+          if (window.atob(sessionStorage.getItem('userDiscount')) === null) {
+            this.apiService.dealerDiscount().subscribe(res => {
+              if (res[`return`] === true) {
+                this.dealerDiscountPercentage = res[`dealer_discount`];
+                this.dealerDiscountPercentage = this.dealerDiscountPercentage * 0.01;
+              }
+            })
+          } else {
+            let userDiscount = window.atob(sessionStorage.getItem('userDiscount'));
+            this.dealerDiscountPercentage = +userDiscount * 0.01;
+          }
         }
         if (sessionStorage.getItem('cart')) {
           // checking cart data is present or not

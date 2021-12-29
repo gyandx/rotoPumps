@@ -1,55 +1,118 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
-import { ApiService } from 'src/app/services/api.service';
-import { AuthService } from 'src/app/services/auth.service';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { Router } from "@angular/router";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
+import { Subscription } from "rxjs";
+import { ApiService } from "src/app/services/api.service";
+import { AuthService } from "src/app/services/auth.service";
 
-declare var $: any; 
+declare var $: any;
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   @Input() headerButton: boolean;
-  @ViewChild('btnClose') btnClose: ElementRef;
+  @ViewChild("btnClose") btnClose: ElementRef;
   dealershipForm: FormGroup;
   cartItemsQuantity: number; // cart item quantity
   subscription: Subscription[] = []; // subscription of array type
   userName: string; // username to show on header
+  searchResults: [] = [];
+  toogleSearch: boolean = false;
 
-  constructor(private apiService: ApiService,private toasterService: ToastrService, private router: Router, private toaster: ToastrService,
-              private authService: AuthService, private fb: FormBuilder, private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(
+    private apiService: ApiService,
+    private toasterService: ToastrService,
+    private router: Router,
+    private toaster: ToastrService,
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.authService.getCurrentUser(); // calling authService getCurrentUser function to get the username
     // subscribing the userName(behaviourSubject) to get username
-    this.subscription.push(this.authService.userName.subscribe(res => {
-      if (res !== '') {
-        // split() method is used to split a string into an array of substrings and return a new array
-        const uName = res.split(' ');
-        this.userName = uName[0];
-      } else {
-        this.userName = res;
-      }
-    }));
+    this.subscription.push(
+      this.authService.userName.subscribe((res) => {
+        if (res !== "") {
+          // split() method is used to split a string into an array of substrings and return a new array
+          const uName = res.split(" ");
+          this.userName = uName[0];
+        } else {
+          this.userName = res;
+        }
+      })
+    );
 
     this.createDealershipForm();
-    this.apiService.totalItemsInCart();  // calling apiService totalItemsIn Cart function to get the cart quantity
+    this.apiService.totalItemsInCart(); // calling apiService totalItemsIn Cart function to get the cart quantity
     this.getCartQuantity();
+  }
+
+  textChange(searchText): void {
+    if(searchText === '') {
+      this.searchResults = [];
+    }
+  }
+
+  search(searchText: string): void {
+    let searchData = {
+      query: searchText,
+    };
+    this.apiService.search(searchData).subscribe(
+      (res) => {
+        if (res[`products`].length) {
+          this.searchResults = res[`products`];
+          if (this.searchResults.length) {
+            this.toogleSearch = true;
+            this.searchResults.forEach((eachProduct) =>
+              this.apiService.productCategories(eachProduct)
+            );
+          }
+        } else {
+          this.toaster.success("No results found");
+        }
+      },
+      (error) => {
+        this.toaster.error(error?.error?.message);
+      }
+    );
+  }
+
+  hideSearchResults(): void {
+    this.toogleSearch = false;
   }
 
   createDealershipForm(): void {
     this.dealershipForm = this.fb.group({
-      company_name: new FormControl('', Validators.required),
-      full_name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$'), Validators.required]),
-      number: new FormControl('', [Validators.pattern('[0-9 ]{10,12}'), Validators.required]),
-      intrested_in: new FormControl('', Validators.required),
+      company_name: new FormControl("", Validators.required),
+      full_name: new FormControl("", Validators.required),
+      email: new FormControl("", [
+        Validators.pattern("^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$"),
+        Validators.required,
+      ]),
+      number: new FormControl("", [
+        Validators.pattern("[0-9 ]{10,12}"),
+        Validators.required,
+      ]),
+      intrested_in: new FormControl("", Validators.required),
     });
   }
 
@@ -57,7 +120,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     let maxLength = 12;
     if (validNumber.length >= maxLength) {
       this.dealershipForm.patchValue({
-        phone: validNumber.substring(0, 12)
+        phone: validNumber.substring(0, 12),
       });
     }
   }
@@ -68,7 +131,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   validateAllFields(formGroup: FormGroup): void {
-    Object.keys(this.formControl).forEach(field => {
+    Object.keys(this.formControl).forEach((field) => {
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
         control.markAsTouched({ onlySelf: true });
@@ -80,51 +143,54 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // function to get cartValue(behavoiurSubject) by subscribing to it.
   getCartQuantity(): void {
-    this.subscription.push(this.apiService.cartValue.subscribe(res => {
-      this.cartItemsQuantity = res;
-    }));
+    this.subscription.push(
+      this.apiService.cartValue.subscribe((res) => {
+        this.cartItemsQuantity = res;
+      })
+    );
   }
 
   addDealer(form): void {
     if (form.invalid) {
-      this.validateAllFields(form);  // if form in invalid then call validateAllfields function
+      this.validateAllFields(form); // if form in invalid then call validateAllfields function
     } else {
       const reqBody = this.dealershipForm.getRawValue();
       // this.apiService.addDealer(reqBody).subscribe((res) => {
       //   this.toasterService.success('Add dealer successfully');
       // });
-      $('#delarModal').modal('hide');
-      this.router.navigate(['/thank-you'], { queryParams: { type: 'dealership'} });
+      $("#delarModal").modal("hide");
+      this.router.navigate(["/thank-you"], {
+        queryParams: { type: "dealership" },
+      });
     }
   }
 
-  resetForm(): void{
+  resetForm(): void {
     this.dealershipForm.reset();
     this.changeDetectorRef.detectChanges();
   }
 
   // function to navigate to sign-in component
   signIn(): void {
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(["/sign-in"]);
   }
 
   // function to navigate to sign-up component
   signUp(): void {
-    this.router.navigate(['/sign-up']);
+    this.router.navigate(["/sign-up"]);
   }
 
   // function to navigate to cart component
   gotoCart(): void {
-    this.router.navigate(['/cart']);
+    this.router.navigate(["/cart"]);
   }
 
   // to unsubscribe the subscriptions
   ngOnDestroy(): void {
-    this.subscription.forEach(s => {
+    this.subscription.forEach((s) => {
       if (s) {
         s.unsubscribe();
       }
     });
   }
-
 }

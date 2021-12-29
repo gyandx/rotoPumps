@@ -188,7 +188,7 @@
                   (change)="toggleDriveType($event.target.value)"
                   [(ngModel)]="driveType"
                 >
-                  <option value="" selected disabled>Drive Type</option>
+                  <option value="{{driveType != '' ? driveType : ''}}" selected disabled>{{driveType != '' ? driveType : 'Drive Type'}}</option>
                   <option
                     *ngFor="let eachProduct of toggleSelectorDropdown"
                     value="{{ eachProduct }}"

@@ -154,17 +154,17 @@
               <div class="address-feild">
                 <label>Product <span>*</span></label>
                 <select formControlName="product" [ngStyle]="{
-                    border:
-                      formControl?.product?.invalid &&
-                      (formControl?.product?.touched ||
-                        formControl?.product?.dirty)
-                        ? '1px solid red'
-                        : formControl?.product?.valid &&
-                          (formControl?.product?.touched ||
-                            formControl?.product?.dirty)
-                        ? '1px solid green'
-                        : ''
-                  }" required>
+                  border:
+                    formControl?.product?.invalid &&
+                    (formControl?.product?.touched ||
+                      formControl?.product?.dirty)
+                      ? '1px solid red'
+                      : formControl?.product?.valid &&
+                        (formControl?.product?.touched ||
+                          formControl?.product?.dirty)
+                      ? '1px solid green'
+                      : ''
+                }" required>
                   <option value="" disabled="disabled" selected>
                     Please select product
                   </option>

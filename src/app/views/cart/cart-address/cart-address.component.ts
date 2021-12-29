@@ -55,12 +55,17 @@ export class CartAddressComponent implements OnInit, CanComponentDeactivate, OnD
       window.atob(sessionStorage.getItem('userStatus')) === 'D'
     ) {
       this.applyDealerDiscount = true;
-      this.apiService.dealerDiscount().subscribe(res => {
-        if (res[`return`] === true) {
-          this.dealerDiscountPercentage = res[`data`][0].discount_rate;
-          this.dealerDiscountPercentage = this.dealerDiscountPercentage * 0.01;
-        }
-      })
+      if (window.atob(sessionStorage.getItem('userDiscount')) === null) {
+        this.apiService.dealerDiscount().subscribe(res => {
+          if (res[`return`] === true) {
+            this.dealerDiscountPercentage = res[`dealer_discount`];
+            this.dealerDiscountPercentage = this.dealerDiscountPercentage * 0.01;
+          }
+        })
+      }else {
+        let userDiscount = window.atob(sessionStorage.getItem('userDiscount'));
+        this.dealerDiscountPercentage = +userDiscount * 0.01;
+      }
     }
 
     if (sessionStorage.getItem('buyNow')) { // checking if buyNow value is present or not

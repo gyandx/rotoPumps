@@ -66,6 +66,33 @@ export class ApiService implements OnDestroy {
     }
   }
 
+  // used to categorise products
+  productCategories(eachProduct): void {
+    if (eachProduct?.description.includes("Surface Agri")) {
+      eachProduct[`imgSrc`] = "assets/images/banner/surface-banner.png";
+      if (eachProduct?.description.includes("Close Coupled")) {
+        eachProduct[
+          `routePath`
+        ] = `/surfaceAgriPumps/1/closedCouplePump/${eachProduct?.id}/${eachProduct?.category_id}/${eachProduct?.code}/${eachProduct?.pole}`;
+      } else if (eachProduct?.description.includes("Bare Shaft")) {
+        eachProduct[
+          `routePath`
+        ] = `/surfaceAgriPumps/1/bareShaftPump/${eachProduct?.sub_category_id}/${eachProduct?.category_id}`;
+      }
+    } else if (eachProduct?.description.includes("Multipurpose")) {
+      eachProduct[`imgSrc`] = "assets/images/card-images/multi-pump.png";
+      if (eachProduct?.description.includes("Close Coupled")) {
+        eachProduct[
+          `routePath`
+        ] = `/multiPurposePumps/2/closedCouplePump/${eachProduct?.id}/${eachProduct?.category_id}/${eachProduct?.code}/${eachProduct?.pole}`;
+      } else if (eachProduct?.description.includes("Bare Shaft")) {
+        eachProduct[
+          `routePath`
+        ] = `/multiPurposePumps/2/bareShaftPump/${eachProduct?.sub_category_id}/${eachProduct?.category_id}`;
+      }
+    }
+  }
+
   // website Api's
   homePage = () => this.httpService.get(`${environment.apiUrl}home`);
   subCategory = (productId) => this.httpService.get(`${environment.apiUrl}category/${productId}`);
@@ -84,6 +111,8 @@ export class ApiService implements OnDestroy {
   driveTypes = (motorCode) => this.httpService.get(`${environment.apiUrl}get-drivebymodel/${motorCode}`);
   dataDriveTypes = (productCode , motorcode) => this.httpService.get(`${environment.apiUrl}get-productByDrive/${productCode}/${motorcode}`);
   contactUs = (userData) => this.httpService.post(`${environment.apiUrl}contact-us`, userData);
+  search = (searchData) => this.httpService.post(`${environment.apiUrl}search-products-model`, searchData);
+  mostTrendingProducts = () => this.httpService.get(`${environment.apiUrl}trending-products`);
 
   // enquiry form
   addEnquiry = (userData) => this.httpService.post(`${environment.apiUrl}add-enquiry`, userData);

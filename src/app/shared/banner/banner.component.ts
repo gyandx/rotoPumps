@@ -39,7 +39,7 @@ export class BannerComponent implements OnInit, OnDestroy {
     this.createEnquiryForm();
   }
 
-  // function to create addressForm
+  // function to create enquiryForm
   createEnquiryForm(): void {
     this.enquiryForm = this.fb.group({
       name: new FormControl('', Validators.required),

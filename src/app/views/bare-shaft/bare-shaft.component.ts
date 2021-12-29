@@ -89,7 +89,6 @@ export class BareShaftComponent implements OnInit, OnDestroy {
     }
     else if (pumpType === 'SABS'){
       this.btn4Active = event.target.title;
-      console.log(this.btn4Active, 'active');
     }
   }
 

@@ -12,6 +12,7 @@ export class AuthService implements OnDestroy {
 
   userData = new BehaviorSubject<any>({}); // userData of behaviourSubject to store the userData after login
   userName = new BehaviorSubject<string>(''); // userName of behaviourSubject to reflect change in username in header
+  showHeader = new BehaviorSubject<boolean>(false); // used to show and height search header
 
   constructor(private route: Router, private apiService: ApiService) { }
 
@@ -24,6 +25,7 @@ export class AuthService implements OnDestroy {
     sessionStorage.setItem('currentUser', window.btoa(userDetails[`user`].name));
     sessionStorage.setItem('userType', window.btoa(userDetails[`user`].user_type));
     sessionStorage.setItem('userStatus', window.btoa(userDetails[`user`].status));
+    sessionStorage.setItem('userDiscount', window.btoa(userDetails[`user`].discount_rate));
     if (userDetails[`user`].cart[`id`]){
       // localStorage.setItem('cartId', window.btoa(userDetails[`user`].cart.id));
       sessionStorage.setItem('cartId', window.btoa(userDetails[`user`].cart.id));
@@ -74,6 +76,7 @@ export class AuthService implements OnDestroy {
   //     return this.footerPages;
   //   }
   // }
+
 
   // to unsubscribe the subscriptions
   ngOnDestroy(): void {
