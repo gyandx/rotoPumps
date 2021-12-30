@@ -243,9 +243,17 @@
   height: 425px !important;
 }
 
-.error-msg {
-  margin: -13px 0 16px;
-  color: red;
+.error-page {
+  img {
+    margin: 10px 0;
+  }
+  .error-msg {
+    h1 {
+      padding: 5px 0;
+    }
+    margin: 10px 0;
+    color: rgb(248, 204, 59);
+  }
 }
 
 .validation-error {

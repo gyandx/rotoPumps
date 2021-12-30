@@ -7,7 +7,6 @@
       <form [formGroup]="loginForm" (ngSubmit)="submitSignInForm(loginForm)">
         <div class="sign-up-title">
           <h2>Sign In</h2>
-          <!-- <p>Welcome back</p> -->
         </div>
 
         <div
@@ -110,10 +109,6 @@
         </ng-container>
 
         <div class="remember-section">
-          <!-- <span>
-          <input type="checkbox" id="rem">
-          <label for="rem">Remember me</label>
-        </span> -->
           <span>
             <a href="javascript:void(0)" [routerLink]="['/forget-password']"
               >Forgot Password?</a
@@ -127,9 +122,5 @@
         </div>
       </form>
     </div>
-
-    <!-- <div class="sign-img">
-    <img src="assets/images/card-images/Signin_Image.png">
-  </div> -->
   </div>
 </div>

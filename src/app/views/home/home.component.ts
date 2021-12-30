@@ -50,12 +50,6 @@ export class HomeComponent implements OnInit {
     }
 
     this.getTrendingProducts();
-
-    // if (this.activatedRoute.snapshot.data[`homeData`].retroSparesDetails.code === 200){
-    //   this.retroSpares = this.activatedRoute.snapshot.data[`homeData`].retroSparesDetails.categories;
-    //   const defaultRetroSpareId = this.retroSpares[0].id;
-    //   this.getSparesSubCategory(defaultRetroSpareId);
-    // }
   }
 
   getTrendingProducts(): void {

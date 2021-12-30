@@ -31,12 +31,6 @@ export class RetroSparesComponent implements OnInit {
   shippingAmount: number;
 
   constructor(private apiService: ApiService, private toaster: ToastrService, private router: Router) {
-    // this.retroSpareCode = this.activatedRoute.snapshot.data[`retroSpare`];
-    // if ( this.retroSpareCode.length) {
-    //   this.msgString = 'Please select spare model';
-    // }else {
-    //   this.msgString = 'No data found';
-    // }
   }
 
   ngOnInit(): void {
@@ -57,7 +51,6 @@ export class RetroSparesComponent implements OnInit {
   }
 
   getPumpType(pumpId: string): void {
-    // this.checkEmptyData('pumpModel');
     this.parentId = pumpId;
     this.pumpSubType = '';
     this.pumpModel = '';
@@ -68,7 +61,6 @@ export class RetroSparesComponent implements OnInit {
     this.apiService.retroSubCategoryDetails(pumpId).subscribe(res => {
       if (res[`code`] === 200) {
         this.subCategories = res[`categories`];
-        // console.log(this.subCategories)
         if (this.subCategories.length) {
           this.checkEmptyData('subCat');
         } else {
@@ -85,7 +77,6 @@ export class RetroSparesComponent implements OnInit {
     this.productsInCart = [];
     this.apiService.retroSubProductCategory(subPumpId).subscribe(res => {
       if (res[`code`] === 200) {
-        // console.log('pump', pumpSeries)
         this.pumpModels = res[`products`];
         if (this.subCategories.length) {
           this.checkEmptyData('pumpModel');
@@ -119,7 +110,6 @@ export class RetroSparesComponent implements OnInit {
       pipe(map(res => {
         if (res[`code`] === 200) {
           this.retroSpareDetails = res[`product`];
-          // console.log(this.retroSpareDetails, 'test')
           this.spares = [];
           this.retroSpareDetails.forEach(eachRetroSpare => {
             if (eachRetroSpare.dev_status === 'Dev') {
@@ -265,10 +255,7 @@ export class RetroSparesComponent implements OnInit {
     this.spares[spareCount].quantity++;
     if (this.spares[spareCount].quantity === 1) {
       this.router.navigate(['/comingSoon']);
-      // this.productsInCart.push(this.spares[spareCount]); to be uncomment when price are inserted
-      // console.log(this.productsInCart, 'prod')
     }
-    // this.findGrandTotal();
   }
 
 
@@ -283,8 +270,6 @@ export class RetroSparesComponent implements OnInit {
       }
     });
     // calculating grandTotal
-    // this.gstAmount = 0.10 * sparePrice;
-    // this.subTotal = Math.round(sparePrice + this.gstAmount);
     this.shippingAmount = Math.round(+(0.05 * sparePrice).toFixed(3));
     total = Math.round(sparePrice + this.shippingAmount);
     this.gstAmount = 0.10 * (sparePrice + this.shippingAmount);
@@ -296,9 +281,6 @@ export class RetroSparesComponent implements OnInit {
     const sparesToAdd = []; // sparesToAdd[] to add spare
     // array to push selected Spare
     this.productsInCart.forEach(ele => {
-      // let driveType = {
-      //   desc: ''
-      // };
       if (ele.quantity >= 1) {
         const spare = new CartDetails(ele.id, ele.part,
           ele.original_part_code, ele.price, 0, 'spare', 0, '0', '0', '0', '0', '0', '0', ele.code, ele.quantity);
@@ -308,9 +290,7 @@ export class RetroSparesComponent implements OnInit {
     // if (localStorage.getItem('id')) { // check if userId is present or not in localStorage
     if (sessionStorage.getItem('id')) { // check if userId is present or not in sessionStorage
       // tslint:disable-next-line: max-line-length
-      // if (localStorage.getItem('cartId') === null) { // check if cartId is present or not in localStorage(if not present the value is null)
       if (sessionStorage.getItem('cartId') === null) { // check if cartId is present or not in sessionStorage(if not present the value is null)
-        // tslint:disable-next-line: max-line-length
         if (sessionStorage.getItem('cart') === null) { // check if cart is present or not in localStorage(if not present the value is null)
           const cartArray = []; // declaring an empty array
           cartArray.push(...sparesToAdd); // pushing sparesToAdd in cartArray
@@ -325,7 +305,6 @@ export class RetroSparesComponent implements OnInit {
           this.apiService.addToCart(cartData).subscribe(res => {
             if (res[`code`] === 200) {
               const cartItems = JSON.parse(res[`cart_details`].cart);
-              // localStorage.setItem('cartId', window.btoa(res[`cart_details`].id));
               sessionStorage.setItem('cartId', window.btoa(res[`cart_details`].id));
               this.toaster.success('Successfully Added To Cart');
               this.apiService.totalItemsInCart();
@@ -350,7 +329,6 @@ export class RetroSparesComponent implements OnInit {
       // userId is present
       else {
         // calling getCartById api to get cartData using cartId
-        // this.apiService.getCartById(window.atob(localStorage.getItem('cartId'))).subscribe(res => {
         this.apiService.getCartById(window.atob(sessionStorage.getItem('cartId'))).subscribe(res => {
           if (res[`code`] === 200) {
             let cartDetails;
@@ -393,7 +371,6 @@ export class RetroSparesComponent implements OnInit {
     }
     // cartDetails length is greater than 0
     else {
-      // const cartAccessoryDataSet = new Array(); // creating new accessoryArray
       const cartSpareDataSet = new Array(); // creating new spareArray
       let spareNotExist = true; // check if spare type is present in cartLocalData
       // for loop starts

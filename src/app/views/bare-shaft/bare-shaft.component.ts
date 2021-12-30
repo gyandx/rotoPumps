@@ -26,8 +26,6 @@ export class BareShaftComponent implements OnInit, OnDestroy {
   productTypes: any; // used to store different products
   fourPoleButtons = []; // creating new Set
   sixPoleButtons = [];
-  // fourPoleButtons = new Set(); // creating new Set
-  // sixPoleButtons = new Set(); // creating new Set
   togglePage: string; // used to change page contents according to type
   parentId: string;
   showMotorDisplay: boolean = false;
@@ -38,6 +36,7 @@ export class BareShaftComponent implements OnInit, OnDestroy {
   tableHead = [];
   feet: any;
   toggleUnit: boolean = false;
+  driveType: string = '';
   config = {
     fade: true,
 
@@ -61,18 +60,32 @@ export class BareShaftComponent implements OnInit, OnDestroy {
         'assets/images/SABS/SABS/AGAA-03B.jpg', 'assets/images/SABS/SABS/AGAA-05A.jpg', 'assets/images/SABS/SABS/AGAA-05B.jpg',
         'assets/images/SABS/SABS/AGAA-07A.jpg', 'assets/images/SABS/SABS/AGAA-07B.jpg', 'assets/images/SABS/SABS/AGAA-01A.jpg'];
       this.graphImgSrc = 'assets/images/SABS/SABS/AGAA.jpg'; // 4 pole graphImg default value
-
-      // this.graphImg1 = ['assets/images/SABS/AGAA-01B.jpg', 'assets/images/SABS/AGAA-03A.jpg',
-      //   'assets/images/SABS/AGAA-03B.jpg', 'assets/images/SABS/AGAA-05A.jpg', 'assets/images/SABS/AGAA-05B.jpg',
-      //   'assets/images/SABS/AGAA-07A.jpg', 'assets/images/SABS/AGAA-07B.jpg', 'assets/images/SABS/AGAA-01A.jpg'];
-
-      // this.graphImgSrc1 = 'assets/images/SABS/AGAA.jpg'; // 6 pole graphImg default value
+      this.activatedRoute.queryParams.subscribe(res => {
+        if (Object.keys(res).length) {
+          if (res[`model`]){
+            this.showMotor(res[`model`], 4);
+          }else{
+            this.driveType = res[`driveType`];
+            this.showMotor(res[`search`], 4);
+          }
+        }
+      });
     }
     else if (this.router.url.includes('multiPurposePumps')) {
       this.togglePage = 'multiPurposePumps';
       this.graphImg = ['assets/images/MpGraph/Frame22.png', 'assets/images/MpGraph/Frame23.png',
         'assets/images/MpGraph/Frame26.png', 'assets/images/MpGraph/Frame25.png', 'assets/images/MpGraph/Frame24.png'];
       this.graphImgSrc = 'assets/images/MpGraph/Frame21.png'; // 4 pole graphImg default value
+      this.activatedRoute.queryParams.subscribe(res => {
+        if (Object.keys(res).length) {
+          if (res[`model`]){
+            this.showMotor(res[`model`], 4);
+          }else{
+            this.driveType = res[`driveType`];
+            this.showMotor(res[`search`], 4);
+          }
+        }
+      });
     }
     this.subscribe.push(this.activatedRoute.params.subscribe(res => {
       if (res) {
@@ -101,56 +114,6 @@ export class BareShaftComponent implements OnInit, OnDestroy {
     }
   }
 
-  // function to getProductDetails according to productId
-  // getProductDetails(productId: string, parentId: string): void {
-  //   // const data = new Set(); // creating a new set of productType
-  //   this.subscribe.push(this.apiService.productsByCategory(productId, parentId)
-  //     .pipe(map(res => {
-  //       const products: SubProductSubCategories[] = res[`products`]; // assigning product from response in products Array
-  //       const newRes = []; // newRes array to push the result
-  //       products.forEach((element) => {
-  //         if (element.pole === 4) { // checking element pole type is 4 or not
-  //           // productType.add(element.code); // adding 4 pole product to productType set to eradicate duplicity
-  //           this.fourPoleButtons.push(element.code); // adding the 4 pole product in fourPoleButtons array
-  //           // fourPole = (a, b) => a.localeCompare(b, 'en', { numeric: true });
-  //           // this.fourPoleButtons = fourPole;
-  //         }
-  //         else if (element.pole === 6) { // checking element pole type is 6 or not
-  //           // productType.add(element.code); // adding 6 pole product to productType set to eradicate duplicity
-  //           this.sixPoleButtons.push(element.code); // adding the 6 pole product in fourPoleButtons array
-  //         }
-  //       });
-  //       // pushing the result in newRes array and returning the newRes array
-  //       newRes.push(this.fourPoleButtons);
-  //       newRes.push(this.sixPoleButtons);
-  //       return newRes;
-  //     }))
-  //     .subscribe(res => {
-  //       // this.productTypes = res; // assigning newRes to productTypes
-  //       console.log('product', typeof(res));
-
-  //     })
-  //   );
-  // }
-
-  // getProductDetails(productId: string, parentId: string): void {
-  //   this.subscribe.push(this.apiService.productsByCategory(productId, parentId).subscribe(res => {
-  //     if (res[`code`] === 200) {
-  //       const products: SubProductSubCategories[] = res[`products`];
-  //       products.forEach(element => {
-  //         if (element.pole === 4) { // checking element pole type is 4 or not
-  //           this.fourPoleButtons.push(element.code); // adding the 4 pole product in fourPoleButtons array
-  //           // this.fourPoleButtons = (a, b) => a.localeCompare(b, 'en', { numeric: true });
-  //           // this.fourPoleButtons = fourPole;
-  //         }
-  //         else if (element.pole === 6) { // checking element pole type is 6 or not
-  //           this.sixPoleButtons.push(element.code); // adding the 6 pole product in fourPoleButtons array
-  //         }
-  //       });
-  //     }
-  //   })
-  // }
-
   getProductDetails(productId: string, parentId: string): void {
     this.subscribe.push(this.apiService.productsByCategory(productId, parentId).subscribe(res => {
       if (res[`code`] === 200) {
@@ -158,9 +121,7 @@ export class BareShaftComponent implements OnInit, OnDestroy {
         products.forEach(element => {
           if (element.pole === '4') {
             this.fourPoleButtons.push(element.code);
-            // this.fourPoleButtons = (a, b) => a.localeCompare(b, 'en', { numeric: true });
-            // this.fourPoleButtons = this.fourPoleButtons.sort(new Intl.Collator('en',{numeric:true, sensitivity:'accent'}).compare);
-          } else if (element.pole === '6') {
+           } else if (element.pole === '6') {
             this.sixPoleButtons.push(element.code);
           }
         });
@@ -303,11 +264,8 @@ export class BareShaftComponent implements OnInit, OnDestroy {
   navigateToProductDetails(eachData): void {
     const speedData = eachData.pump_speed.split(" - ");
     const pole = speedData[1].substring(0, 1);
-    // console.log(pole, 'pole')
-    // speedData[1].substring(0,1))
-    // this.router.navigate([this.motorModel, pole], {queryParams: {index: 0, id: eachData.id}});
     this.router.navigate(['../', this.parentId, this.motorModel, pole],
-      { relativeTo: this.activatedRoute, queryParams: { index: 0, id: eachData.id } });
+      { relativeTo: this.activatedRoute, queryParams: { index: 0, id: eachData.id, driveType: this.driveType != '' ? this.driveType : null } });
   }
 
   // function to show motorDetails.
@@ -378,19 +336,15 @@ export class BareShaftComponent implements OnInit, OnDestroy {
         default:
           this.leftGraphImg = 'assets/images/Multipurpose_PC_New/MultipuproseCC/DC012.jpg';
       }
-      // this.router.navigate(['../', this.parentId, this.motorModel, motorPole], { relativeTo: this.activatedRoute });
     }
-    // this.router.navigate(['../', this.parentId, this.motorModel, 4], { relativeTo: this.activatedRoute });
   }
 
   getTableData(motorType): void {
     this.apiService.tableList(motorType).subscribe(res => {
       if (res[`code`] === 200) {
         this.motorData = res[`bareshaft`];
-        // console.log('motor', this.motorData);
         this.tableHead = [];
         if (this.motorData.length > 0) {
-          // tslint:disable-next-line: forin
           this.motorData.forEach(eachMotor => {
             if (eachMotor['0']?.length || eachMotor['0'] !== null) {
               eachMotor['0'] = eachMotor['0'].split(',');
@@ -416,12 +370,6 @@ export class BareShaftComponent implements OnInit, OnDestroy {
             if (eachMotor['80']?.length || eachMotor['80'] !== null) {
               eachMotor['80'] = eachMotor['80'].split(',');
             }
-            // eachMotor['10'] = eachMotor['10'].split(',');
-            // eachMotor['20'] = eachMotor['20'].split(',');
-            // eachMotor['30'] = eachMotor['30'].split(',');
-            // eachMotor['40'] = eachMotor['40'].split(',');
-            // eachMotor['50'] = eachMotor['50'].split(',');
-            // eachMotor['60'] = eachMotor['60'].split(',');
           });
           for (const [key, value] of Object.entries<any>(this.motorData[0])) {
             if (key === '0' && value !== null && (value.length > 2 || value.length <= 3)) {
@@ -488,7 +436,6 @@ export class BareShaftComponent implements OnInit, OnDestroy {
               }
             }
           }
-          // console.log(this.tableHead, 'tableHead')
         } else {
           this.msg = 'No data found';
         }

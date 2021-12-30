@@ -16,9 +16,6 @@ export class MyOrdersComponent implements OnInit {
   constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit(): void {
-    // if (localStorage.getItem('id')){
-    //   this.getOrderHistory(window.atob(localStorage.getItem('id')));
-    // }
     if (sessionStorage.getItem('id')){
       this.getOrderHistory(window.atob(sessionStorage.getItem('id')));
     }
@@ -32,7 +29,6 @@ export class MyOrdersComponent implements OnInit {
     this.apiService.orderHistory(userData).subscribe(res => {
       if (res[`code`] === 200){
         this.orderHistoryData = res[`orders`]; // assigning response from orderHistory api to orderHistoryData
-        // console.log(this.orderHistoryData)
         // using sort() method to sort details by dates newest date 1st
         this.orderHistoryData.sort( (a, b) => {
           return Date.parse(b.updated_at) - Date.parse(a.updated_at);

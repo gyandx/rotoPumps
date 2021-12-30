@@ -39,11 +39,6 @@ export class CartAddressComponent implements OnInit, CanComponentDeactivate, OnD
 
   ngOnInit(): void {
     this.spinner.show();
-
-    // if (localStorage.getItem('id')) { // checking if userId is present or not
-    //   this.userId = window.atob(localStorage.getItem('id')); // assigning userId from localStorage Id
-    //   this.getAddressList(window.atob(localStorage.getItem('id')));
-    // }
     if (sessionStorage.getItem('id')) { // checking if userId is present or not
       this.userId = window.atob(sessionStorage.getItem('id')); // assigning userId from sessionStorage Id
       this.getAddressList(window.atob(sessionStorage.getItem('id')));
@@ -81,7 +76,6 @@ export class CartAddressComponent implements OnInit, CanComponentDeactivate, OnD
           this.buyNowCartId = res[`cart_details`].id; // assigning buyNowCartId with response cart value id
         }
       });
-      // this.updateCart();
     } else {
       // calling getCartById api to get CartDetails by cartId
       // this.subscribe.push(this.apiService.getCartById(window.atob(localStorage.getItem('cartId'))).subscribe(res => {

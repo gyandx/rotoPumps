@@ -59,42 +59,10 @@ export class ClosedCoupleComponent implements OnInit, OnDestroy {
     this.subscribe.push(this.activatedRoute.params.subscribe(res => {
       if (res[`id`]) {
         this.parentId = res?.parentId;
-        // console.log('par444', res)
         this.getProductDetails(res.id, res.parentId);
       }
     }));
   }
-
-  // function to getProductDetails according to productId
-  // getProductDetails(productId: string, parentId: string): void {
-  //   const productType = new Set(); // creating a new set of productType
-  //   this.subscribe.push(this.apiService.productsByCategory(productId, parentId)
-  //     .pipe(map(res => {
-  //       const products: SubProductSubCategories[] = res[`products`]; // assigning product from response in products Array
-  //       const newRes = []; // newRes array to push the result
-  //       products.forEach((element) => {
-  //         if (element.pole === 4) { // checking element pole type is 4 or not
-  //           productType.add(element.code); // adding 4 pole product to productType set to eradicate duplicity
-  //           this.fourPoleButtons.add(element.code); // adding the 4 pole product in fourPoleButtons array
-  //           [...this.fourPoleButtons].sort()
-  //           console.log('4pole', this.fourPoleButtons)
-  //         }
-  //         else if (element.pole === 6) { // checking element pole type is 6 or not
-  //           productType.add(element.code); // adding 6 pole product to productType set to eradicate duplicity
-  //           this.sixPoleButtons.add(element.code); // adding the 6 pole product in fourPoleButtons array
-  //         }
-  //       });
-  //       // pushing the result in newRes array and returning the newRes array
-  //       newRes.push(this.fourPoleButtons);
-  //       newRes.push(this.sixPoleButtons);
-  //       return newRes;
-  //     }))
-  //     .subscribe(res => {
-  //       this.productTypes = res; // assigning newRes to productTypes
-  //       console.log('product', this.productTypes.sort())
-  //     })
-  //   );
-  // }
 
   getProductDetails(productId: string, parentId: string): void {
     this.subscribe.push(this.apiService.productsByCategory(productId, parentId).subscribe(res => {
@@ -104,8 +72,6 @@ export class ClosedCoupleComponent implements OnInit, OnDestroy {
         products.forEach(element => {
           if (element.pole === '4') {
             this.fourPoleButtons.push(element.code);
-            // this.fourPoleButtons = (a, b) => a.localeCompare(b, 'en', { numeric: true });
-            // this.fourPoleButtons = this.fourPoleButtons.sort(new Intl.Collator('en',{numeric:true, sensitivity:'accent'}).compare);
           }else if (element.pole === '6'){
             this.sixPoleButtons.push(element.code);
           }

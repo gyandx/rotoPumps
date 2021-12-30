@@ -22,9 +22,7 @@ export class CartResolverService implements Resolve<OrderResponse>{
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | OrderResponse {
-    // if (localStorage.getItem('cartId')) {
     if (sessionStorage.getItem('cartId')) {
-      // return this.apiService.getCartById(window.atob(localStorage.getItem('cartId'))).pipe(map((data: CartDetails)  => {
       return this.apiService.getCartById(window.atob(sessionStorage.getItem('cartId'))).pipe(map((data: CartDetails)  => {
         if (+data[`code`] === 200) {
           return JSON.parse(data[`details`].cart);

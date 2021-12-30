@@ -76,16 +76,8 @@ export class ProductDetailsComponent implements OnInit {
     this.routerUrl = routerUrlPath.split("/");
     this.activatedRoute.params.subscribe((res) => {
       if (res) {
-        // console.log(res, 'query')
-        // const tableData = res.parentId.split(',');
-        // if (tableData.length > 0){
-        //   // console.log(tableData, 'table')
-        //   this.tableId = tableData[0]; // get the table id
-        //   this.tableIndex = tableData[1];
-        // }
         this.productId = res.model; // getting productId from router params
         this.poleType = res.type;
-        // this.tableId = res.parentId;
         this.getProductDetails(this.productId, res.type);
       }
     });
@@ -96,7 +88,6 @@ export class ProductDetailsComponent implements OnInit {
         if (res[`driveType`]) {
           this.driveType = res[`driveType`];
         }
-        // this.getTableData(this.productId, this.poleType, this.tableId);
       }
     });
     if (
@@ -105,16 +96,9 @@ export class ProductDetailsComponent implements OnInit {
       (this.router.url.includes("multiPurposePumps") &&
         this.router.url.includes("bareShaftPump"))
     ) {
-      // console.log('hiiiii')
       this.getTableData(this.productId, this.poleType, this.tableId);
       this.toggleOption = true;
     }
-    // else if (this.router.url.includes('multiPurposePumps') && this.router.url.includes('bareShaftPump')) {
-    //   this.toggleMotorOption = true;
-    // }
-    // else {
-    //   this.toggleOption = false;
-    // }
     if (
       this.router.url.includes("surfaceAgriPumps") &&
       this.router.url.includes("closedCouplePump")
@@ -401,8 +385,6 @@ export class ProductDetailsComponent implements OnInit {
           heading: "Cross Sectional Drawing",
         },
       ];
-      // console.log(typeof(this.poleType))
-      // console.log(this.productId, this.poleType, 'jjdjfj')
       if (this.productId === "AGAA01A" && this.poleType === "4") {
         this.thumbnailImages.push({
           imgSrc: "assets/images/AGAABS/AGCA1A4POLE1450RPMPERCURVE1.png",
@@ -521,7 +503,6 @@ export class ProductDetailsComponent implements OnInit {
           heading: "Performance Curve",
         });
       } else if (this.productId === "AGAA05B" && this.poleType === "6") {
-        // console.log("3B", this.productId)
         this.thumbnailImages.push({
           imgSrc: "assets/images/AGAABS/AGCA5B6POLE960RPMPERCURVE1.png",
           name: "PERFORMANCE CURVE",
@@ -600,16 +581,11 @@ export class ProductDetailsComponent implements OnInit {
 
         this.albums.push(album);
       }
-      // this.thumbnailImages.pop();
-      // this.productCarousalImages.pop();
-      // console.log(this.productCarousalImages)
     }
     this.selectedProductImg = this.productCarousalImages[0]; // assign selectedProductImg to 1st index of productImg arraythis.se
-    // console.log(this.selectedProductImg, 'imh')
   }
 
   onMotorChange(event): void {
-    // console.log(event, 'ebe')
     this.motorData = event;
   }
 
@@ -1022,10 +998,6 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
-  // toggleDriveType(event): void{
-  //   console.log('event: ', this.driveType)
-  // }
-
   // function to get product details by passing productId and productPoleType(4 or 6)
   getProductDetails(productId: string, poleType: string): void {
     // productById api call to get that particular product
@@ -1033,7 +1005,6 @@ export class ProductDetailsComponent implements OnInit {
       (res) => {
         if (res[`code`] === 200) {
           this.productsDetail = res[`product`]; // assigned res['product] to productDetails
-          // console.log('productDetail', this.productsDetail)
           this.selectedProduct = this.productsDetail[0]; // assign 1st index of productDetails to selectedProduct
           if (
             this.router.url.includes("surfaceAgriPumps") &&
@@ -1052,9 +1023,6 @@ export class ProductDetailsComponent implements OnInit {
                 });
               }
             }
-            // this.quantityValue = this.selectedProduct[`details`].productQuantity;
-            // this.onchangeSelectedProduct();
-            // this.findGrandTotal();
           } else if (
             this.router.url.includes("multiPurposePumps") &&
             this.router.url.includes("closedCouplePump")
@@ -1068,26 +1036,9 @@ export class ProductDetailsComponent implements OnInit {
               this.selectedProduct[`details`].price;
             this.onchangeSelectedProduct();
             this.findGrandTotal();
-            // if (res[`drive`].length) {
-            //   res[ `drive`].forEach(driveData => {
-            //     console.log(driveData, 'driveType')
-            //   });
-            // }
           } else {
             this.getDriveMotorOptions(this.selectedProduct.details.code);
           }
-          // if (this.selectedProduct[`motor`].volt !== null) {
-          //     this.toggleOption = false;
-          // }else{
-          //     this.toggleOption = true;
-          // }
-          // console.log(this.selectedProduct.details, 'details')
-          // this.getImageCarosual(this.selectedProduct[`details`].id);
-          // this.defaultSelectedProductPrice = this.selectedProduct[`details`].price; /* assign selectedProduct price
-          //  to defaultSelectedProductPrice*/
-          // this.quantityValue = this.selectedProduct[`details`].productQuantity;
-          // this.onchangeSelectedProduct();
-          // this.findGrandTotal();
         }
       },
       (err) => {
@@ -1097,22 +1048,22 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getDriveMotorOptions(modelCode): void {
-    // this.toggleSelectorDropdown= [];
-    this.apiService.driveTypes(modelCode).subscribe((res) => {
-      if (res[`code`] === 200) {
-        this.toggleMotorDriveOption = res[`drive_type`];
-
-        if (this.toggleMotorDriveOption.length) {
-          this.toggleMotorDriveOption.forEach((eachData) => {
-            Object.values(eachData).forEach((data) => {
-              // console.log(data, 'data')
-              this.toggleSelectorDropdown.push(data);
+    if (this.driveType != "") {
+      this.toggleDriveType(this.driveType);
+    } else {
+      this.apiService.driveTypes(modelCode).subscribe((res) => {
+        if (res[`code`] === 200) {
+          this.toggleMotorDriveOption = res[`drive_type`];
+          if (this.toggleMotorDriveOption.length) {
+            this.toggleMotorDriveOption.forEach((eachData) => {
+              Object.values(eachData).forEach((data) => {
+                this.toggleSelectorDropdown.push(data);
+              });
             });
-          });
-          // console.log('data', this.toggleSelectorDropdown)
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   open(index: number): void {
@@ -1168,8 +1119,7 @@ export class ProductDetailsComponent implements OnInit {
             this.defaultSelectedProductPrice =
               this.selectedProduct[
                 `details`
-              ].price; /* assign selectedProduct price
-                                                                                       to defaultSelectedProductPrice*/
+              ].price; /* assign selectedProduct price to defaultSelectedProductPrice*/
             this.quantityValue =
               this.selectedProduct[`details`].productQuantity;
             this.onchangeSelectedProduct();
@@ -1216,30 +1166,12 @@ export class ProductDetailsComponent implements OnInit {
 
   // function to assign values to warranty, accessories and spares
   onchangeSelectedProduct(): void {
-    // console.log('selectedProduct', this.selectedProduct);
     this.warranty = this.selectedProduct.warranty;
     this.accessories = [];
     this.spares = [];
     this.standardWarranty = this.warranty[0]; // default warranty of 1 year is selected
-    // console.log(this.selectedProduct.motor[0]['4pole'], "4pole")
-    // if (this.selectedProduct.motor[0]['4pole'] !== null) {
-    //   this.toggleMotorDriveOption = this.selectedProduct.motor[0];
-    //   Object.keys(this.toggleMotorDriveOption).forEach(data => {
-    //     this.toggleSelectorDropdown.push(this.toggleMotorDriveOption[data]);
-    //   });
-    //   console.log('gift1', this.toggleMotorDriveOption);
-    // }
-
-    // if (this.selectedProduct.drive[0]['nodrive'] !== null) {
-    //   this.toggleMotorDriveOption = this.selectedProduct.drive[0];
-    //   Object.keys(this.toggleMotorDriveOption).forEach(data => {
-    //     this.toggleSelectorDropdown.push(this.toggleMotorDriveOption[data]);
-    //   });
-    //   console.log('gift2', this.toggleMotorDriveOption);
-    // }
 
     if (this.selectedProduct.accessories.length > 0) {
-      // this.accessories = this.selectedProduct.accessories;
       this.selectedProduct.accessories.filter((eachAccessory) => {
         if (
           eachAccessory.productPrice !== null &&
@@ -1258,7 +1190,6 @@ export class ProductDetailsComponent implements OnInit {
       this.emptyAccMsg = "No accessories found";
     }
     // assign selectedProduct spares to spare array
-    // this.selectedProduct.spare = [];
     if (this.selectedProduct.spares.length > 0) {
       this.selectedProduct.spares.filter((eachSpare) => {
         if (
@@ -1301,7 +1232,6 @@ export class ProductDetailsComponent implements OnInit {
     // using loop to get the selected spares price
     this.spares.forEach((ele) => {
       if (ele.spareQuantity) {
-        // sparePrice = (ele.productPrice * ele.spareQuantity) + sparePrice;
         sparePrice = ele.discountPrice * ele.spareQuantity + sparePrice;
       }
     });
@@ -1320,12 +1250,10 @@ export class ProductDetailsComponent implements OnInit {
     this.standardWarranty =
       this.warranty[
         warrantyCount
-      ]; /* getting warrantyCount(warrantyIndex) as assign warranty
-                                                                             to selectedWarranty */
+      ]; /* getting warrantyCount(warrantyIndex) as assign warranty to selectedWarranty */
     if (+this.standardWarranty.price === 0) {
       this.selectedProduct.details.price =
-        this.defaultSelectedProductPrice; /* changing selected Price according to
-                                                                              defaultSelectedProductPrice */
+        this.defaultSelectedProductPrice; /* changing selected Price according to defaultSelectedProductPrice */
     } else {
       this.selectedProduct.details.price = this.standardWarranty.price; // changing selected Price according to standardWarranty price
     }
@@ -1749,8 +1677,6 @@ export class ProductDetailsComponent implements OnInit {
     } else if (type === "update") {
       // cartData object with userId , cartId and cartArray to pass as parameter(in post body) in updateToCart api
       const updateCart = {
-        // id: window.atob(localStorage.getItem('cartId')),
-        // user_id: window.atob(localStorage.getItem('id')),
         id: window.atob(sessionStorage.getItem("cartId")),
         user_id: window.atob(sessionStorage.getItem("id")),
         cart: JSON.stringify(cartDetails),
@@ -1901,7 +1827,6 @@ export class ProductDetailsComponent implements OnInit {
     sessionStorage.setItem("buyNow", window.btoa(JSON.stringify(cartArray)));
 
     // checking userId present or not according to it next route is activated.
-    // if (localStorage.getItem('id')) {
     if (sessionStorage.getItem("id")) {
       this.router.navigate(["/cart/deliveryAddress"]);
     } else {
@@ -2015,7 +1940,6 @@ export class ProductDetailsComponent implements OnInit {
     if (classRes.length > 0) {
       const lastClass = classRes[classRes.length - 1];
       lastClass[`style`].visibility = "hidden";
-      // this.toggleSelector = false;
     }
   }
 }

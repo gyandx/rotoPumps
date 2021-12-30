@@ -20,9 +20,6 @@ declare var Stripe;
 export class CartPaymentComponent implements OnInit, CanComponentDeactivate, AfterViewInit, OnDestroy {
 
   @ViewChild('cardInfo', { static: true }) cardElement: ElementRef; // used to access the cardInfo element details
-  // @ViewChild('cardNumber', { static: true }) cardNumberElement: ElementRef;
-  // @ViewChild('cardExpiry', { static: true }) cardExpiryElement: ElementRef;
-  // @ViewChild('cardCvc', { static: true }) cardCvcElement: ElementRef;
 
   stripe: any; // taking a variable for stripe of any type
   card: any; // taking a variable for card
@@ -60,7 +57,6 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
               private zone: NgZone, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
-    // this.loadStripe(); // calling stripe function to load stripe
     // assigning addressId and buyNow id from route params
     this.subscribe.push(this.activatedRoute.params.subscribe(res => {
       if (res.id1) {
@@ -143,15 +139,10 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
     this.stripe = Stripe(environment.stripeTestKey);
     const elements = this.stripe.elements();
 
-    // this.card = elements.create('card');
-    // this.card.mount(this.cardElement.nativeElement);
-    // this.card.addEventListener('change', this.cardHandler);
-
     this.cardNumber = elements.create('cardNumber', { showIcon: true, placeholder: 'Enter your card number', style: cardStyle });
     this.cardNumber.mount('#cc-number');
     this.cardNumber.on('change', (error) => {
       if (error.error === undefined || error) {
-        // const displayError = document.getElementById('ccNum');
         if (error.error !== undefined) {
           this.toggleCardNumberError = true;
           this.cardNumberError = error.error.message;
@@ -165,7 +156,6 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
     this.cardExpiry.mount('#cc-exp-date');
     this.cardExpiry.on('change', (error) => {
       if (error.error === undefined || error) {
-        // const displayError = document.getElementById('ccNum');
         if (error.error !== undefined) {
           this.toggleCardMonthError = true;
           this.cardMonthError = error.error.message;
@@ -179,7 +169,6 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
     this.cardCvc.mount('#cc-cvc');
     this.cardCvc.on('change', (error) => {
       if (error.error === undefined || error) {
-        // const displayError = document.getElementById('ccNum');
         if (error.error !== undefined) {
           this.toggleCardCvvError = true;
           this.cardCvvError = error.error.message;
@@ -235,13 +224,6 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
       };
       window.document.body.appendChild(s);
     }
-    // if(!window.document.getElementById('stripe-script')) {
-    //   var s = window.document.createElement("script");
-    //   s.id = "stripe-script";
-    //   s.type = "text/javascript";
-    //   s.src = "https://checkout.stripe.com/checkout.js";
-    //   window.document.body.appendChild(s);
-    // }
   }
 
   // function to create payment form
@@ -307,39 +289,6 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
         this.spinner.hide('sp3');
         this.onError(error);
       }
-      // split() method is used to split a string into an array of substrings and return a new array
-      // const monthYear = form.value.cardExpDate.split(' / ');
-      // (window as any).Stripe.card.createToken({ // calling stripe createToken function
-      //   number: form.value.cardNumber,
-      //   exp_month: monthYear[0],
-      //   exp_year: monthYear[1],
-      //   cvc: form.value.cardCvv,
-      //   address_city: this.addressDetails?.city,
-      //   address_country: 'ind',
-      //   address_line1: this.addressDetails?.house_no,
-      //   address_line2: this.addressDetails?.town,
-      //   address_state: this.addressDetails?.state,
-      //   address_zip: this.addressDetails?.pincode
-      // }, (status: number, response: any) => {
-      //   if (status === 200 && response) {
-      //     const paymentData = {
-      //       token: response.id,
-      //       amount: Math.round(this.total)
-      //     };
-      //     this.zone.run(() => { // ngZone.runOutsideAngular() - this runs the code outside the angular zone.
-      //       // calling payment api and passing paymentData as body in payment api
-      //       this.subscribe.push(this.apiService.payment(paymentData).subscribe(res => {
-      //         if (res[`code`] === 200) {
-      //           this.createOrder(response.id);
-      //         }
-      //       }, err => {
-      //         this.toastr.error(err?.error?.message || err?.message);
-      //       }));
-      //     });
-      //   } else {
-      //     this.toastr.error('Payment Unsuccessful');
-      //   }
-      // });
     }
   }
 
@@ -364,7 +313,6 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
   onError(error): void {
     this.paymentLoading = false;
     if (error.message) {
-      // this.cardErrors = error.message;
       this.toastr.error(error.message);
     }
   }
@@ -388,18 +336,6 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
     this.subscribe.push(this.apiService.addOrders(orderData).subscribe(res => {
       if (res[`code`] === 200) {
         this.orderId = res[`details`].id;
-        // console.log('orderRes', res);
-        // console.log('orderData', orderData.purchase_details);
-        // this.apiService.orderDetails.next(res[`details`]);
-        // this.updateCart();
-        // if (this.buyNowCartId.length !== 0) { // checking buyNowCardId is present or not
-        //   this.updateCart();
-        // }
-        // else {
-        //   sessionStorage.removeItem('buyNow');
-        //   this.apiService.totalItemsInCart();
-        //   this.router.navigate(['/payment-successful'], { queryParams: { orderId: this.orderId } });
-        // }
         sessionStorage.removeItem('buyNow');
         this.apiService.totalItemsInCart();
         this.router.navigate(['/payment-successful'], { queryParams: { orderId: this.orderId } });
@@ -418,7 +354,7 @@ export class CartPaymentComponent implements OnInit, CanComponentDeactivate, Aft
       user_id: window.atob(sessionStorage.getItem('id')),
       cart: '[]'
     };
-    console.log('update', updateCart);
+    // console.log('update', updateCart);
     // this.subscribe.push(this.apiService.updateCart(updateCart).subscribe(res => {
     //   if (res[`code`] === 200) {
     //     this.apiService.totalItemsInCart(); // calling totalItemsInCart function to update cartQuantity Value.

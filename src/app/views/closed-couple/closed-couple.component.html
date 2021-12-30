@@ -50,9 +50,6 @@
                 coords="55,234,55,281,245,288,245,252" shape="poly" />
             </map>
           </maphilight>
-          <!-- <map>
-              <area shape="poly" id="blue" rel="green,red" href="#" coords="54 234/">
-            </map> -->
         </div>
 
         <div class="performance-box">
@@ -106,25 +103,13 @@
 
   <div class="performance-curve multi-box-curve" *ngIf="toggleDisplay === 'multiPurposePumps'">
     <div class="container">
-      <!-- <h3>Select Pump based on Performance Curves</h3> -->
       <div class="performance-box-outer">
         <div class="performance-box">
-          <!-- <div class="performance-buttons">
-            <span>Plastic Body:</span>
-            <a class=" active-bttn" href="#">AGCA074</a>
-            <a href="#">AGCA074</a>
-            <a href="#">AGCA074</a>
-            <a href="#">AGCA074</a>
-          </div> -->
 
           <div class="performance-buttons">
-            <!-- <span>Cast Iron Body:</span> -->
-            <!-- <a href="#">AGCA074</a>
-            <a href="#">AGCA074</a> -->
             <a href="javascript:void(0)" [ngClass]="eachBtn1 === btn4Active ? 'active-bttn' : ''"
               *ngFor="let eachBtn1 of fourPoleButtons" [routerLink]="['../', parentId, eachBtn1, 4]">{{ eachBtn1 }}</a>
           </div>
-          <!-- <img src="assets/images/banner/performance-1.jpg"> -->
           <strong class="poleType">4 Pole - 1450 RPM</strong>
           <maphilight id="imageMap3" [config]="config">
             <img [src]="graphImgSrc" class="mapper" [ngStyle]="{

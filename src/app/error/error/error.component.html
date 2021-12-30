@@ -1,15 +1,22 @@
 <div class="main-container error-wrapper" *ngIf="errorType;else pageNotFound">
   <div class="container">
     <div class="error-page text-centre">
-      <!-- <img src="assets/images/card-images/error.png"> -->
-      <h1>Sorry</h1>
-      <h3> {{errorText}}</h3>
+      <img src="assets/images/card-images/error.png">
+      <div class="error-msg">
+        <h1>Sorry</h1>
+        <h3> {{errorText}}</h3>
+      </div>
       <a href="javascript:void(0)" routerLink="/home">Go Home</a>
     </div>
   </div>
 </div>
 
 <ng-template #pageNotFound>
-  <p class="emptyCartMsg">404 PAGE NOT FOUND</p>
+  <div class="error-page text-centre">
+    <img src="assets/images/card-images/error.png">
+    <div class="error-msg">
+      <h1 class="emptyCartMsg">404 PAGE NOT FOUND</h1>
+    </div>
+  </div>
 </ng-template>
 

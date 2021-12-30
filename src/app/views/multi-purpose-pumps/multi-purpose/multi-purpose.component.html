@@ -1,6 +1,5 @@
 <div class="main-container surface-page">
   <div class="container">
-    <!-- <h2>Multi Purpose Pumps</h2> -->
   </div>
 
   <div class="breadcrum">
@@ -16,8 +15,6 @@
         <div class="pumps-sec" *ngFor="let eachSubCategory of subCategories">
           <a href="javascript:void(0)" (click)="routeToPage(eachSubCategory?.title, eachSubCategory?.id, eachSubCategory?.category_id)" style="text-decoration:none">{{eachSubCategory?.title| titlecase}}</a>
         </div>
-        <!-- <div class="pumps-sec active-pump"><a href="javascript:void(0)">Close Coupled Pump</a></div>
-        <div class="pumps-sec"><a href="javascript:void(0)">Bare Shaft Pump</a></div> -->
       </div>
     </div>
   </div>

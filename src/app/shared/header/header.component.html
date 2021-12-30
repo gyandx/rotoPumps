@@ -71,10 +71,6 @@
           </ul>
         </div>
         <div class="right-header" *ngIf="headerButton">
-          <!-- <div class="cart">
-            <a href="javascript:void(0)" (click)="gotoCart()"><img src="assets/images/icons/cart.png" /></a><span
-              *ngIf="cartItemsQuantity != 0">{{ cartItemsQuantity }}</span>
-          </div> -->
           <div class="cart cart-wrapper2">
             <a href="javascript:void(0)" (click)="gotoCart()"><img src="assets/images/icons/cart.png" />
               <span class="cart-title">Cart</span>
@@ -111,8 +107,6 @@
       </div>
       <div class="modal-body">
         <div class="address-row">
-          <!-- <h3>Post Your Enquiry</h3> -->
-
           <form [formGroup]="dealershipForm">
             <div class="row">
               <div class="col-md-6">
@@ -272,7 +266,6 @@
         <button type="button" class="blue-button" (click)="addDealer(dealershipForm)">
           Submit
         </button>
-        <!-- <button type="button" class="blue-button" #btnClose (click)="resetForm()" data-dismiss="modal">Close</button> -->
       </div>
     </div>
   </div>

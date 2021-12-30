@@ -81,16 +81,6 @@
           [ngStyle]="{ display: spares.length <= 0 ? 'block' : 'none' }"
         >
           {{ msgString }}
-          <!-- <div style="margin-top: 16px">
-            <p>
-              You can visit the site for more information:-
-              <a
-                href="https://rotopumps.com.au/retrofit-spare-parts/"
-                target="blank"
-                >Retrofit parts</a
-              >
-            </p>
-          </div> -->
         </div>
         <div
           class="cart border-grey"
@@ -173,10 +163,6 @@
                   </h3>
                 </div>
 
-                <!-- <div class="mid-price">
-                <span>{{eachProduct?.spareQuantity}} x $ {{eachProduct?.productPrice}}</span>
-              </div> -->
-
                 <div class="right-price">
                   <h3>
                     {{
@@ -200,17 +186,6 @@
                   <h3>Total<br />(In AUD)</h3>
                   <h3>{{ subTotal | currency }}</h3>
                 </div>
-                <!-- <div class="left-price-spare">
-                <h3>Sub Total</h3>
-                <h3>{{subTotal | currency}}</h3>
-              </div> -->
-                <!-- <div class="left-price">
-                <h3>Sub Total</h3>
-              </div>
-
-              <div class="right-price">
-                <h3>{{subTotal | currency}}</h3>
-              </div> -->
               </div>
               <button>
                 <a href="javascript:void(0)" (click)="addToCart()"
@@ -218,16 +193,6 @@
                 >
               </button>
             </div>
-            <!-- <div style="margin-top: 16px;" [ngStyle]="{ display: spares.length > 0 ? 'block' : 'none' }">
-              <p>
-                You can visit the site for more information:-
-                <a
-                  href="https://rotopumps.com.au/retrofit-spare-parts/"
-                  target="blank"
-                  >Retrofit parts</a
-                >
-              </p>
-            </div> -->
           </div>
         </div>
       </div>

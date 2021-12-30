@@ -77,14 +77,6 @@ export class SignInComponent implements OnInit {
       this.apiService.login(form.value).subscribe(
         (res) => {
           if (res[`code`] === 200) {
-            // if (localStorage.getItem(`id`) !== res[`user`].id){ /* if signIn successful then check the localStorage UserId and
-            //                                                         response userId is same or not */
-            //   localStorage.clear(); // if not same then clear localStorage
-            // }
-            // if (sessionStorage.getItem(`id`) !== res[`user`].id){ /* if signIn successful then check the sessionStorage UserId and
-            //                                                         response userId is same or not */
-            //   sessionStorage.clear(); // if not same then clear sessionStorage
-            // }
             this.authService.loginData(res); // calling authService loginData to store info in localStorage.
             if (this.signInType === 'cart') {
               this.route.navigate(['/cart']); // if queryParams if from cart navigate to cart

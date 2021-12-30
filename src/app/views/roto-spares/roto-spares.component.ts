@@ -59,7 +59,6 @@ export class RotoSparesComponent implements OnInit {
     })).subscribe(res => {
       if (res.length > 0) {
         this.productData = res; // assign pump categories except spares in product data
-        // console.log(this.productData, 'data')
         if (this.productData.length) {
           this.checkEmptyData('product');
         } else {
@@ -87,7 +86,6 @@ export class RotoSparesComponent implements OnInit {
 
   // function used to get Pump subCategory by passing pumpCategory Id
   getPumpType(pumpId: string): void {
-    // this.checkEmptyData('pumpModel');
     this.parentId = pumpId;
     this.pumpSubType = '';
     this.pumpModel = '';
@@ -151,16 +149,13 @@ export class RotoSparesComponent implements OnInit {
       pipe(map(res => {
         if (res[`code`] === 200) {
           this.productsDetail = res[`product`];
-          // console.log('product0', this.productsDetail)
           this.productId = this.productsDetail[0].details.id;
           this.productPole = this.productsDetail[0].details.pole;
           this.spares = [];
           const newSpares = [];
-          // console.log(this.productsDetail, 'detials');
           if (this.productsDetail.length) {
             this.productsDetail[0].spares.forEach(eachSpare => {
               if (eachSpare.productPrice !== null && eachSpare.productPrice !== 0) {
-                // eachSpare[`motorVolt`] = this.productsDetail[0].motor.volt;
                 switch (eachSpare.productName) {
                   case 'Rotor':
                     eachSpare.imgSrc = 'assets/images/SparesImg/rotor.jpg';
@@ -280,7 +275,6 @@ export class RotoSparesComponent implements OnInit {
         }
         return this.spares;
       })).subscribe(res => {
-        // console.log(this.spares, 'spares');
         this.spares = res;
         this.spares.sort((a, b) => a.productName.localeCompare(b.productName));
         if (this.spares.length >= 0) {
@@ -288,34 +282,6 @@ export class RotoSparesComponent implements OnInit {
         }
       });
   }
-
-  // getPumpDetails(pumpModelIndex: string): void{
-  //   const pumpModelData = this.pumpModels[+pumpModelIndex];
-  //   this.apiService.rotoSpareDetails(pumpModelData.code, pumpModelData.pole).subscribe(
-  //     res => {
-  //       if (res[`code`] === 200){
-  //         this.productsDetail = res[`product`];
-  //         this.productId = this.productsDetail[0].details.id;
-  //         this.singleProductDetail = this.productsDetail[0].details;
-  //         this.productPole = this.productsDetail[0].details.pole;
-  //         this.spares = [];
-  //         const newSpares = [];
-  //         this.productsDetail[0].spares.forEach(eachSpare => {
-  //           if (eachSpare.productPrice !== null && eachSpare.productPrice !== 0) {
-  //             eachSpare[`motorVolt`] = this.productsDetail[0].motor.volt;
-  //             // console.log(eachSpare, 'spare')
-  //             newSpares.push(eachSpare);
-  //           }
-  //         });
-  //         if (newSpares.length < 0 ){
-  //           this.msgString = 'No data found';
-  //         }else{
-  //           this.spares.push(...newSpares);
-  //         }
-  //       }
-  //     }
-  //   )
-  // }
 
   // function to decrement spareQuantity
   consumptionSpareDecrement(spareCount): void {
@@ -326,15 +292,8 @@ export class RotoSparesComponent implements OnInit {
           this.productsInCart.splice(index, 1);
         }
       });
-      // const indexNum = this.productsInCart.indexOf(res => {
-      //   // tslint:disable-next-line: no-unused-expression
-      //   ((res.productName === this.spares[spareCount].productName) && (res.motorVolt === this.spares[spareCount].motorVolt));
-      // });
-      // console.log(indexNum);
     }
-    // this.productsInCart.splice(spareCount, 1);
     this.findGrandTotal();
-    // console.log(this.productsInCart);
   }
 
   // function to increment spareQuantity
@@ -378,12 +337,8 @@ export class RotoSparesComponent implements OnInit {
       }
       // console.log('spare', sparesToAdd);
     });
-    // if (localStorage.getItem('id')) { // check if userId is present or not in localStorage
     if (sessionStorage.getItem('id')) { // check if userId is present or not in sessionStorage
-      // tslint:disable-next-line: max-line-length
-      // if (localStorage.getItem('cartId') === null) { // check if cartId is present or not in localStorage(if not present the value is null)
       if (sessionStorage.getItem('cartId') === null) { // check if cartId is present or not in sessionStorage(if not present the value is null)
-        // tslint:disable-next-line: max-line-length
         if (sessionStorage.getItem('cart') === null) { // check if cart is present or not in sessionStorage(if not present the value is null)
           const cartArray = []; // declaring an empty array
           cartArray.push(...sparesToAdd); // pushing sparesToAdd in cartArray
@@ -398,7 +353,6 @@ export class RotoSparesComponent implements OnInit {
           this.apiService.addToCart(cartData).subscribe(res => {
             if (res[`code`] === 200) {
               const cartItems = JSON.parse(res[`cart_details`].cart);
-              // localStorage.setItem('cartId', window.btoa(res[`cart_details`].id));
               sessionStorage.setItem('cartId', window.btoa(res[`cart_details`].id));
               this.toaster.success('Successfully Added To Cart');
               this.apiService.totalItemsInCart();
@@ -511,7 +465,6 @@ export class RotoSparesComponent implements OnInit {
       this.apiService.addToCart(cartData).subscribe(res => {
         if (res[`code`] === 200) {
           cartItems = JSON.parse(res[`cart_details`].cart);
-          // localStorage.setItem('cartId', window.btoa(res[`cart_details`].id));
           sessionStorage.setItem('cartId', window.btoa(res[`cart_details`].id));
           this.toaster.success('Successfully Added To Cart');
           this.apiService.totalItemsInCart();

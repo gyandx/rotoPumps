@@ -26,20 +26,7 @@
             <div class="cart-row cart-row-products" *ngFor="let eachProduct of products; let productCount=index">
               <div class="left-cart">
                 <div class="cart-pic"> <img [src]="eachProduct.img" height="40px" width="40px"></div>
-                <!-- <span>
-                  <strong>{{eachProduct?.code}}</strong>
-                  <p>{{eachProduct?.description}}</p>
-                  <p *ngIf="eachProduct?.driveType !== '' ">{{eachProduct?.driveType}}</p>
-                </span> -->
               </div>
-
-              <!-- <div class="mid-cart">
-                <div class="number">
-                  <span class="minus" (click)="decrementProductQuantity(productCount)">-</span>
-                  <input type="text" [value]="eachProduct?.productQuantity" appNumOnly disabled />
-                  <span class="plus" (click)="incrementProductQuantity(productCount)">+</span>
-                </div>
-              </div> -->
 
               <div class="right-cart">
                 <span>
@@ -76,10 +63,6 @@
                 </div>
               </ng-template>
 
-              <!-- <div class="mid-price">
-                <span>{{eachProduct?.productQuantity}} x $ {{eachProduct?.discountPrice > 0 ? eachProduct?.discountPrice : eachProduct?.price}}</span>
-              </div> -->
-
               <div class="right-price">
                 <h3>$ {{eachProduct?.productQuantity * (eachProduct?.discountPrice > 0 ? eachProduct?.discountPrice : eachProduct?.price)}}</h3>
               </div>
@@ -103,38 +86,10 @@
                   <h3>Dealer Discount (10%) <br /> (In AUD)</h3>
                   <h3>${{finalPrice + gstPrice - dealerDiscountAmount}}</h3>
                 </div>
-                <!-- <div class="left-price">
-                  <h3>Sub Total</h3>
-                </div>
-
-                <div class="right-price">
-                  <h3>$ {{grandTotal}}</h3>
-                </div> -->
               </div>
-              <!-- <div class="price-row total-price" style="border-top:none;">
-                <div class="left-price">
-                  <h3>Shipping & Handling</h3>
-                </div>
-
-                <div class="right-price">
-                  <h3>$ {{shippingCharges}}</h3>
-                </div>
-              </div>
-
-              <div class="price-row total-price" style="border-top:none;">
-                <div class="left-price">
-                  <h3>Total (including 10% GST)</h3>
-                </div>
-
-                <div class="right-price">
-                  <h3>$ {{finalPrice + gstPrice}}</h3>
-                </div>
-              </div> -->
             </div>
 
             <div class="sign-button-sec" *ngIf="!toggleBtn">
-              <!-- <button><a href="javascript:void(0)" (click)="onContinue('sign-up')">Sign-Up To Continue</a></button>
-              <button><a href="javascript:void(0)" (click)="onContinue('sign-in')">Sign-In To Continue</a></button> -->
               <button><a class="tooltip" (click)="onContinue('sign-in')">Continue
                 <span
                 class="tooltiptext">Click here to sign-in</span>
@@ -161,10 +116,6 @@
 
       <!-- Modal content-->
       <div class="modal-content">
-        <!-- <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-        </div> -->
         <div class="modal-body">
           <div class="delete-txt">
             <div class="remove-sec">Are you sure to remove this item?

@@ -18,8 +18,6 @@ export class AuthService implements OnDestroy {
 
   // login function to store login data from login api
   loginData(userDetails): void{
-    // localStorage.setItem('token', userDetails[`access_token`]);
-    // localStorage.setItem('id', window.btoa(userDetails[`user`].id));
     sessionStorage.setItem('token', userDetails[`access_token`]);
     sessionStorage.setItem('id', window.btoa(userDetails[`user`].id));
     sessionStorage.setItem('currentUser', window.btoa(userDetails[`user`].name));
@@ -50,12 +48,10 @@ export class AuthService implements OnDestroy {
 
   // function to reflect userName from storage or from getUserDetails api.
   private updateData(): void{
-    // if (localStorage.getItem('id')){
     if (sessionStorage.getItem('id')){
       if (sessionStorage.getItem('currentUser')){
         this.userName.next(window.atob(sessionStorage.getItem('currentUser')));
       }else {
-        // this.subscribe = this.apiService.getUserDetails(window.atob(localStorage.getItem('id'))).subscribe(res => {
         this.subscribe = this.apiService.getUserDetails(window.atob(sessionStorage.getItem('id'))).subscribe(res => {
           if (res[`code`] === 200){
             sessionStorage.setItem('currentUser', window.btoa(res[`details`].name));
@@ -67,16 +63,6 @@ export class AuthService implements OnDestroy {
       this.userName.next('');
     }
   }
-
-  // getFooterData(page: string): any {
-  //   if (this.footerPages.length){
-  //     console.log('page', page);
-  //     return this.footerPages.filter(data => data.type === page);
-  //   }else{
-  //     return this.footerPages;
-  //   }
-  // }
-
 
   // to unsubscribe the subscriptions
   ngOnDestroy(): void {

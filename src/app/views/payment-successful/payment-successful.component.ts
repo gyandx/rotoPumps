@@ -21,10 +21,6 @@ export class PaymentSuccessfulComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.subscribe = this.apiService.orderDetails.subscribe(res => {
-    //   this.orderData = res; // getting orderDetails from orderDetails(behaviouralSubject)
-    //   this.getUserEmail();
-    // });
     this.activatedRoute.queryParams.subscribe(orderId => {
       this.orderId = orderId[`orderId`];
       if (this.orderId){
@@ -50,7 +46,6 @@ export class PaymentSuccessfulComponent implements OnInit, OnDestroy {
       if (res[`code`] === 200){
         this.userEmail = res[`details`].email;
       }
-      // console.log(this.orderData, 'order');
     });
   }
 

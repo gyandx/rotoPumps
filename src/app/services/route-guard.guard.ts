@@ -15,7 +15,6 @@ export class RouteGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     // to guard the route if user-id present the allow entry to particular component otherwise navigate to sign-in.
-    // if (localStorage.getItem('id')){
     if (sessionStorage.getItem('id')){
       return true;
     }else{

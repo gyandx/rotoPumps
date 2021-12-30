@@ -33,8 +33,6 @@
               </div>
               <div class="card-title">
                 <h3>Retrofit Spares</h3>
-                <!-- <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis
-                  enim velit mollit. </p> -->
               </div>
             </a>
             <a style="cursor: pointer; text-align: center; display: block" [routerLink]="['/retrofit-spare-parts']">Read
@@ -54,7 +52,7 @@
                   <div class="item active">
                     <div class="row">
                       <div class="col-md-3" *ngFor="let eachTrendingProduct of mostTrendingProducts">
-                        <a [routerLink]= "eachTrendingProduct?.routePath">
+                        <a [routerLink]= "eachTrendingProduct?.routePath" [queryParams]="{model: eachTrendingProduct?.code}">
                           <div class="thumbnail">
                             <div class="image-cover">
                               <img [src]= "eachTrendingProduct?.imgSrc" alt="Slide1" />
@@ -72,12 +70,6 @@
                     class="fa fa-chevron-left fa-2x"></i></a>
                 <a class="right carousel-control" href="#productCarousel" data-slide="next"><i
                     class="fa fa-chevron-right fa-2x"></i></a>
-
-                <!-- <ol class="carousel-indicators">
-                        <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#productCarousel" data-slide-to="1"></li>
-                        <li data-target="#productCarousel" data-slide-to="2"></li>
-                </ol> -->
               </div>
               <!-- End Carousel -->
             </div>

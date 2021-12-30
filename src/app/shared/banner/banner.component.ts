@@ -121,9 +121,6 @@ export class BannerComponent implements OnInit, OnDestroy {
       // if form in invalid then call validateAllfields function
     } else {
       const reqBody = this.enquiryForm.getRawValue();
-      // this.apiService.addEnquiry(reqBody).subscribe((res) => {
-        
-      // });
       $('#changeModal').modal('hide');
       this.router.navigate(['/thank-you'], { queryParams: { type: 'enquiry'} });
     }

@@ -1,13 +1,6 @@
 <div class="main-container surface-page common-inner-card">
-  <!-- <div class="full-banner">
-    <img src="assets/images/banner/top-banner.jpg">
-    <div class="container">
-      <h2>Surface Agri Pumps</h2>
-    </div>
-  </div> -->
 
   <div class="container">
-    <!-- <h2>Surface Agri Pumps</h2> -->
   </div>
 
 
@@ -21,23 +14,16 @@
   <div class="pumps-sel-sec">
     <div class="container">
       <div class="common-title">
-       <h2> {{defaultSelected.name}}</h2>
+        <h2> {{defaultSelected.name}}</h2>
       </div>
 
       <div class="pumps-sel">
 
         <div class="pumps-sec" *ngFor="let eachSubSpare of retroSparesDetails">
-          <a href="javascript:void(0)"  [routerLink]="['/retroSpares', eachSubSpare?.id]" style="text-decoration:none">{{eachSubSpare?.title}}</a>
+          <a href="javascript:void(0)" [routerLink]="['/retroSpares', eachSubSpare?.id]"
+            style="text-decoration:none">{{eachSubSpare?.title}}</a>
         </div>
       </div>
     </div>
   </div>
-
-
-  <!-- <div class="surface-banner-sec">
-    <div class="container">
-      <div class="surface-banner-inner">
-        <img src="assets/images/banner/surface-banner.jpg">
-      </div>
-    </div>
-  </div> -->
+</div>

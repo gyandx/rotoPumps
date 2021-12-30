@@ -81,12 +81,6 @@
           [ngStyle]="{ display: spares.length <= 0 ? 'block' : 'none' }"
         >
           {{ msgString }}
-          <!-- <div style="margin-top: 16px">
-            <p>You can visit the site for more information:-
-              <a href="https://rotopumps.com.au/retrofit-spare-parts/"
-              target="blank">Retrofit parts</a>
-            </p>
-          </div> -->
         </div>
         <div
           class="cart border-grey"
@@ -94,33 +88,6 @@
         >
           <h3 class="price-title">Select Spares
             <span style="color: #BC8129; font-size: 15px;">(plus GST 10%)</span></h3>
-          <!-- <div class="progress-row" *ngFor="let eachSpare of spares; let spareCount=index">
-            <div class="left-progress">
-              <div class="progress-pic"> <img [src]="eachSpare?.imgSrc"></div>
-            </div>
-
-            <div class="right-progress">
-              <div class="top-progress">
-                <strong>{{eachSpare?.productName}} </strong>
-                <h3>{{eachSpare?.productPrice | currency}}</h3>
-              </div>
-
-              <div class="mid-progress" style="align-items: end">
-                <div>
-                <p *ngIf=" eachSpare?.productDesc !== null && eachSpare?.productDesc !== ''; else productDesc"> <small>PRODUCT ID : {{eachSpare?.productDesc}} </small> </p>
-                <ng-template #productDesc>
-                  <p> <small>PRODUCT ID : NA </small> </p>
-                </ng-template>
-                </div>
-
-                <div class="number">
-                  <span class="minus" (click)="consumptionSpareDecrement(spareCount)" [ngStyle]="{'pointer-events': eachSpare?.spareQuantity <= 0?'none':'auto'}">-</span>
-                  <input type="text" [value]="eachSpare?.spareQuantity"  disabled  />
-                  <span class="plus" (click)="consumptionSpareIncrement(spareCount)">+</span>
-                </div>
-              </div>
-            </div>
-          </div> -->
           <div
             class="progress-row progress-row-spare"
             *ngFor="let eachSpare of spares; let spareCount = index"
@@ -164,13 +131,6 @@
               </div>
 
               <div class="mid-progress" style="display: none;">
-                <!-- <p> <small style="display: block;">PRODUCT ID : {{eachSpare?.code}} </small>
-                 <small>ORIGINAL PRODUCT CODE : {{eachSpare?.original_part_code}} </small> </p> -->
-                <!-- <div class="number">
-                  <span class="minus" (click)="consumptionSpareDecrement(spareCount)" [ngStyle]="{'pointer-events': eachSpare?.spareQuantity <= 0?'none':'auto'}">-</span>
-                  <input type="text" [value]="eachSpare?.quantity"  disabled  />
-                  <span class="plus" (click)="consumptionSpareIncrement(spareCount)">+</span>
-                </div> -->
               </div>
             </div>
           </div>
@@ -189,14 +149,9 @@
               </h3>
             </div>
 
-            <!-- <div class="mid-price">
-              <span>{{eachProduct?.quantity}} x $ {{eachProduct?.price}}</span>
-            </div> -->
-
             <div class="right-price">
               <h3>
                 {{ eachProduct?.price * eachProduct?.quantity | currency }}
-                <!-- <span> (excluding GST 10%)</span> -->
               </h3>
             </div>
           </div>
@@ -214,25 +169,11 @@
               <h3>Total <br/>(In AUD)</h3>
               <h3>{{ subTotal | currency }}</h3>
             </div>
-            <!-- <div class="left-price-spare">
-              <h3>Sub Total</h3>
-              <h3>{{subTotal | currency}}</h3>
-            </div> -->
-
-            <!-- <div class="right-price">
-              <h3>{{subTotal | currency}}</h3>
-            </div> -->
           </div>
           <button>
             <a routerLink='/comingSoon'>ADD TO CART</a>
           </button>
         </div>
-        <!-- <div style="margin-top: 16px;" [ngStyle]="{ display: spares.length > 0 ? 'block' : 'none' }">
-          <p>You can visit the site for more information:-
-            <a href="https://rotopumps.com.au/retrofit-spare-parts/"
-            target="blank">Retrofit parts</a>
-          </p>
-        </div> -->
       </div>
     </div>
   </div>

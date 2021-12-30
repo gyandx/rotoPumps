@@ -23,10 +23,6 @@ export class MyProfileComponent implements OnInit {
   ngOnInit(): void {
     this.createPersonalDataForm();
     this.createPasswordUpdateForm();
-    // if (localStorage.getItem('id')) {
-    //   this.userId = +window.atob(localStorage.getItem('id'));
-    //   this.getUserDetails(this.userId);
-    // }
     if (sessionStorage.getItem('id')) {
       this.userId = +window.atob(sessionStorage.getItem('id'));
       this.getUserDetails(this.userId);
@@ -111,7 +107,6 @@ export class MyProfileComponent implements OnInit {
             form.reset(); // function to reset form
           }
         }, err => {
-          // console.log(err, 'err');
           this.toaster.error('Current Password is incorrect');
         });
       } else {

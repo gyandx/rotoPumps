@@ -15,12 +15,4 @@ export class TextOnlyDirective {
     }
   }
 
-  // @HostListener('input', ['$event']) onInputChange(event): void {
-  //   const initalValue = this.el.nativeElement.value;
-  //   this.el.nativeElement.value = initalValue.replace(/[^A-Za-z ]/g, '');
-  //   if ( initalValue !== this.el.nativeElement.value) {
-  //     event.stopPropagation();
-  //   }
-  // }
-
 }

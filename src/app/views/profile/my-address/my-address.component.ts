@@ -23,9 +23,6 @@ export class MyAddressComponent implements OnInit, OnDestroy {
   constructor(private apiService: ApiService, private toaster: ToastrService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    // if (localStorage.getItem('id')) {
-    //   this.getAddressList(window.atob(localStorage.getItem('id')));
-    // }
     if (sessionStorage.getItem('id')) {
       this.getAddressList(window.atob(sessionStorage.getItem('id')));
     }
@@ -105,7 +102,6 @@ export class MyAddressComponent implements OnInit, OnDestroy {
     if (this.addressForm.controls[`state`].value !== null){
       this.addressForm.controls[`state`].setValue(null, {onlySelf: true});
       this.addressForm.controls[`city`].setValue(null, {onlySelf: true});
-      // this.addressForm.
     }
   }
 
@@ -236,7 +232,6 @@ export class MyAddressComponent implements OnInit, OnDestroy {
       }
 
       const addressUpdateData = {
-        // user_id: window.atob(localStorage.getItem('id')),
         user_id: window.atob(sessionStorage.getItem('id')),
         title: form.value.title,
         first_name: form.value.first_name,
@@ -253,7 +248,6 @@ export class MyAddressComponent implements OnInit, OnDestroy {
         this.apiService.addAddress(addressUpdateData).subscribe(res => {
           if (res[`code`] === 200) {
             this.toaster.success(res[`message`]);
-            // this.getAddressList(window.atob(localStorage.getItem('id')));
             this.getAddressList(window.atob(sessionStorage.getItem('id')));
             this.closeModal('update');
             this.addNewAddress = false;
@@ -265,7 +259,6 @@ export class MyAddressComponent implements OnInit, OnDestroy {
           this.apiService.updateAddress(addressUpdateData).subscribe(res => {
             if (res[`code`] === 200) {
               this.toaster.success(res[`message`]);
-              // this.getAddressList(window.atob(localStorage.getItem('id')));
               this.getAddressList(window.atob(sessionStorage.getItem('id')));
               this.closeModal('update');
             }

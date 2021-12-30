@@ -38,7 +38,6 @@
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <!-- <div class="modal-content" style="height: 80vh; overflow-y: scroll;"> -->
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">{{modalText}}</h5>
@@ -78,8 +77,6 @@
                 </div>
                 <div class="address-feild address2">
                   <label>Middle Name</label>
-                  <!-- <input type="text" placeholder="Middle Name" formControlName="middle_name"
-                  [ngClass]="(formControl?.middle_name?.invalid && (formControl?.middle_name?.touched || formControl?.middle_name?.dirty))? 'red' : (formControl?.middle_name?.valid && (formControl?.middle_name?.touched || formControl?.middle_name?.dirty)) ? 'green' : ''"> -->
                   <input type="text" placeholder="Middle Name" formControlName="middle_name">
                 </div>
 
@@ -120,7 +117,6 @@
                 [ngClass]="(formControl?.country?.invalid && (formControl?.country?.touched || formControl?.country?.dirty))? 'red' : (formControl?.country?.valid && (formControl?.country?.touched || formControl?.country?.dirty)) ? 'green' : ''">
                   <option *ngFor="let eachCountry of countryInfo; let countryCount = index" value="{{eachCountry?.name}}">{{eachCountry.name}}</option>
                 </select>
-                <!-- <p class="validation-error" *ngIf="formControl?.country?.invalid && (formControl?.country?.touched || formControl?.country?.dirty)">Select Country From List</p> -->
               </div>
 
               <div class="address-feild">
@@ -169,10 +165,6 @@
 
       <!-- Modal content-->
       <div class="modal-content">
-        <!-- <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-        </div> -->
         <div class="modal-body">
           <div class="delete-txt">
             <div class="remove-sec">Are you sure to delete this ?<p></p>

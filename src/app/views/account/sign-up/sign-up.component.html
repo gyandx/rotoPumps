@@ -1,14 +1,9 @@
 <div class="homepage" style="background: #fff">
-  
-    
-      
   <div class="sign-up">
     <div class="sign-up-form signUpPage">
       <form [formGroup]="signUpForm" (ngSubmit)="submitSignUpForm(signUpForm)">
         <div class="sign-up-title">
-          
           <h2>Create Account</h2>
-        
         </div>
 
         <div class="sign-field" [ngClass]="
@@ -198,7 +193,6 @@
             Confirm Password Must Be of min 6 characters
           </p>
         </ng-container>
-        <!-- <p class="error-msg" *ngIf="formControl?.confirm_password?.invalid && (formControl?.confirm_password?.touched || formControl?.confirm_password?.dirty)">Confirm Password Is Required</p> -->
 
         <button type="submit">Sign Up</button>
         <div class="already-acc">
@@ -207,9 +201,5 @@
         </div>
       </form>
     </div>
-
-    <!-- <div class="sign-img">
-    <img src="assets/images/card-images/Signup_Image.png">
-  </div> -->
   </div>
 </div>

@@ -15,17 +15,4 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this.year = new Date().getFullYear();
   }
-
-  // nagivateToFooter(page: string){
-  //   switch (page){
-  //     case 'About Us':
-  //       this.router.navigate(['/aboutUs'], {queryParams: {page: 'About Us'}});
-  //       break;
-  //     case 'Privacy Policy':
-  //       this.router.navigate(['/privacyPolicy'], {queryParams: {page: 'Privacy Policy'}});
-  //       break;
-  //     default:
-  //   }
-  // }
-
 }

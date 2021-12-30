@@ -21,11 +21,6 @@
             }} </a
           ><span>/</span>{{ productId }}
         </p>
-        <!-- <div class="download-section">
-          <a href="javascript:void(0)">
-            <img src="assets/images/icons/down.png" /> Download Catalog</a
-          >
-        </div> -->
       </div>
     </div>
   </div>
@@ -45,32 +40,7 @@
 
             <div id="carousel-bounding-box">
               <div id="myCarousel" class="carousel slide">
-                <!-- main slider carousel items -->
-                <!-- <div class="carousel-inner zoom-slider">
-                  <div class="active item">
-                    <lib-ngx-image-zoom class="img-responsive"
-                    [thumbImage]=selectedProductImg
-                    [fullImage]=selectedProductImg
-                    [magnification]="1"
-                    zoomMode='hover'
-                  ></lib-ngx-image-zoom>
-                  </div>
-                </div> -->
                 <div class="carousel-inner">
-                  <!-- <div class="active item" data-slide-number="0">
-                    <img src="assets/images/card-images/surfaceAgri_closedCouple/3DRender.png" class="img-responsive">
-                  </div>
-                  <div class="item" data-slide-number="1">
-                    <img src="assets/images/card-images/surfaceAgri_closedCouple/3DRender-1.png" class="img-responsive">
-                  </div>
-                  <div class="item" data-slide-number="2">
-                    <img src="assets/images/card-images/surfaceAgri_closedCouple/3DRender-2.png"
-                    class="img-responsive">
-                  </div> -->
-                  <!-- <div class="active item" (mouseenter)="imageZoom('myimage', 'myresult')"
-                    (mouseleave)="imageZoomOut($event)" data-slide-number="imageCount">
-                    <img id="myimage" [src]="selectedProductImg" class="img-responsive">
-                  </div> -->
                   <div
                     class="item"
                     [ngClass]="i == carouselIndexVal ? 'active' : ''"
@@ -88,7 +58,6 @@
                       (click)="open(i)"
                     />
                   </div>
-                  <!-- <div id="myresult" class="img-zoom-result"></div> -->
                 </div>
                 <!-- <main slider carousel nav controls> -->
                 <a
@@ -149,30 +118,8 @@
         </div>
 
         <div class="product-description">
-          <!-- <h2>{{selectedProduct?.details?.code}}</h2> -->
           <h2>{{ selectedProduct?.details?.description }}</h2>
           <ng-container *ngIf="!toggleMotorOption">
-            <!-- <div class="product-row" *ngIf="!toggleOption">
-              <div class="prod-title">Motor</div>
-
-              <div class="volt-box" style="cursor: pointer">
-                <ng-container
-                  *ngFor="
-                    let eachMotor of productsDetail;
-                    let voltCount = index
-                  "
-                >
-                </ng-container>
-
-                <span
-                  *ngIf="selectedProduct?.motor?.volt !== null"
-                  [ngClass]="selectedProduct?.motor?.volt !== null ? 'active-volt' : ''"
-                  (click)="changeMotorVoltage(voltCount)"
-                  >{{ selectedProduct?.motor?.volt }}</span
-                >
-              </div>
-            </div> -->
-
             <div class="product-row">
               <div
                 *ngIf="toggleDropdown"
@@ -198,26 +145,6 @@
                 </select>
                 <i class="fas fa-hand-point-left"></i>
               </div>
-
-              <!-- <div class="prod-specification">
-                <div
-                  class="dropdown custom-dropdown"
-                >
-                  <button
-                    class="btn btn-primary dropdown-toggle"
-                    type="button"
-                    data-toggle="dropdown"
-                  >
-                    Drive Type/Motor <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li *ngFor="let eachData of toggleSelectorDropdown" (click)="onMotorChange(eachData)">
-                      <a href="javascript:void(0)"
-                        >{{eachData}}</a>
-                    </li>
-                  </ul>
-                </div>
-              </div> -->
             </div>
           </ng-container>
           <div class="productTab">
@@ -335,38 +262,6 @@
             <ng-template #sealing>
               <span>Sealing: NA</span>
             </ng-template>
-
-            <!-- <ng-container *ngIf="tableDetails.length > 0 && toggleOption; else flowHead">
-              <p>
-                <span *ngIf="tableIndex ; else Head">Head: {{ tableIndex }} m <span *ngIf="tableDetails.length > 3">/ {{tableDetails[3]}}</span> </span>
-                <ng-template #Head>
-                  <span>Head: NA</span>
-                </ng-template>
-              </p>
-              <p>
-                <span *ngIf="tableDetails[2]; else absPower">Absorbed Power: {{ tableDetails[2] }} KW</span>
-              </p>
-              <ng-template #absPower>
-                <span>Absorbed Power: NA</span>
-              </ng-template>
-            </ng-container> -->
-            <!-- <ng-template #flowHead>
-              <p>
-                <span *ngIf="selectedProduct?.details?.head;else selectedHead">Head: {{ selectedProduct?.details?.head }} m</span>
-                <ng-template #selectedHead>
-                  <span>Head: NA</span>
-                </ng-template>
-                <span *ngIf="selectedProduct?.details?.flow; else flow">Flow/Capacity: {{ selectedProduct?.details?.flow }} LPS
-                  <span *ngIf="selectedProduct?.details?.capacity">/ {{selectedProduct?.details?.capacity}}</span>
-                </span>
-                <ng-template #flow>
-                  <span>Flow/Capacity: NA</span>
-                </ng-template>
-              </p>
-            </ng-template> -->
-            <!-- <p [ngStyle]="{'display': this.toggleDetails ? 'none' : 'block'}">
-              <span>{{defaultMsg}}</span>
-            </p> -->
             <ng-container *ngIf="toggleDetails">
               <p *ngIf="selectedProduct?.details?.rotor !== null; else rotor">
                 <span>Rotor: {{ selectedProduct?.details?.rotor }}</span>
@@ -384,21 +279,7 @@
                 <ng-template #stator>
                   <span>Stator: NA</span>
                 </ng-template>
-                <!-- <span *ngIf="selectedProduct?.details?.pole !== null; else pole">Pole: {{ selectedProduct?.details?.pole }}</span>
-                <ng-template #pole>
-                  <span>Pole: NA</span>
-                </ng-template> -->
               </p>
-              <!-- <p>
-                <span *ngIf="selectedProduct?.details?.whp_moc !== null; else moc">Housing Part: {{ selectedProduct?.details?.whp_moc }}</span>
-                <ng-template #moc>
-                  <span>Housing Part: NA</span>
-                </ng-template>
-                <span *ngIf="selectedProduct?.details?.sealing;else sealing">Sealing: {{ selectedProduct?.details?.sealing }}</span>
-                <ng-template #sealing>
-                  <span >Sealing: NA</span>
-                </ng-template>
-              </p> -->
               <p>
                 <span *ngIf="selectedProduct?.details?.inlet; else inlet"
                   >Inlet: {{ selectedProduct?.details?.inlet }};</span
@@ -415,152 +296,9 @@
               </p>
             </ng-container>
 
-            <!--Static data are provided for now being-->
-            <!-- <p *ngIf="toggleDieselEngine">
-              <span>Engine Speed: 1800 rpm</span>
-              <span>Engine kw: {{engineKw}}</span>
-            </p> -->
             <p *ngIf="toggleDieselEngine">
               V-Drive & Centrifugal Clutch included
             </p>
-
-            <!-- <ng-container *ngIf="tableDetails.length > 0 && toggleOption">
-              <p>
-                <span *ngIf="tableDetails[0]; else LPH">LPS: {{ tableDetails[0] }}</span>
-                <ng-template #LPH>
-                  <span>LPS: NA</span>
-                </ng-template>
-                <span *ngIf="tableDetails[1];else GPH">GPH: {{ tableDetails[1] }}</span>
-                <ng-template #GPH>
-                  <span>GPH: NA</span>
-                </ng-template>
-              </p>
-              <p>
-                <span *ngIf="tableDetails[2]; else inlet">Abs Power: {{ tableDetails[2] }} KW</span>
-              </p>
-              <ng-template>
-                <span #inlet>Abs Power: NA</span>
-              </ng-template>
-            </ng-container> -->
-            <!-- <p *ngIf="selectedProduct?.details?.pump_lantern && selectedProduct?.details?.pump_lantern_price; else pump_latern">
-              <span>Pump Lantern: {{ selectedProduct?.details?.pump_lantern }}</span>
-              <span>Pump Lantern Price: {{ selectedProduct?.details?.pump_lantern_price }}</span>
-            </p>
-            <ng-template #pump_latern>
-              <p>
-                <span>Pump Lantern: NA</span>
-                <span>Pump Lantern Price: NA</span>
-              </p>
-            </ng-template>
-            <p *ngIf="selectedProduct?.details?.foot && selectedProduct?.details?.foot_price;else food_price">
-              <span>Foot: {{ selectedProduct?.details?.foot }}</span>
-              <span>Foot Price: {{ selectedProduct?.details?.foot_price }}</span>
-            </p>
-            <ng-template #food_price>
-              <p>
-                <span>Foot: NA</span>
-                <span>Foot Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.tie_rod && selectedProduct?.details?.tie_rod_price;else tie_rod">
-              <span>Tie Rod: {{ selectedProduct?.details?.tie_rod }}</span>
-              <span>Tie Rod Price: {{ selectedProduct?.details?.tie_rod_price }}</span>
-            </p>
-            <ng-template #tie_rod>
-              <p>
-                <span>Tie Rod: NA</span>
-                <span>Tie Rod Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.pump_housing && selectedProduct?.details?.pump_housing_price;else pump_housing">
-              <span>Pump Housing: {{ selectedProduct?.details?.pump_housing }}</span>
-              <span>Pump Housing Price: {{ selectedProduct?.details?.pump_housing_price }}</span>
-            </p>
-            <ng-template #pump_housing>
-              <p>
-                <span>Pump Housing: NA</span>
-                <span>Pump Housing Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.end_cover && selectedProduct?.details?.end_cover_price;else end_cover">
-              <span>End Cover: {{ selectedProduct?.details?.end_cover }}</span>
-              <span>End Cover Price: {{ selectedProduct?.details?.end_cover_price }}</span>
-            </p>
-            <ng-template #end_cover>
-              <p>
-                <span>End Cover: NA</span>
-                <span>End Cover Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.seal_plate && selectedProduct?.details?.seal_plate_price; else seal_plate_price">
-              <span>Seal Plate: {{ selectedProduct?.details?.seal_plate }}</span>
-              <span>Seal Plate Price: {{ selectedProduct?.details?.seal_plate_price }}</span>
-            </p>
-            <ng-template #seal_plate_price>
-              <p>
-                <span>Seal Plate: NA</span>
-                <span>Seal Plate Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.mech_seal_housing && selectedProduct?.details?.mech_seal_housing_price;else mech_seal_housing">
-              <span>Mech Seal Housing: {{ selectedProduct?.details?.mech_seal_housing }}</span>
-              <span>Mech Seal Housing Price: {{ selectedProduct?.details?.mech_seal_housing_price }}</span>
-            </p>
-            <ng-template #mech_seal_housing>
-              <p>
-                <span>Mech Seal Housing: NA</span>
-                <span>Mech Seal Housing Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.coupling_rod && selectedProduct?.details?.coupling_rod_price;else coupling_rod">
-              <span>Coupling Rod: {{ selectedProduct?.details?.coupling_rod }}</span>
-              <span>Coupling Rod Price: {{ selectedProduct?.details?.coupling_rod_price }}</span>
-            </p>
-            <ng-template #coupling_rod>
-              <p>
-                <span>Coupling Rod: NA</span>
-                <span>Coupling Rod Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.ball_bearing && selectedProduct?.details?.ball_bearing_price;else ball_bearing_price">
-              <span>Ball Bearing: {{ selectedProduct?.details?.ball_bearing }}</span>
-              <span>Ball Bearing Price: {{ selectedProduct?.details?.ball_bearing_price }}</span>
-            </p>
-            <ng-template #ball_bearing_price>
-              <p>
-                <span>Ball Bearing: NA</span>
-                <span>Ball Bearing Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.drive_shaft && selectedProduct?.details?.drive_shaft_price;else drive_shaft">
-              <span>Drive Shaft: {{ selectedProduct?.details?.drive_shaft }}</span>
-              <span>Drive Shaft Price: {{ selectedProduct?.details?.drive_shaft_price }}</span>
-            </p>
-            <ng-template #drive_shaft>
-              <p>
-                <span>Drive Shaft: NA</span>
-                <span>Drive Shaft Price: NA</span>
-              </p>
-            </ng-template>
-
-            <p *ngIf="selectedProduct?.details?.bearing && selectedProduct?.details?.bearing_price;else bearing">
-              <span>Bearing: {{ selectedProduct?.details?.bearing }}</span>
-              <span>Bearing Price: {{ selectedProduct?.details?.bearing_price }}</span>
-            </p>
-            <ng-template #bearing>
-              <p>
-                <span>Bearing:   NA</span>
-                <span>Bearing Price:   NA</span>
-              </p>
-            </ng-template> -->
           </div>
           <div class="product-row" *ngIf="toggleDetails">
             <div class="prod-title">Quantity</div>
@@ -751,7 +489,6 @@
                 </div>
 
                 <div class="total-row grand-total">
-                  <!-- <span>Grand Total:</span> <strong>{{finalPrice | currency}}</strong> -->
                   <div class="productAmount">
                     <span>Total</span>
                     <span class="final-price">{{ finalPrice | currency }}</span>
@@ -783,7 +520,6 @@
           </div>
 
           <div class="warranty-section">
-            <!-- <img src="assets/images/icons/warranty.jpg"> -->
           </div>
         </div>
       </div>
