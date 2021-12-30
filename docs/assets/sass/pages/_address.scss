@@ -1,0 +1,203 @@
+*:focus {
+  outline: none;
+}
+
+.addresspage {
+  .scale-no:nth-child(2n) a {
+    background: #2f80ed !important;
+  }
+  .scale-no:first-of-type:before {
+    background: #2f80ed;
+  }
+
+  .scale-no:nth-child(3n) a {
+    background: #2f80ed !important;
+  }
+
+  .address-row {
+    form {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 20px 0 0 0;
+      h3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin: 20px 0 7px 0;
+      }
+      .name-container {
+        display: flex;
+        .address2 {
+          max-width: 32%;
+          margin: 10px 15px 15px 0;
+        }
+      }
+
+      .address-feild {
+        max-width: 48%;
+        flex: 0 0 48%;
+        margin: 10px 0 15px 0;
+        &.title {
+          max-width: 100px;
+        }
+        @media screen and (max-width: 666px) {
+          max-width: 100%;
+          flex: 0 0 100%;
+        }
+
+        label {
+          width: 100%;
+          font-size: 14px;
+          font-weight: normal;
+          color: rgba(0, 0, 0, 0.6);
+
+          span {
+            color: #ff0000;
+          }
+        }
+
+        input,
+        select {
+          width: 100%;
+          font-size: 14px;
+          font-weight: normal;
+          height: 48px;
+          padding: 10px;
+          border: none;
+          border-radius: 2px;
+          background: rgba(0, 0, 0, 0.05);
+          appearance: none;
+          -webkit-appearance: none;
+
+          &:focus {
+            border: 1px solid rgba(18, 37, 58, 0.4);
+          }
+        }
+
+        input::-webkit-input-placeholder {
+          color: rgba(190, 193, 197, 0.9);
+          font-size: 0.9em;
+          font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+            "Lucida Sans", Arial, sans-serif;
+        }
+
+        input:focus::-webkit-input-placeholder {
+          color: transparent;
+        }
+
+        // input:focus::placeholder {
+        //   color: transparent;
+        // }
+      }
+    }
+  }
+  .full-address-row {
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 25px 80px;
+
+    @media screen and (max-width: 767px) {
+      padding: 20px;
+    }
+
+    .address-feild {
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      input,
+      select,
+      .address-feildCard {
+        background: transparent;
+        border: solid 1px #d2d2d2 !important;
+      }
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      padding: 0;
+      a {
+        background: #10253e;
+        border-radius: 5px;
+        width: 100%;
+        padding: 13px;
+        color: #fff;
+        font-size: 16px;
+        margin: 0;
+        border: none;
+        display: inline-block;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .full-address-row {
+    form {
+      flex-wrap: wrap;
+      margin: 0;
+
+      .address-feild {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+      }
+    }
+  }
+
+  input.green {
+    border: solid 1px #2fa907 !important;
+  }
+  input.red {
+    border: solid 1px #ff0000 !important;
+  }
+
+  select.green {
+    border: solid 1px #2fa907 !important;
+  }
+
+  select.red {
+    border: solid 1px #ff0000 !important;
+  }
+}
+
+.paymentpage {
+  .scale-no:nth-child(2n + 1) a {
+    background: #2f80ed !important;
+  }
+
+  .scale-no:nth-of-type(2):before {
+    background: #2f80ed;
+  }
+
+  .coupon-field {
+    input {
+      width: 100%;
+      font-size: 14px;
+      font-weight: normal;
+      height: 48px;
+      padding: 10px;
+      border: none;
+      border-radius: 2px;
+      background: rgba(0, 0, 0, 0.05);
+      appearance: none;
+      -webkit-appearance: none;
+
+      &:focus {
+        border: 1px solid rgba(18, 37, 58, 0.4);
+      }
+    }
+    .coupon-btn {
+      margin: 0 0 0 20px !important;
+    }
+  }
+}
+
+.full-address-row .address-feild input.green {
+  border: solid 1px #2fa907 !important;
+}
+.full-address-row .address-feild input.red {
+  border: solid 1px #ff0000 !important;
+}
