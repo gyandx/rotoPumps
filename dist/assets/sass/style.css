@@ -850,9 +850,17 @@ button.cart-btn {
   height: 425px !important;
 }
 
-.error-msg {
-  margin: -13px 0 16px;
-  color: red;
+.error-page img {
+  margin: 10px 0;
+}
+
+.error-page .error-msg {
+  margin: 10px 0;
+  color: #f8cc3b;
+}
+
+.error-page .error-msg h1 {
+  padding: 5px 0;
 }
 
 .validation-error {
