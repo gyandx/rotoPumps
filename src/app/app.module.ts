@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -52,6 +52,7 @@ import { MainComponent } from './views/main/main.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    CarouselModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       preventDuplicates: true

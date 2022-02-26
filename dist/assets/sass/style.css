@@ -4992,7 +4992,6 @@ div#cartdeletemodal,
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background-image: url(../../assets/images/icons/Right.png);
   background-repeat: no-repeat;
   background-position: 97% 25px;
   font-size: 16px;
@@ -5003,7 +5002,6 @@ div#cartdeletemodal,
 .surface-page .pumps-sel-sec .pumps-sel .pumps-sec a:hover {
   background-color: #2f80ed;
   color: #fff;
-  background-image: url(../../assets/images/icons/Right-white.png);
   background-position: 96% 30px;
   text-decoration: none;
 }

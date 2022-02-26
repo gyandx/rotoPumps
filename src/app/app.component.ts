@@ -40,9 +40,10 @@ export class AppComponent implements OnInit {
           evt[`url`].includes(`/forget-password`)
         ) {
           this.showHeaderButtons = false;
-        } else if (evt[`url`].includes(`/main`) || evt[`url`] === '/') {
-          this.showHeader = false;
         } 
+        // else if (evt[`url`].includes(`/main`) || evt[`url`] === '/') {
+        //   this.showHeader = false;
+        // } 
         else {
           this.showHeaderButtons = true;
           this.showHeader = true;

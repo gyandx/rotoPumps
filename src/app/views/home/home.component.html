@@ -43,37 +43,24 @@
         <div class="common-title">
           <h2>Most Trending Products</h2>
         </div>
-        <!--Product Slider-->
         <div class="container">
-          <div class="row">
-            <div class="well">
-              <div id="productCarousel" class="carousel slide" data-interval="5000">
-                <div class="carousel-inner">
-                  <div class="item active">
-                    <div class="row">
-                      <div class="col-md-3" *ngFor="let eachTrendingProduct of mostTrendingProducts">
-                        <a [routerLink]= "eachTrendingProduct?.routePath" [queryParams]="{model: eachTrendingProduct?.code}">
-                          <div class="thumbnail">
-                            <div class="image-cover">
-                              <img [src]= "eachTrendingProduct?.imgSrc" alt="Slide1" />
-                            </div>
-                          </div>
-                        </a>
-                        <div class="caption">
-                          <h6>{{ eachTrendingProduct?.description }}</h6>
-                        </div>
+          <div class="well" id="productCarousel">
+            <owl-carousel-o [options]="customOptions">
+              <ng-container *ngFor="let eachTrendingProduct of mostTrendingProducts">
+                <ng-template carouselSlide [id]="eachTrendingProduct.id">
+                  <a [routerLink]= "eachTrendingProduct?.routePath" [queryParams]="{model: eachTrendingProduct?.code}">
+                    <div class="thumbnail">
+                      <div class="image-cover">
+                        <img [src]= "eachTrendingProduct?.imgSrc" alt="eachTrendingProduct?.description" />
                       </div>
                     </div>
+                  </a>
+                  <div class="caption">
+                    <h6>{{ eachTrendingProduct?.description }}</h6>
                   </div>
-                </div>
-                <a class="left carousel-control" href="#productCarousel" data-slide="prev"><i
-                    class="fa fa-chevron-left fa-2x"></i></a>
-                <a class="right carousel-control" href="#productCarousel" data-slide="next"><i
-                    class="fa fa-chevron-right fa-2x"></i></a>
-              </div>
-              <!-- End Carousel -->
-            </div>
-            <!-- End Well -->
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
           </div>
         </div>
       </div>

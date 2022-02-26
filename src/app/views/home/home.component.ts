@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { RetroSubSpareDetails } from "../../dataModels/retroSpareSubCat";
 import { Subscription } from "rxjs";
 import { ToastrService } from "ngx-toastr";
+import { OwlOptions } from 'ngx-owl-carousel-o';
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -21,6 +23,32 @@ export class HomeComponent implements OnInit {
   stateInfo: any[] = []; // used to store state data
   countryInfo: any[] = []; // used to store country data
   mostTrendingProducts: any[] = [];
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    margin: 20,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
 
   constructor(
     private apiService: ApiService,
@@ -62,6 +90,15 @@ export class HomeComponent implements OnInit {
               this.apiService.productCategories(eachProduct);
             });
           }
+          console.log(this.mostTrendingProducts)
+          // for (let i = 0; i < this.mostTrendingProducts.length; i++ ){
+          //   if (this.trendingProduct.length < 4) {
+          //     this.trendingProduct.push(this.mostTrendingProducts[i])
+          //   }
+          // }
+          // this.trendingProducts.push(this.trendingProduct);
+          // console.log('tProduct', this.trendingProduct)
+          // console.log('tProducts', this.trendingProducts)
         }
       },
       (error) => {

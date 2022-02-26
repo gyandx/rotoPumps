@@ -27,8 +27,8 @@ import { ThankyouComponent } from './views/thankyou/thankyou.component';
 import { MainComponent } from './views/main/main.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/main', pathMatch: 'full'},
-  {path: 'main', component: MainComponent} ,
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  // {path: 'main', component: MainComponent} ,
   {path: 'home', component: HomeComponent, resolve: { homeData : HomeDetailsResolver} } ,
   {path: 'aboutUs', component: AboutUsComponent} ,
   {path: 'contactUs', component: ContactUsComponent} ,
