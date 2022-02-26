@@ -90,15 +90,6 @@ export class HomeComponent implements OnInit {
               this.apiService.productCategories(eachProduct);
             });
           }
-          console.log(this.mostTrendingProducts)
-          // for (let i = 0; i < this.mostTrendingProducts.length; i++ ){
-          //   if (this.trendingProduct.length < 4) {
-          //     this.trendingProduct.push(this.mostTrendingProducts[i])
-          //   }
-          // }
-          // this.trendingProducts.push(this.trendingProduct);
-          // console.log('tProduct', this.trendingProduct)
-          // console.log('tProducts', this.trendingProducts)
         }
       },
       (error) => {
